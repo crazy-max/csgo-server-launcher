@@ -43,7 +43,7 @@ In the server launcher script i named it **csgo_update**.
     app_update 740
     exit
 
-Replace <username> and <password> by your Steam login.
+Replace ``<username>`` and ``<password>`` by your Steam login.
 
 Automatic update with cron
 --------------------------
