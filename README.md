@@ -1,0 +1,56 @@
+csgo-server-launcher.sh
+=======================
+
+A simple script to launch your Counter-Strike : Global Offensive Dedicated Server.
+Tested on Debian and Ubuntu.
+
+Installation
+------------
+
+Before running the script, you must change some variables.
+
+* **SCREEN_NAME** - The screen name, you can put what you want.
+* **USER** - Name of the user who started the server.
+* **IP** - Your WAN IP address.
+* **DAEMON_GAME** - You don't normally need to change this variable.
+* **DIR_STEAMCMD** - Path to steamcmd server.
+* **DIR_GAME** - Path to the game.
+* **LOG_DIR** - Directory of game's logs.
+* **LOG_FILE** - The log file name.
+* **PARAM_START** - Launch settings server.
+* **SCRIPT_UPDATE** - Name of the file containing the script update (see chapter *Update script* for an example).
+
+Usage
+-----
+
+For the console mod, press CTRL+A then D to stop the screen without stopping the server.
+
+* **start** - Start the server with the PARAM_START var in a screen.
+* **stop** - Stop the server and close the screen loaded.
+* **status** - Display the status of the server (screen down or up)
+* **restart** - Restart the server (stop && start)
+* **console** - Display the server console where you can enter commands.
+* **update** - Update the server based on the SCRIPT_UPDATE file then save the log file in LOG_DIR.
+
+Update script
+-------------
+
+Here is an example of update script. You have to place this file in the same folder as steamcmd.
+In the server launcher script i named it **csgo_update**.
+
+    login <username> <password>
+    force_install_dir ./csgo/
+    app_update 740
+    exit
+
+Replace <username> and <password> by your Steam login.
+
+Automatic update with cron
+--------------------------
+
+You can automatically update your game server by calling the script in a crontab.
+Just add this line in your crontab and change the folder if necessary.
+
+    0 4 * * * cd /var/steamcmd/ && ./csgo update >/dev/null 2>&1
+	
+This will update your server every day at 4 am.
