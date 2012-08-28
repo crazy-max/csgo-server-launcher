@@ -45,6 +45,7 @@ DAEMON_GAME="srcds_run"
 
 LOG_DIR="$DIR_GAME/csgo/logs"
 LOG_FILE="$LOG_DIR/update_`date +%Y%m%d`.log"
+LOG_EMAIL="monitoring@foo.com"
 
 PARAM_START="-game csgo -console -usercon -secure -nohltv -maxplayers_override 28 +sv_pure 0 +net_public_adr $IP +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
@@ -115,8 +116,10 @@ function update {
   if [ `whoami` = root ];
   then
     su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE";
+	cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
   else
     cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE;
+	cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
   fi
   
   echo "$SCREEN_NAME updated successfully"

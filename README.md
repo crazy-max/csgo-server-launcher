@@ -19,6 +19,7 @@ Before running the script, you must change some variables.
 * **DIR_GAME** - Path to the game.
 * **LOG_DIR** - Directory of game's logs.
 * **LOG_FILE** - The log file name.
+* **LOG_EMAIL** - Mail address where the update's logs are sent.
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
@@ -32,7 +33,7 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **status** - Display the status of the server (screen down or up)
 * **restart** - Restart the server (stop && start)
 * **console** - Display the server console where you can enter commands.
-* **update** - Update the server based on the SCRIPT_UPDATE file then save the log file in LOG_DIR.
+* **update** - Update the server based on the SCRIPT_UPDATE file then save the log file in LOG_DIR and send an e-mail.
 
 Automatic update with cron
 --------------------------
