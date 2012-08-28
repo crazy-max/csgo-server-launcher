@@ -37,6 +37,9 @@ USER="steam"
 IP="1.2.3.4"
 
 DIR_STEAMCMD="/var/steamcmd"
+STEAM_LOGIN="username"
+STEAM_PASSWORD="password"
+
 DIR_GAME="$DIR_STEAMCMD/games/csgo"
 DAEMON_GAME="srcds_run"
 
@@ -44,7 +47,7 @@ LOG_DIR="$DIR_GAME/csgo/logs"
 LOG_FILE="$LOG_DIR/update_`date +%Y%m%d`.log"
 
 PARAM_START="-game csgo -console -usercon -secure -nohltv -maxplayers_override 28 +sv_pure 0 +net_public_adr $IP +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
-SCRIPT_UPDATE="csgo_update"
+PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
 
 # Do not change this path
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
@@ -111,9 +114,9 @@ function update {
   
   if [ `whoami` = root ];
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh +runscript $SCRIPT_UPDATE 2>&1 | tee $LOG_FILE";
+    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE";
   else
-    cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh +runscript $SCRIPT_UPDATE 2>&1 | tee $LOG_FILE;
+    cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE;
   fi
   
   echo "$SCREEN_NAME updated successfully"

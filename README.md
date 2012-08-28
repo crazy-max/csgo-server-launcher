@@ -14,11 +14,13 @@ Before running the script, you must change some variables.
 * **IP** - Your WAN IP address.
 * **DAEMON_GAME** - You don't normally need to change this variable.
 * **DIR_STEAMCMD** - Path to steamcmd server.
+* **STEAM_LOGIN** - Your steam account username.
+* **STEAM_PASSWORD** - Your steam account password.
 * **DIR_GAME** - Path to the game.
 * **LOG_DIR** - Directory of game's logs.
 * **LOG_FILE** - The log file name.
 * **PARAM_START** - Launch settings server.
-* **SCRIPT_UPDATE** - Name of the file containing the script update (see chapter *Update script* for an example).
+* **PARAM_UPDATE** - Update settings server.
 
 Usage
 -----
@@ -31,19 +33,6 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **restart** - Restart the server (stop && start)
 * **console** - Display the server console where you can enter commands.
 * **update** - Update the server based on the SCRIPT_UPDATE file then save the log file in LOG_DIR.
-
-Update script
--------------
-
-Here is an example of update script. You have to place this file in the same folder as steamcmd.
-In the server launcher script i named it **csgo_update**.
-
-    login <username> <password>
-    force_install_dir ./csgo/
-    app_update 740
-    exit
-
-Replace ``<username>`` and ``<password>`` by your Steam login.
 
 Automatic update with cron
 --------------------------
