@@ -54,3 +54,8 @@ Just add this line in your crontab and change the folder if necessary.
     0 4 * * * cd /var/steamcmd/ && ./csgo update >/dev/null 2>&1
 	
 This will update your server every day at 4 am.
+
+More infos
+----------
+
+http://www.crazyws.fr/tutos/installer-un-serveur-counter-strike-global-offensive-X4LCM.html
