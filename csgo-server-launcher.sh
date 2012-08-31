@@ -107,8 +107,10 @@ function update {
   
   if status;
   then
-    stop; echo "Stop $SCREEN_NAME before update...";
-	sleep 5; RELAUNCH=1;
+    stop;
+    echo "Stop $SCREEN_NAME before update...";
+    sleep 5;
+    RELAUNCH=1;
   else
     RELAUNCH=0;
   fi
@@ -116,20 +118,20 @@ function update {
   if [ `whoami` = root ];
   then
     su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE";
-	cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
+    cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
   else
     cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE;
-	cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
+    cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
   fi
   
   echo "$SCREEN_NAME updated successfully"
   
   if [ $RELAUNCH = 1 ];
   then
-	echo "Restart $SCREEN_NAME..."
-	start;
-	sleep 5;
-	echo "$SCREEN_NAME restarted successfully"
+    echo "Restart $SCREEN_NAME..."
+    start;
+    sleep 5;
+    echo "$SCREEN_NAME restarted successfully"
   else
     exit 1;
   fi
@@ -145,24 +147,24 @@ case "$1" in
   start)
     echo "Starting $SCREEN_NAME..."
     start
-	sleep 5
+    sleep 5
     echo "$SCREEN_NAME started successfully"
   ;;
 
   stop)
     echo "Stopping $SCREEN_NAME..."
     stop
-	sleep 5
+    sleep 5
     echo "$SCREEN_NAME stopped successfully"
   ;;
  
   restart)
     echo "Restarting $SCREEN_NAME..."
     status && stop
-	sleep 5
+    sleep 5
     start
-	sleep 5
-	echo "$SCREEN_NAME restarted successfully"
+    sleep 5
+    echo "$SCREEN_NAME restarted successfully"
   ;;
 
   status)
@@ -173,7 +175,7 @@ case "$1" in
   ;;
  
   console)
-	echo "Open console on $SCREEN_NAME..."
+    echo "Open console on $SCREEN_NAME..."
     console
   ;;
   
@@ -184,13 +186,9 @@ case "$1" in
 
   *)
     usage
-	exit 1
+    exit 1
   ;;
 
 esac
 
 exit 0
-
-
-
-
