@@ -33,7 +33,7 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **status** - Display the status of the server (screen down or up)
 * **restart** - Restart the server (stop && start)
 * **console** - Display the server console where you can enter commands.
-* **update** - Update the server based on the SCRIPT_UPDATE file then save the log file in LOG_DIR and send an e-mail.
+* **update** - Update the server based on the PARAM_UPDATE then save the log file in LOG_DIR and send an e-mail to LOG_EMAIL.
 
 Automatic update with cron
 --------------------------
