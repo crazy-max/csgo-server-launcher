@@ -124,6 +124,9 @@ function update {
     relaunch=$2
   fi
   
+  # save motd.txt before update
+  cp $DIR_GAME/csgo/motd.txt $DIR_GAME/csgo/motd.txt.bck
+  
   echo "Starting the $SCREEN_NAME update..."
   
   if [ `whoami` = root ]
@@ -133,6 +136,9 @@ function update {
     cd $DIR_STEAMCMD
     STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE
   fi
+  
+  # restore motd.txt
+  mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt
   
   if [ `egrep -ic "Success! App '740' fully installed." "$LOG_FILE"` -gt 0 ]
   then
