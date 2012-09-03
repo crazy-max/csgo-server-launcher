@@ -6,7 +6,7 @@
 #                                                                                #
 #  Author: Cr@zy                                                                 #
 #  Contact: http://www.crazyws.fr                                                #
-#  Related article: http://goo.gl/HFFGy                                          #
+#  Related post: http://goo.gl/HFFGy                                             #
 #                                                                                #
 #  This program is free software: you can redistribute it and/or modify it       #
 #  under the terms of the GNU General Public License as published by the Free    #
@@ -49,10 +49,12 @@ LOG_EMAIL="monitoring@foo.com"
 
 PARAM_START="-game csgo -console -usercon -secure -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +net_public_adr $IP +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
+MAX_RETRY_UPDATE=3
 
 # Do not change this path
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 
+# No edits necessary beyond this line
 if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
 if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
 
@@ -61,18 +63,19 @@ function start {
   if [ ! -x $DIR_GAME/$DAEMON_GAME ]; then echo "ERROR: $DIR_GAME/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
   if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
 
-  if [ `whoami` = root ];
+  if [ `whoami` = root ]
   then
     su - $USER -c "cd $DIR_GAME ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
   else
-    cd $DIR_GAME ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START
+    cd $DIR_GAME
+    screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START
   fi
 }
 
 function stop {
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
-  if [ `whoami` = root ];
+  if [ `whoami` = root ]
   then
     tmp=$(su - $USER -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - $USER -c "screen -r $tmp -X quit"
@@ -82,7 +85,7 @@ function stop {
 }
 
 function status {
-  if [ `whoami` = root ];
+  if [ `whoami` = root ]
   then
     su - $USER -c "screen -ls" | grep [.]$SCREEN_NAME[[:space:]] > /dev/null
   else
@@ -93,7 +96,7 @@ function status {
 function console {
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
-  if [ `whoami` = root ];
+  if [ `whoami` = root ]
   then
     tmp=$(su - $USER -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - $USER -c "screen -r $tmp"
@@ -104,36 +107,59 @@ function console {
 
 function update {
   if [ ! -d $LOG_DIR ]; then mkdir $LOG_DIR; fi
+  if [ -z "$1" ]; then retry=0; else retry=$1; fi
   
-  if status;
+  if [ -z "$2" ]
   then
-    stop;
-    echo "Stop $SCREEN_NAME before update...";
-    sleep 5;
-    RELAUNCH=1;
+    if status
+    then
+      stop
+      echo "Stop $SCREEN_NAME before update..."
+      sleep 5
+      relaunch=1
+    else
+      relaunch=0
+    fi
   else
-    RELAUNCH=0;
+    relaunch=$2
   fi
   
-  if [ `whoami` = root ];
+  echo "Starting the $SCREEN_NAME update..."
+  
+  if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE";
-    cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
+    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE"
   else
-    cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE;
-    cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL;
+    cd $DIR_STEAMCMD
+    STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE
   fi
   
-  echo "$SCREEN_NAME updated successfully"
+  if [ `egrep -ic "Success! App '740' fully installed." "$LOG_FILE"` -gt 0 ]
+  then
+    echo "$SCREEN_NAME updated successfully"
+  else
+    if [ $retry -lt $MAX_RETRY_UPDATE ]
+    then
+      retry=`expr $retry + 1`
+      echo "$SCREEN_NAME update failed... retry $retry/3..."
+      update $retry $relaunch
+    else
+      echo "$SCREEN_NAME update failed... exit..."
+      exit 1
+    fi
+  fi
   
-  if [ $RELAUNCH = 1 ];
+  # send e-mail
+  cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL
+  
+  if [ $relaunch = 1 ]
   then
     echo "Restart $SCREEN_NAME..."
-    start;
-    sleep 5;
+    start
+    sleep 5
     echo "$SCREEN_NAME restarted successfully"
   else
-    exit 1;
+    exit 1
   fi
 }
 

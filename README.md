@@ -22,6 +22,7 @@ Before running the script, you must change some variables.
 * **LOG_EMAIL** - Mail address where the update's logs are sent.
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
+* **MAX_RETRY_UPDATE** - Number of retries in case of failure of the update.
 
 Usage
 -----
