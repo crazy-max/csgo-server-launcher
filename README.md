@@ -20,7 +20,7 @@ Before running the script, you must change some variables.
 * **DIR_LOGS** - Directory of game's logs.
 * **DAEMON_GAME** - You don't normally need to change this variable.
 * **UPDATE_LOG** - The update log file name.
-* **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty if...
+* **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty to disable sending mail.
 * **UPDATE_RETRY** - Number of retries in case of failure of the update.
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
