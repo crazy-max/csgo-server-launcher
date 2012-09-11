@@ -12,20 +12,16 @@ Before running the script, you must change some variables.
 * **SCREEN_NAME** - The screen name, you can put what you want but it must be unique and must contain only alphanumeric character.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
-
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
 * **STEAM_RUNSCRIPT** - Name of the script that steamcmd should execute for autoupdate. This file is created on the fly, you don't normally need to change this variable.
-
 * **DIR_GAME** - Path to the game.
 * **DIR_LOGS** - Directory of game's logs.
 * **DAEMON_GAME** - You don't normally need to change this variable.
-
 * **UPDATE_LOG** - The update log file name.
 * **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty if...
 * **UPDATE_RETRY** - Number of retries in case of failure of the update.
-
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
