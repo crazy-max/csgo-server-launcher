@@ -21,7 +21,7 @@
 #  You should have received a copy of the GNU General Public License along       #
 #  with this program.  If not, see http://www.gnu.org/licenses/.                 #
 #                                                                                #
-#  Usage: ./csgo {start|stop|status|restart|console|update}                      #
+#  Usage: ./csgo-server-launcher.sh {start|stop|status|restart|console|update}   #
 #    - start: start the server                                                   #
 #    - stop: stop the server                                                     #
 #    - status: display the status of the server (down or up)                     #
@@ -39,17 +39,18 @@ IP="1.2.3.4"
 DIR_STEAMCMD="/var/steamcmd"
 STEAM_LOGIN="username"
 STEAM_PASSWORD="password"
+STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
 
 DIR_GAME="$DIR_STEAMCMD/games/csgo"
+DIR_LOGS="$DIR_GAME/csgo/logs"
 DAEMON_GAME="srcds_run"
 
-LOG_DIR="$DIR_GAME/csgo/logs"
-LOG_FILE="$LOG_DIR/update_`date +%Y%m%d`.log"
-LOG_EMAIL="monitoring@foo.com"
+UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
+UPDATE_EMAIL="monitoring@foo.com"
+UPDATE_RETRY=3
 
-PARAM_START="-game csgo -console -usercon -secure -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +net_public_adr $IP +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
+PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
-MAX_RETRY_UPDATE=3
 
 # Do not change this path
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
@@ -62,7 +63,15 @@ function start {
   if [ ! -d $DIR_GAME ]; then echo "ERROR: $DIR_GAME is not a directory"; exit 1; fi
   if [ ! -x $DIR_GAME/$DAEMON_GAME ]; then echo "ERROR: $DIR_GAME/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
   if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
-
+  
+  # Create runscript file for autoupdate
+  echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
+  cd $DIR_STEAMCMD
+  echo "login $STEAM_LOGIN $STEAM_PASSWORD" > $STEAM_RUNSCRIPT
+  echo "force_install_dir $DIR_GAME" >> $STEAM_RUNSCRIPT
+  echo "app_update 740" >> $STEAM_RUNSCRIPT
+  echo "quit" >> $STEAM_RUNSCRIPT
+    
   if [ `whoami` = root ]
   then
     su - $USER -c "cd $DIR_GAME ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
@@ -106,7 +115,7 @@ function console {
 }
 
 function update {
-  if [ ! -d $LOG_DIR ]; then mkdir $LOG_DIR; fi
+  if [ ! -d $DIR_LOGS ]; then mkdir $DIR_LOGS; fi
   if [ -z "$1" ]; then retry=0; else retry=$1; fi
   
   if [ -z "$2" ]
@@ -131,20 +140,20 @@ function update {
   
   if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE"
+    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
   else
     cd $DIR_STEAMCMD
-    STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $LOG_FILE
+    STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
   fi
   
   # restore motd.txt
   mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt
   
-  if [ `egrep -ic "Success! App '740' fully installed." "$LOG_FILE"` -gt 0 ]
+  if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
-    if [ $retry -lt $MAX_RETRY_UPDATE ]
+    if [ $retry -lt $UPDATE_RETRY ]
     then
       retry=`expr $retry + 1`
       echo "$SCREEN_NAME update failed... retry $retry/3..."
@@ -156,7 +165,7 @@ function update {
   fi
   
   # send e-mail
-  cat $LOG_FILE | mail -s "$SCREEN_NAME update for $(hostname -f)" $LOG_EMAIL
+  if [ ! -z "$UPDATE_EMAIL" ]; then cat $UPDATE_LOG | mail -s "$SCREEN_NAME update for $(hostname -f)" $UPDATE_EMAIL; fi
   
   if [ $relaunch = 1 ]
   then

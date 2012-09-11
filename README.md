@@ -9,20 +9,25 @@ Installation
 
 Before running the script, you must change some variables.
 
-* **SCREEN_NAME** - The screen name, you can put what you want.
+* **SCREEN_NAME** - The screen name, you can put what you want but it must be unique and must contain only alphanumeric character.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
-* **DAEMON_GAME** - You don't normally need to change this variable.
-* **DIR_STEAMCMD** - Path to steamcmd server.
+
+* **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
+* **STEAM_RUNSCRIPT** - Name of the script that steamcmd should execute for autoupdate. This file is created on the fly, you don't normally need to change this variable.
+
 * **DIR_GAME** - Path to the game.
-* **LOG_DIR** - Directory of game's logs.
-* **LOG_FILE** - The log file name.
-* **LOG_EMAIL** - Mail address where the update's logs are sent.
+* **DIR_LOGS** - Directory of game's logs.
+* **DAEMON_GAME** - You don't normally need to change this variable.
+
+* **UPDATE_LOG** - The update log file name.
+* **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty if...
+* **UPDATE_RETRY** - Number of retries in case of failure of the update.
+
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
-* **MAX_RETRY_UPDATE** - Number of retries in case of failure of the update.
 
 Usage
 -----
@@ -34,7 +39,7 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **status** - Display the status of the server (screen down or up)
 * **restart** - Restart the server (stop && start)
 * **console** - Display the server console where you can enter commands.
-* **update** - Update the server based on the PARAM_UPDATE then save the log file in LOG_DIR and send an e-mail to LOG_EMAIL.
+* **update** - Update the server based on the PARAM_UPDATE then save the log file in LOG_DIR and send an e-mail to LOG_EMAIL if the var is filled.
 
 Automatic update with cron
 --------------------------
