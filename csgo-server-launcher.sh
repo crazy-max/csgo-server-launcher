@@ -210,7 +210,7 @@ case "$1" in
 
   status)
     if status
-    then echo "$SCREEN_NAME is UP" 
+    then echo "$SCREEN_NAME is UP"
     else echo "$SCREEN_NAME is DOWN"
     fi
   ;;
