@@ -1,5 +1,5 @@
-csgo-server-launcher.sh
-=======================
+Counter-Strike : Global Offensive Server Launcher
+=================================================
 
 A simple script to launch your Counter-Strike : Global Offensive Dedicated Server.
 Tested on Debian and Ubuntu.
