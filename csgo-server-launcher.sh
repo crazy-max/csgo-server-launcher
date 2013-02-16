@@ -40,6 +40,7 @@ DIR_STEAMCMD="/var/steamcmd"
 STEAM_LOGIN="username"
 STEAM_PASSWORD="password"
 STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
+WORKSHOP_COLLECTIONID="125499818"
 
 DIR_GAME="$DIR_STEAMCMD/games/csgo"
 DIR_LOGS="$DIR_GAME/csgo/logs"
@@ -49,7 +50,7 @@ UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
 UPDATE_EMAIL="monitoring@foo.com"
 UPDATE_RETRY=3
 
-PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
+PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override 28 +sv_pure 0 +host_workshop_collection ${WORKSHOP_COLLECTIONID} +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
 
 # Do not change this path
