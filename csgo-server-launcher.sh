@@ -149,7 +149,7 @@ function update {
   # restore motd.txt
   mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt
   
-  if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ]]||[ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
+if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
