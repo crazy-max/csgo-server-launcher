@@ -49,6 +49,11 @@ UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
 UPDATE_EMAIL="monitoring@foo.com"
 UPDATE_RETRY=3
 
+# Workshop : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
+API_AUTHORIZATION_KEY="" # http://steamcommunity.com/dev/registerkey
+WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filedetails/?id=125499818
+WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
+
 PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
 
@@ -71,7 +76,22 @@ function start {
   echo "force_install_dir $DIR_GAME" >> $STEAM_RUNSCRIPT
   echo "app_update 740" >> $STEAM_RUNSCRIPT
   echo "quit" >> $STEAM_RUNSCRIPT
-    
+  chown $USER $STEAM_RUNSCRIPT
+  chmod 400 $STEAM_RUNSCRIPT
+  
+  # Generated misc args
+  GENERATED_ARGS="";
+  if [ ! -z "${API_AUTHORIZATION_KEY}" ]
+  then
+    GENERATED_ARGS="-authkey ${API_AUTHORIZATION_KEY}"
+    if [ ! -z "${WORKSHOP_COLLECTION_ID}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +host_workshop_collection ${WORKSHOP_COLLECTION_ID}"; fi
+    if [ ! -z "${WORKSHOP_START_MAP}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +workshop_start_map ${WORKSHOP_START_MAP}"; fi
+  fi
+  
+  # Start game
+  PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
+  echo "Start command : $PARAM_START"
+  
   if [ `whoami` = root ]
   then
     su - $USER -c "cd $DIR_GAME ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
@@ -134,22 +154,23 @@ function update {
   fi
   
   # save motd.txt before update
-  cp $DIR_GAME/csgo/motd.txt $DIR_GAME/csgo/motd.txt.bck
+  if [ -f "$DIR_GAME/csgo/motd.txt" ]; then cp $DIR_GAME/csgo/motd.txt $DIR_GAME/csgo/motd.txt.bck; fi
   
   echo "Starting the $SCREEN_NAME update..."
   
   if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
+    su - $USER -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
   else
     cd $DIR_STEAMCMD
-    STEAMEXE=steamcmd ./steam.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
+    ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
   fi
   
   # restore motd.txt
-  mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt
-  
-if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
+  if [ -f "$DIR_GAME/csgo/motd.txt.bck" ]; then mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt; fi
+
+  # check for update
+  if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
@@ -233,3 +254,4 @@ case "$1" in
 esac
 
 exit 0
+
