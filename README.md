@@ -23,8 +23,8 @@ Before running the script, you must change some variables.
 * **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty to disable sending mail.
 * **UPDATE_RETRY** - Number of retries in case of failure of the update.
 * **API_AUTHORIZATION_KEY** - To download maps from the workshop, your server needs access to the steam web api. To allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
-* **WORKSHOP_COLLECTION_ID** - A collection id from the Maps Workshop. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
-* **WORKSHOP_START_MAP** - A map id in the selected collection (WORKSHOP_COLLECTION_ID).
+* **WORKSHOP_COLLECTION_ID** - A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
+* **WORKSHOP_START_MAP** - A map id in the selected collection (WORKSHOP_COLLECTION_ID). The API_AUTHORIZATION_KEY is required.
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
