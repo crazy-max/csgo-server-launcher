@@ -77,7 +77,7 @@ function start {
   echo "app_update 740" >> $STEAM_RUNSCRIPT
   echo "quit" >> $STEAM_RUNSCRIPT
   chown $USER $STEAM_RUNSCRIPT
-  chmod 400 $STEAM_RUNSCRIPT
+  chmod 600 $STEAM_RUNSCRIPT
   
   # Generated misc args
   GENERATED_ARGS="";
