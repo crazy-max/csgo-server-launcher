@@ -41,8 +41,9 @@ STEAM_LOGIN="username"
 STEAM_PASSWORD="password"
 STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
 
-DIR_GAME="$DIR_STEAMCMD/games/csgo"
-DIR_LOGS="$DIR_GAME/csgo/logs"
+DIR_ROOT="$DIR_STEAMCMD/games/csgo"
+DIR_GAME="$DIR_ROOT/csgo"
+DIR_LOGS="$DIR_GAME/logs"
 DAEMON_GAME="srcds_run"
 
 UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
@@ -55,7 +56,7 @@ WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filed
 WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
 
 PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override 28 +sv_pure 0 +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
-PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_GAME} +app_update 740 validate +quit"
+PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
 
 # Do not change this path
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
@@ -65,15 +66,15 @@ if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt
 if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
 
 function start {
-  if [ ! -d $DIR_GAME ]; then echo "ERROR: $DIR_GAME is not a directory"; exit 1; fi
-  if [ ! -x $DIR_GAME/$DAEMON_GAME ]; then echo "ERROR: $DIR_GAME/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
+  if [ ! -d $DIR_ROOT ]; then echo "ERROR: $DIR_ROOT is not a directory"; exit 1; fi
+  if [ ! -x $DIR_ROOT/$DAEMON_GAME ]; then echo "ERROR: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
   if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
   
   # Create runscript file for autoupdate
   echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
   cd $DIR_STEAMCMD
   echo "login $STEAM_LOGIN $STEAM_PASSWORD" > $STEAM_RUNSCRIPT
-  echo "force_install_dir $DIR_GAME" >> $STEAM_RUNSCRIPT
+  echo "force_install_dir $DIR_ROOT" >> $STEAM_RUNSCRIPT
   echo "app_update 740" >> $STEAM_RUNSCRIPT
   echo "quit" >> $STEAM_RUNSCRIPT
   chown $USER $STEAM_RUNSCRIPT
@@ -81,6 +82,7 @@ function start {
   
   # Generated misc args
   GENERATED_ARGS="";
+  if [ -z "${API_AUTHORIZATION_KEY}" -a -f $DIR_GAME/webapi_authkey.txt ]; then API_AUTHORIZATION_KEY="`cat $DIR_GAME/webapi_authkey.txt`"; fi
   if [ ! -z "${API_AUTHORIZATION_KEY}" ]
   then
     GENERATED_ARGS="-authkey ${API_AUTHORIZATION_KEY}"
@@ -94,9 +96,9 @@ function start {
   
   if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_GAME ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
+    su - $USER -c "cd $DIR_ROOT ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
   else
-    cd $DIR_GAME
+    cd $DIR_ROOT
     screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START
   fi
 }
@@ -154,7 +156,7 @@ function update {
   fi
   
   # save motd.txt before update
-  if [ -f "$DIR_GAME/csgo/motd.txt" ]; then cp $DIR_GAME/csgo/motd.txt $DIR_GAME/csgo/motd.txt.bck; fi
+  if [ -f "$DIR_GAME/motd.txt" ]; then cp $DIR_GAME/motd.txt $DIR_GAME/motd.txt.bck; fi
   
   echo "Starting the $SCREEN_NAME update..."
   
@@ -167,7 +169,7 @@ function update {
   fi
   
   # restore motd.txt
-  if [ -f "$DIR_GAME/csgo/motd.txt.bck" ]; then mv $DIR_GAME/csgo/motd.txt.bck $DIR_GAME/csgo/motd.txt; fi
+  if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv $DIR_GAME/motd.txt.bck $DIR_GAME/motd.txt; fi
 
   # check for update
   if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
