@@ -12,6 +12,8 @@ Before running the script, you must change some variables.
 * **SCREEN_NAME** - The screen name, you can put what you want but it must be unique and must contain only alphanumeric character.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
+* **MAXPLAYERS** - Maximum players that can connect.
+* **TICKRATE** - The tickrate that your server will operate at.
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
