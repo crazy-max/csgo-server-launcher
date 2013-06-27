@@ -35,35 +35,37 @@
 SCREEN_NAME="csgo"
 USER="steam"
 IP="1.2.3.4"
+PORT="27015"
+
 MAXPLAYERS="18"
 TICKRATE="64"
+EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 
 DIR_STEAMCMD="/var/steamcmd"
-STEAM_LOGIN="username"
-STEAM_PASSWORD="password"
-STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
-
+STEAM_LOGIN="anonymous"
+STEAM_PASSWORD="anonymous"
 DIR_ROOT="$DIR_STEAMCMD/games/csgo"
-DIR_GAME="$DIR_ROOT/csgo"
-DIR_LOGS="$DIR_GAME/logs"
-DAEMON_GAME="srcds_run"
-
-UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
-UPDATE_EMAIL="monitoring@foo.com"
-UPDATE_RETRY=3
+UPDATE_EMAIL=""
 
 # Workshop : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
 API_AUTHORIZATION_KEY="" # http://steamcommunity.com/dev/registerkey
 WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filedetails/?id=125499818
 WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
 
-PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +sv_pure 0 +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
+# Advanced config
+STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
+DIR_GAME="$DIR_ROOT/csgo"
+DIR_LOGS="$DIR_GAME/logs"
+DAEMON_GAME="srcds_run"
+
+UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
+UPDATE_RETRY=3
+
+PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
 
-# Do not change this path
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
-
 # No edits necessary beyond this line
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
 if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
 if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
 
