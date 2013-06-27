@@ -12,12 +12,14 @@ Before running the script, you must change some variables.
 * **SCREEN_NAME** - The screen name, you can put what you want but it must be unique and must contain only alphanumeric character.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
+* **PORT** - The port that your server should listen on.
 * **MAXPLAYERS** - Maximum players that can connect.
 * **TICKRATE** - The tickrate that your server will operate at.
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
 * **STEAM_RUNSCRIPT** - Name of the script that steamcmd should execute for autoupdate. This file is created on the fly, you don't normally need to change this variable.
+* **DIR_ROOT** - Root directory for the server.
 * **DIR_GAME** - Path to the game.
 * **DIR_LOGS** - Directory of game's logs.
 * **DAEMON_GAME** - You don't normally need to change this variable.
@@ -41,6 +43,7 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **restart** - Restart the server (stop && start)
 * **console** - Display the server console where you can enter commands.
 * **update** - Update the server based on the PARAM_UPDATE then save the log file in LOG_DIR and send an e-mail to LOG_EMAIL if the var is filled.
+* **create** - Create a server (script must be configured first).
 
 Automatic update with cron
 --------------------------
