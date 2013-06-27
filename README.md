@@ -16,25 +16,20 @@ Before running the script, you must change some variables.
 * **MAXPLAYERS** - Maximum players that can connect.
 * **TICKRATE** - The tickrate that your server will operate at.
 * **EXTRAPARAMS** - Custom command line parameters
-
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
 * **DIR_ROOT** - Root directory for the server.
 * **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty to disable sending mail.
-
 * **API_AUTHORIZATION_KEY** - To download maps from the workshop, your server needs access to the steam web api. Leave empty if the ``webapi_authkey.txt`` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
 * **WORKSHOP_COLLECTION_ID** - A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
 * **WORKSHOP_START_MAP** - A map id in the selected collection (WORKSHOP_COLLECTION_ID). The API_AUTHORIZATION_KEY is required.
-
 * **STEAM_RUNSCRIPT** - Name of the script that steamcmd should execute for autoupdate. This file is created on the fly, you don't normally need to change this variable.
 * **DIR_GAME** - Path to the game.
 * **DIR_LOGS** - Directory of game's logs.
 * **DAEMON_GAME** - You don't normally need to change this variable.
-
 * **UPDATE_LOG** - The update log file name.
 * **UPDATE_RETRY** - Number of retries in case of failure of the update.
-
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
