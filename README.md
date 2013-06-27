@@ -13,7 +13,6 @@ Before running the script, you must change some variables.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
 * **PORT** - The port that your server should listen on.
-
 * **MAXPLAYERS** - Maximum players that can connect.
 * **TICKRATE** - The tickrate that your server will operate at.
 * **EXTRAPARAMS** - Custom command line parameters
