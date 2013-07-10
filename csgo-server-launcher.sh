@@ -29,43 +29,48 @@
 #    - console: display the server console where you can enter commands.         #
 #     To exit the console without stopping the server, press CTRL + A then D.    #
 #    - update: update the server                                                 #
+#    - create: creates a new server                                              #
 #                                                                                #
 ##################################################################################
 
 SCREEN_NAME="csgo"
 USER="steam"
-IP="1.2.3.4"
+IP="198.51.100.0"
+PORT="27015"
+
 MAXPLAYERS="18"
 TICKRATE="64"
+EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 
 DIR_STEAMCMD="/var/steamcmd"
-STEAM_LOGIN="username"
-STEAM_PASSWORD="password"
-STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
-
+STEAM_LOGIN="anonymous"
+STEAM_PASSWORD="anonymous"
 DIR_ROOT="$DIR_STEAMCMD/games/csgo"
-DIR_GAME="$DIR_ROOT/csgo"
-DIR_LOGS="$DIR_GAME/logs"
-DAEMON_GAME="srcds_run"
-
-UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
-UPDATE_EMAIL="monitoring@foo.com"
-UPDATE_RETRY=3
+UPDATE_EMAIL=""
 
 # Workshop : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
 API_AUTHORIZATION_KEY="" # http://steamcommunity.com/dev/registerkey
 WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filedetails/?id=125499818
 WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
 
-PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -nohltv -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +sv_pure 0 +hostport 27015 +ip ${IP} +net_public_adr ${IP} +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
+# Advanced config
+STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
+DIR_GAME="$DIR_ROOT/csgo"
+DIR_LOGS="$DIR_GAME/logs"
+DAEMON_GAME="srcds_run"
+
+UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
+UPDATE_RETRY=3
+
+PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
 
-# Do not change this path
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
-
 # No edits necessary beyond this line
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
 if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
 if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
+if [ ! -x `which wget` ]; then echo "ERROR: You need wget for this script (try apt-get install wget)"; exit 1; fi
+if [ ! -x `which tar` ]; then echo "ERROR: You need tar for this script (try apt-get install tar)"; exit 1; fi
 
 function start {
   if [ ! -d $DIR_ROOT ]; then echo "ERROR: $DIR_ROOT is not a directory"; exit 1; fi
@@ -139,7 +144,39 @@ function console {
 }
 
 function update {
-  if [ ! -d $DIR_LOGS ]; then mkdir $DIR_LOGS; fi
+  # Create the log directory
+  if [ ! -d $DIR_LOGS ];
+  then 
+    echo "$DIR_LOGS does not exist, creating..."
+    if [ `whoami` = root ]
+    then
+      su - $USER -c "mkdir -p $DIR_LOGS";
+    else
+      mkdir -p "$DIR_LOGS"
+    fi
+  fi
+  if [ ! -d $DIR_LOGS ]
+  then
+    echo "Could not create $DIR_LOGS"
+    exit 1
+  fi
+  # Create the game root
+  if [ ! -d $DIR_ROOT ]
+  then
+    echo "$DIR_ROOT does not exist, creating..."
+    if [ `whoami` = root ]
+    then
+      su - $USER -c "mkdir -p $DIR_ROOT";
+    else
+      mkdir -p "$DIR_ROOT"
+    fi
+  fi
+  if [ ! -d $DIR_ROOT ]
+  then
+    echo "Unable to create $DIR_ROOT"
+    exit 1
+  fi
+  
   if [ -z "$1" ]; then retry=0; else retry=$1; fi
   
   if [ -z "$2" ]
@@ -204,8 +241,89 @@ function update {
 }
 
 function usage {
-  echo "Usage: $0 {start|stop|status|restart|console|update}"
+  echo "Usage: $0 {start|stop|status|restart|console|update|create}"
   echo "On console, press CTRL+A then D to stop the screen without stopping the server."
+}
+
+function create {
+  # IP should never exist: RFC 5735 TEST-NET-2
+  if [ "$IP" = "198.51.100.0" ]
+  then
+    echo "You must configure the script before you create a server."
+    exit 1
+  fi
+  
+  # If steamcmd already exists just install the server
+  if [ -e "$DIR_STEAMCMD/steamcmd.sh" ]
+  then
+    echo "steamcmd already exists..."
+    echo "installing/updating $SCREEN_NAME"
+    update
+    return
+  fi
+  
+  # Install steamcmd in the specified directory 
+  if [ ! -d "$DIR_STEAMCMD" ]
+  then
+    echo "$DIR_STEAMCMD does not exist, creating..."
+    if [ `whoami` = "root" ]
+    then
+      su - $USER -c "mkdir -p $DIR_STEAMCMD"
+    else
+      mkdir -p $DIR_STEAMCMD
+    fi
+    if [ ! -d "$DIR_STEAMCMD" ]
+    then
+      echo "could not create $DIR_STEAMCMD"
+      exit 1
+    fi
+  fi 
+
+  # Download steamcmd
+  echo "Downloading steamcmd from http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+  if [ `whoami` = "root" ]
+  then
+    su - $USER -c "cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+  else
+    cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
+  fi
+  if [ "$?" -ne "0" ]
+  then
+    echo "Unable to download steamcmd"
+    exit 1
+  fi
+  
+  # Extract it
+  echo "Extracting and removing the archive"
+  if [ `whoami` = "root" ]
+  then
+    su - $USER -c "cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz"
+    su - $USER -c "cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz"
+  else
+    cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz
+    cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz
+  fi
+  
+  # Did it install?
+  if [ ! -e "$DIR_STEAMCMD/steamcmd.sh" ]
+  then
+    echo "Failed to install steamcmd"
+    exit 1
+  fi
+  
+  #Run steamcmd for the first time to update it, telling it to quit when it is done
+  echo "Updating steamcmd"
+  if [ `whoami` = "root" ]
+  then
+  su - $USER -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
+  else
+    echo quit | $DIR_STEAMCMD/steamcmd.sh
+  fi
+  
+  #Done installing steamcmd, install the server
+  echo "Done installing steamcmd. Installing the game"
+  echo "This will take a while"
+  update
 }
 
 case "$1" in
@@ -248,6 +366,11 @@ case "$1" in
   update)
     echo "Updating $SCREEN_NAME..."
     update
+  ;;
+  
+  create)
+    echo "Creating $SCREEN_NAME..."
+    create
   ;;
 
   *)
