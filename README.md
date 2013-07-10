@@ -13,23 +13,29 @@ Before running the script, you must change some variables.
 * **USER** - Name of the user who started the server.
 * **IP** - Your WAN IP address.
 * **PORT** - The port that your server should listen on.
-* **MAXPLAYERS** - Maximum players that can connect.
-* **TICKRATE** - The tickrate that your server will operate at.
-* **EXTRAPARAMS** - Custom command line parameters
+<br /><br />
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
-* **DIR_ROOT** - Root directory for the server.
-* **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty to disable sending mail.
-* **API_AUTHORIZATION_KEY** - To download maps from the workshop, your server needs access to the steam web api. Leave empty if the ``webapi_authkey.txt`` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
-* **WORKSHOP_COLLECTION_ID** - A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
-* **WORKSHOP_START_MAP** - A map id in the selected collection (WORKSHOP_COLLECTION_ID). The API_AUTHORIZATION_KEY is required.
 * **STEAM_RUNSCRIPT** - Name of the script that steamcmd should execute for autoupdate. This file is created on the fly, you don't normally need to change this variable.
+<br /><br />
+* **DIR_ROOT** - Root directory for the server.
 * **DIR_GAME** - Path to the game.
 * **DIR_LOGS** - Directory of game's logs.
 * **DAEMON_GAME** - You don't normally need to change this variable.
+<br /><br />
 * **UPDATE_LOG** - The update log file name.
+* **UPDATE_EMAIL** - Mail address where the update's logs are sent. Leave empty to disable sending mail.
 * **UPDATE_RETRY** - Number of retries in case of failure of the update.
+<br /><br />
+* **API_AUTHORIZATION_KEY** - To download maps from the workshop, your server needs access to the steam web api. Leave empty if the ``webapi_authkey.txt`` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
+* **WORKSHOP_COLLECTION_ID** - A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
+* **WORKSHOP_START_MAP** - A map id in the selected collection (WORKSHOP_COLLECTION_ID). The API_AUTHORIZATION_KEY is required.
+<br /><br />
+* **MAXPLAYERS** - Maximum players that can connect.
+* **TICKRATE** - The tickrate that your server will operate at.
+* **EXTRAPARAMS** - Custom command line parameters
+<br /><br />
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
@@ -53,7 +59,7 @@ You can automatically update your game server by calling the script in a crontab
 Just add this line in your crontab and change the folder if necessary.
 
     0 4 * * * cd /var/steamcmd/ && ./csgo update >/dev/null 2>&1
-	
+    
 This will update your server every day at 4 am.
 
 More infos
