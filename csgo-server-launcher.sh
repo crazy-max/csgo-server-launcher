@@ -38,29 +38,29 @@ USER="steam"
 IP="198.51.100.0"
 PORT="27015"
 
-MAXPLAYERS="18"
-TICKRATE="64"
-EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
-
 DIR_STEAMCMD="/var/steamcmd"
 STEAM_LOGIN="anonymous"
 STEAM_PASSWORD="anonymous"
+STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
+
 DIR_ROOT="$DIR_STEAMCMD/games/csgo"
+DIR_GAME="$DIR_ROOT/csgo"
+DIR_LOGS="$DIR_GAME/logs"
+DAEMON_GAME="srcds_run"
+
+UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
 UPDATE_EMAIL=""
+UPDATE_RETRY=3
 
 # Workshop : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
 API_AUTHORIZATION_KEY="" # http://steamcommunity.com/dev/registerkey
 WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filedetails/?id=125499818
 WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
 
-# Advanced config
-STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
-DIR_GAME="$DIR_ROOT/csgo"
-DIR_LOGS="$DIR_GAME/logs"
-DAEMON_GAME="srcds_run"
-
-UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
-UPDATE_RETRY=3
+# Game config
+MAXPLAYERS="18"
+TICKRATE="64"
+EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 
 PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
@@ -155,11 +155,13 @@ function update {
       mkdir -p "$DIR_LOGS"
     fi
   fi
+
   if [ ! -d $DIR_LOGS ]
   then
-    echo "Could not create $DIR_LOGS"
+    echo "ERROR: Could not create $DIR_LOGS"
     exit 1
   fi
+
   # Create the game root
   if [ ! -d $DIR_ROOT ]
   then
@@ -171,9 +173,10 @@ function update {
       mkdir -p "$DIR_ROOT"
     fi
   fi
+
   if [ ! -d $DIR_ROOT ]
   then
-    echo "Unable to create $DIR_ROOT"
+    echo "ERROR: Could not create $DIR_ROOT"
     exit 1
   fi
   
@@ -194,7 +197,7 @@ function update {
     relaunch=$2
   fi
   
-  # save motd.txt before update
+  # Save motd.txt before update
   if [ -f "$DIR_GAME/motd.txt" ]; then cp $DIR_GAME/motd.txt $DIR_GAME/motd.txt.bck; fi
   
   echo "Starting the $SCREEN_NAME update..."
@@ -207,10 +210,10 @@ function update {
     ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
   fi
   
-  # restore motd.txt
+  # Restore motd.txt
   if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv $DIR_GAME/motd.txt.bck $DIR_GAME/motd.txt; fi
 
-  # check for update
+  # Check for update
   if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
@@ -226,7 +229,7 @@ function update {
     fi
   fi
   
-  # send e-mail
+  # Send e-mail
   if [ ! -z "$UPDATE_EMAIL" ]; then cat $UPDATE_LOG | mail -s "$SCREEN_NAME update for $(hostname -f)" $UPDATE_EMAIL; fi
   
   if [ $relaunch = 1 ]
@@ -240,16 +243,11 @@ function update {
   fi
 }
 
-function usage {
-  echo "Usage: $0 {start|stop|status|restart|console|update|create}"
-  echo "On console, press CTRL+A then D to stop the screen without stopping the server."
-}
-
 function create {
   # IP should never exist: RFC 5735 TEST-NET-2
   if [ "$IP" = "198.51.100.0" ]
   then
-    echo "You must configure the script before you create a server."
+    echo "ERROR: You must configure the script before you create a server."
     exit 1
   fi
   
@@ -257,7 +255,7 @@ function create {
   if [ -e "$DIR_STEAMCMD/steamcmd.sh" ]
   then
     echo "steamcmd already exists..."
-    echo "installing/updating $SCREEN_NAME"
+    echo "Installing/Updating $SCREEN_NAME"
     update
     return
   fi
@@ -274,7 +272,7 @@ function create {
     fi
     if [ ! -d "$DIR_STEAMCMD" ]
     then
-      echo "could not create $DIR_STEAMCMD"
+      echo "ERROR: Could not create $DIR_STEAMCMD"
       exit 1
     fi
   fi 
@@ -289,7 +287,7 @@ function create {
   fi
   if [ "$?" -ne "0" ]
   then
-    echo "Unable to download steamcmd"
+    echo "ERROR: Unable to download steamcmd"
     exit 1
   fi
   
@@ -307,11 +305,11 @@ function create {
   # Did it install?
   if [ ! -e "$DIR_STEAMCMD/steamcmd.sh" ]
   then
-    echo "Failed to install steamcmd"
+    echo "ERROR: Failed to install steamcmd"
     exit 1
   fi
   
-  #Run steamcmd for the first time to update it, telling it to quit when it is done
+  # Run steamcmd for the first time to update it, telling it to quit when it is done
   echo "Updating steamcmd"
   if [ `whoami` = "root" ]
   then
@@ -320,10 +318,15 @@ function create {
     echo quit | $DIR_STEAMCMD/steamcmd.sh
   fi
   
-  #Done installing steamcmd, install the server
+  # Done installing steamcmd, install the server
   echo "Done installing steamcmd. Installing the game"
   echo "This will take a while"
   update
+}
+
+function usage {
+  echo "Usage: $0 {start|stop|status|restart|console|update|create}"
+  echo "On console, press CTRL+A then D to stop the screen without stopping the server."
 }
 
 case "$1" in
