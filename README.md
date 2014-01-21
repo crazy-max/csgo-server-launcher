@@ -1,11 +1,9 @@
-Counter-Strike : Global Offensive Server Launcher
-=================================================
+# Counter-Strike : Global Offensive Server Launcher
 
 A simple script to launch your Counter-Strike : Global Offensive Dedicated Server.
 Tested on Debian and Ubuntu.
 
-Installation
-------------
+## Installation
 
 Before running the script, you must change some variables.
 
@@ -39,8 +37,7 @@ Before running the script, you must change some variables.
 * **PARAM_START** - Launch settings server.
 * **PARAM_UPDATE** - Update settings server.
 
-Usage
------
+## Usage
 
 For the console mod, press CTRL+A then D to stop the screen without stopping the server.
 
@@ -52,17 +49,21 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **update** - Update the server based on the PARAM_UPDATE then save the log file in LOG_DIR and send an e-mail to LOG_EMAIL if the var is filled.
 * **create** - Create a server (script must be configured first).
 
-Automatic update with cron
---------------------------
+## Automatic update with cron
 
 You can automatically update your game server by calling the script in a crontab.
 Just add this line in your crontab and change the folder if necessary.
 
-    0 4 * * * cd /var/steamcmd/ && ./csgo update >/dev/null 2>&1
-    
+```console
+0 4 * * * cd /var/steamcmd/ && ./csgo update >/dev/null 2>&1
+```
+
 This will update your server every day at 4 am.
 
-More infos
-----------
+## License
+
+LGPL. See ``LICENSE`` for more details.
+
+## More infos
 
 http://www.crazyws.fr/tutos/installer-un-serveur-counter-strike-global-offensive-X4LCM.html
