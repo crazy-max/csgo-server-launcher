@@ -37,10 +37,10 @@
 
 SCREEN_NAME="csgo"
 USER="steam"
-IP="198.51.100.0"
-PORT="27015"
+IP="5.196.13.131"
+PORT="27555"
 
-DIR_STEAMCMD="/var/steamcmd"
+DIR_STEAMCMD="steamcmd"
 STEAM_LOGIN="anonymous"
 STEAM_PASSWORD="anonymous"
 STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
@@ -61,7 +61,7 @@ WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetai
 
 # Game config
 MAXPLAYERS="18"
-TICKRATE="64"
+TICKRATE="128"
 EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
 
 PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
