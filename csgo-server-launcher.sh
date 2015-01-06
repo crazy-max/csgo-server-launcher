@@ -1,13 +1,21 @@
 #! /bin/bash
+### BEGIN INIT INFO
+# Provides: csgo-server-launcher
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Counter-Strike - Global Offensive Server Launcher
+### END INIT INFO
 
 ##################################################################################
 #                                                                                #
-#  Counter-Strike : Global Offensive Server Launcher v1.8                        #
+#  Counter-Strike : Global Offensive Server Launcher v1.9                        #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2013-2014 Cr@zy <webmaster@crazyws.fr>                          #
+#  Copyright (C) 2013-2015 Cr@zy <webmaster@crazyws.fr>                          #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
@@ -35,44 +43,9 @@
 #                                                                                #
 ##################################################################################
 
-SCREEN_NAME="csgo"
-USER="steam"
-IP="198.51.100.0"
-PORT="27015"
-
-DIR_STEAMCMD="/var/steamcmd"
-STEAM_LOGIN="anonymous"
-STEAM_PASSWORD="anonymous"
-STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
-
-DIR_ROOT="$DIR_STEAMCMD/games/csgo"
-DIR_GAME="$DIR_ROOT/csgo"
-DIR_LOGS="$DIR_GAME/logs"
-DAEMON_GAME="srcds_run"
-
-UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
-UPDATE_EMAIL=""
-UPDATE_RETRY=3
-
-# Workshop : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
-API_AUTHORIZATION_KEY="" # http://steamcommunity.com/dev/registerkey
-WORKSHOP_COLLECTION_ID="125499818" # http://steamcommunity.com/sharedfiles/filedetails/?id=125499818
-WORKSHOP_START_MAP="125488374" # http://steamcommunity.com/sharedfiles/filedetails/?id=125488374
-
-# Game config
-MAXPLAYERS="18"
-TICKRATE="64"
-EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
-
-PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
-PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
+CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
 
 # No edits necessary beyond this line
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
-if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
-if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
-if [ ! -x `which wget` ]; then echo "ERROR: You need wget for this script (try apt-get install wget)"; exit 1; fi
-if [ ! -x `which tar` ]; then echo "ERROR: You need tar for this script (try apt-get install tar)"; exit 1; fi
 
 function start {
   if [ ! -d $DIR_ROOT ]; then echo "ERROR: $DIR_ROOT is not a directory"; exit 1; fi
@@ -327,9 +300,27 @@ function create {
 }
 
 function usage {
-  echo "Usage: $0 {start|stop|status|restart|console|update|create}"
+  echo "Usage: service csgo-server-launcher {start|stop|status|restart|console|update|create}"
   echo "On console, press CTRL+A then D to stop the screen without stopping the server."
 }
+
+### BEGIN ###
+
+# Read config file
+if [ ! -f "$CONFIG_FILE" ]
+then
+  echo "ERROR: Config file $CONFIG_FILE not found..."
+  exit 1
+else
+  source "$CONFIG_FILE"
+fi
+
+# Check required packages
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+if [ ! -x `which awk` ]; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
+if [ ! -x `which screen` ]; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
+if [ ! -x `which wget` ]; then echo "ERROR: You need wget for this script (try apt-get install wget)"; exit 1; fi
+if [ ! -x `which tar` ]; then echo "ERROR: You need tar for this script (try apt-get install tar)"; exit 1; fi
 
 case "$1" in
 
