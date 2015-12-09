@@ -71,6 +71,7 @@ function start {
     if [ ! -z "${WORKSHOP_COLLECTION_ID}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +host_workshop_collection ${WORKSHOP_COLLECTION_ID}"; fi
     if [ ! -z "${WORKSHOP_START_MAP}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +workshop_start_map ${WORKSHOP_START_MAP}"; fi
   fi
+  if [ ! -z "${GSLT}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +sv_setsteamaccount ${GSLT}"; fi
   
   # Start game
   PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
