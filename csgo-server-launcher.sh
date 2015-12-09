@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  Counter-Strike : Global Offensive Server Launcher v1.9                        #
+#  Counter-Strike : Global Offensive Server Launcher v1.10                       #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #

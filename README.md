@@ -33,6 +33,8 @@ Before running the script, you must change some vars in the config file ``/etc/c
 * **IP** - Your WAN IP address.
 * **PORT** - The port that your server should listen on.
 <br /><br />
+* **GSLT** - Anonymous connection will be deprecated in the near future. Therefore it is highly recommended to generate a Game Server Login Token. More info : http://steamcommunity.com/dev/managegameservers
+<br /><br />
 * **DIR_STEAMCMD** - Path to steamcmd.
 * **STEAM_LOGIN** - Your steam account username.
 * **STEAM_PASSWORD** - Your steam account password.
