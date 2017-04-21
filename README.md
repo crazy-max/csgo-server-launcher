@@ -122,12 +122,12 @@ Example: `UPDATE_RETRY=3`
 
 #### API_AUTHORIZATION_KEY
 
-To download maps from the workshop, your server needs access to the steam web api. Leave empty if the `webapi_authkey.txt` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
+To download maps from the workshop, your server needs access to the steam web api. Leave empty if the `webapi_authkey.txt` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey<br />
 Example: `API_AUTHORIZATION_KEY=""`
 
 #### WORKSHOP_COLLECTION_ID
 
-A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
+A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators<br />
 Example: `WORKSHOP_COLLECTION_ID="125499818"`
 
 #### WORKSHOP_START_MAP
