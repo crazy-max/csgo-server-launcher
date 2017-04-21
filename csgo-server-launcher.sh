@@ -5,17 +5,17 @@
 # Required-Stop: $remote_fs $syslog
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
-# Short-Description: Counter-Strike - Global Offensive Server Launcher
+# Short-Description: CSGO Server Launcher
 ### END INIT INFO
 
 ##################################################################################
 #                                                                                #
-#  Counter-Strike : Global Offensive Server Launcher v1.10                       #
+#  CSGO Server Launcher v1.11                                                    #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2013-2015 Cr@zy <webmaster@crazyws.fr>                          #
+#  Copyright (C) 2013-2017 Cr@zy                                                 #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
@@ -30,7 +30,7 @@
 #  You should have received a copy of the GNU Lesser General Public License      #
 #  along with this program. If not, see http://www.gnu.org/licenses/.            #
 #                                                                                #
-#  Related post: http://goo.gl/HFFGy                                             #
+#  Website: https://github.com/crazy-max/csgo-server-launcher                    #
 #  Usage: ./csgo-server-launcher.sh {start|stop|status|restart|console|update}   #
 #    - start: start the server                                                   #
 #    - stop: stop the server                                                     #
