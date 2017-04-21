@@ -62,8 +62,7 @@ Example: `IP="198.51.100.0"`
 
 #### GSLT
 
-Anonymous connection will be deprecated in the near future. Therefore it is highly recommended to generate a Game Server Login Token.<br />
-More info : http://steamcommunity.com/dev/managegameservers<br />
+Anonymous connection will be deprecated in the near future. Therefore it is highly recommended to generate a Game Server Login Token. More info : http://steamcommunity.com/dev/managegameservers<br />
 Example: `GSLT=""`
 
 #### DIR_STEAMCMD
@@ -123,14 +122,12 @@ Example: `UPDATE_RETRY=3`
 
 #### API_AUTHORIZATION_KEY
 
-To download maps from the workshop, your server needs access to the steam web api.<br />
-Leave empty if the `webapi_authkey.txt` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
+To download maps from the workshop, your server needs access to the steam web api. Leave empty if the `webapi_authkey.txt` file exists. Otherwise, to allow this you'll need an authorization key which you can generate : http://steamcommunity.com/dev/apikey
 Example: `API_AUTHORIZATION_KEY=""`
 
 #### WORKSHOP_COLLECTION_ID
 
-A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required.<br />
-More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
+A collection id from the Maps Workshop. The API_AUTHORIZATION_KEY is required. More info : https://developer.valvesoftware.com/wiki/CSGO_Workshop_For_Server_Operators
 Example: `WORKSHOP_COLLECTION_ID="125499818"`
 
 #### WORKSHOP_START_MAP
