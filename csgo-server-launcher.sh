@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.11                                                    #
+#  CSGO Server Launcher v1.12                                                    #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
@@ -51,7 +51,7 @@ function start {
   if [ ! -d $DIR_ROOT ]; then echo "ERROR: $DIR_ROOT is not a directory"; exit 1; fi
   if [ ! -x $DIR_ROOT/$DAEMON_GAME ]; then echo "ERROR: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
   if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
-  
+
   # Create runscript file for autoupdate
   echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
   cd $DIR_STEAMCMD
@@ -61,7 +61,7 @@ function start {
   echo "quit" >> $STEAM_RUNSCRIPT
   chown $USER $STEAM_RUNSCRIPT
   chmod 600 $STEAM_RUNSCRIPT
-  
+
   # Generated misc args
   GENERATED_ARGS="";
   if [ -z "${API_AUTHORIZATION_KEY}" -a -f $DIR_GAME/webapi_authkey.txt ]; then API_AUTHORIZATION_KEY="`cat $DIR_GAME/webapi_authkey.txt`"; fi
@@ -72,11 +72,11 @@ function start {
     if [ ! -z "${WORKSHOP_START_MAP}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +workshop_start_map ${WORKSHOP_START_MAP}"; fi
   fi
   if [ ! -z "${GSLT}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +sv_setsteamaccount ${GSLT}"; fi
-  
+
   # Start game
   PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
   echo "Start command : $PARAM_START"
-  
+
   if [ `whoami` = root ]
   then
     su - $USER -c "cd $DIR_ROOT ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
@@ -122,7 +122,7 @@ function console {
 function update {
   # Create the log directory
   if [ ! -d $DIR_LOGS ];
-  then 
+  then
     echo "$DIR_LOGS does not exist, creating..."
     if [ `whoami` = root ]
     then
@@ -155,9 +155,9 @@ function update {
     echo "ERROR: Could not create $DIR_ROOT"
     exit 1
   fi
-  
+
   if [ -z "$1" ]; then retry=0; else retry=$1; fi
-  
+
   if [ -z "$2" ]
   then
     if status
@@ -172,12 +172,12 @@ function update {
   else
     relaunch=$2
   fi
-  
+
   # Save motd.txt before update
   if [ -f "$DIR_GAME/motd.txt" ]; then cp $DIR_GAME/motd.txt $DIR_GAME/motd.txt.bck; fi
-  
+
   echo "Starting the $SCREEN_NAME update..."
-  
+
   if [ `whoami` = root ]
   then
     su - $USER -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
@@ -185,7 +185,7 @@ function update {
     cd $DIR_STEAMCMD
     ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
   fi
-  
+
   # Restore motd.txt
   if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv $DIR_GAME/motd.txt.bck $DIR_GAME/motd.txt; fi
 
@@ -204,10 +204,10 @@ function update {
       exit 1
     fi
   fi
-  
+
   # Send e-mail
   if [ ! -z "$UPDATE_EMAIL" ]; then cat $UPDATE_LOG | mail -s "$SCREEN_NAME update for $(hostname -f)" $UPDATE_EMAIL; fi
-  
+
   if [ $relaunch = 1 ]
   then
     echo "Restart $SCREEN_NAME..."
@@ -226,7 +226,7 @@ function create {
     echo "ERROR: You must configure the script before you create a server."
     exit 1
   fi
-  
+
   # If steamcmd already exists just install the server
   if [ -e "$DIR_STEAMCMD/steamcmd.sh" ]
   then
@@ -235,8 +235,8 @@ function create {
     update
     return
   fi
-  
-  # Install steamcmd in the specified directory 
+
+  # Install steamcmd in the specified directory
   if [ ! -d "$DIR_STEAMCMD" ]
   then
     echo "$DIR_STEAMCMD does not exist, creating..."
@@ -251,7 +251,7 @@ function create {
       echo "ERROR: Could not create $DIR_STEAMCMD"
       exit 1
     fi
-  fi 
+  fi
 
   # Download steamcmd
   echo "Downloading steamcmd from http://media.steampowered.com/client/steamcmd_linux.tar.gz"
@@ -266,7 +266,7 @@ function create {
     echo "ERROR: Unable to download steamcmd"
     exit 1
   fi
-  
+
   # Extract it
   echo "Extracting and removing the archive"
   if [ `whoami` = "root" ]
@@ -277,14 +277,14 @@ function create {
     cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz
     cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz
   fi
-  
+
   # Did it install?
   if [ ! -e "$DIR_STEAMCMD/steamcmd.sh" ]
   then
     echo "ERROR: Failed to install steamcmd"
     exit 1
   fi
-  
+
   # Run steamcmd for the first time to update it, telling it to quit when it is done
   echo "Updating steamcmd"
   if [ `whoami` = "root" ]
@@ -293,7 +293,7 @@ function create {
   else
     echo quit | $DIR_STEAMCMD/steamcmd.sh
   fi
-  
+
   # Done installing steamcmd, install the server
   echo "Done installing steamcmd. Installing the game"
   echo "This will take a while"
@@ -338,7 +338,7 @@ case "$1" in
     sleep 5
     echo "$SCREEN_NAME stopped successfully"
   ;;
- 
+
   restart)
     echo "Restarting $SCREEN_NAME..."
     status && stop
@@ -354,17 +354,17 @@ case "$1" in
     else echo "$SCREEN_NAME is DOWN"
     fi
   ;;
- 
+
   console)
     echo "Open console on $SCREEN_NAME..."
     console
   ;;
-  
+
   update)
     echo "Updating $SCREEN_NAME..."
     update
   ;;
-  
+
   create)
     echo "Creating $SCREEN_NAME..."
     create
