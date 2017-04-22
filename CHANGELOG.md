@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.12 (2017/04/22)
+
+* Bad line ending (Issue #32)
+
 ## 1.11 (2017/04/21)
 
 * Minor update
@@ -7,7 +11,7 @@
 
 ## 1.10 (2015/12/09)
 
-* Add game server login token support
+* Add game server login token support (Issue #26)
 
 ## 1.9 (2015/02/19)
 
