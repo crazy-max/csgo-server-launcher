@@ -170,8 +170,7 @@ function update {
   # Save motd.txt before update
   if [ -f "$DIR_GAME/motd.txt" ]; then cp "$DIR_GAME/motd.txt" "$DIR_GAME/motd.txt.bck"; fi
 
-  echo "Starting the $SCREEN_NAME update..."
-
+  # Update
   if [ `whoami` = root ]
   then
     su - ${USER} -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
@@ -208,8 +207,6 @@ function update {
     start
     sleep 5
     echo "$SCREEN_NAME restarted successfully"
-  else
-    exit 1
   fi
 }
 
@@ -225,7 +222,7 @@ function create {
   if [ -e "$DIR_STEAMCMD/steamcmd.sh" ]
   then
     echo "steamcmd already exists..."
-    echo "Installing/Updating $SCREEN_NAME"
+    echo "Updating $SCREEN_NAME..."
     update
     return
   fi
