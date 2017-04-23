@@ -2,8 +2,11 @@
 
 ## 1.12.1 (2017/04/23)
 
+* Create a symlink for steamclient.so (Issue #35)
+* Add screenlog (Issue #34)
 * Use type instead of which (Issue #33)
 * Can't access console (Issue #19)
+* Add FAQ in README.md
 * Code style
 
 ## 1.12 (2017/04/22)
