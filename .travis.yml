@@ -18,8 +18,8 @@ before_script:
   - export IP_ADDRESS=`dig +short myip.opendns.com @resolver1.opendns.com`
   - sudo mkdir /var/steamcmd
   - sudo chown -R $USER. /var/steamcmd/
-  - sudo sed "s/#USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo sed "s/#IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - sudo sed "s/USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - sudo sed "s/IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo cat /etc/csgo-server-launcher/csgo-server-launcher.conf
 
 script:
