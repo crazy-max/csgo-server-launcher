@@ -48,23 +48,23 @@ CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
 # No edits necessary beyond this line
 
 function start {
-  if [ ! -d $DIR_ROOT ]; then echo "ERROR: $DIR_ROOT is not a directory"; exit 1; fi
-  if [ ! -x $DIR_ROOT/$DAEMON_GAME ]; then echo "ERROR: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
+  if [ ! -d "$DIR_ROOT" ]; then echo "ERROR: "${DIR_ROOT}" is not a directory"; exit 1; fi
+  if [ ! -x "$DIR_ROOT/$DAEMON_GAME" ]; then echo "ERROR: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
   if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
 
   # Create runscript file for autoupdate
   echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
-  cd $DIR_STEAMCMD
-  echo "login $STEAM_LOGIN $STEAM_PASSWORD" > $STEAM_RUNSCRIPT
-  echo "force_install_dir $DIR_ROOT" >> $STEAM_RUNSCRIPT
-  echo "app_update 740" >> $STEAM_RUNSCRIPT
-  echo "quit" >> $STEAM_RUNSCRIPT
-  chown $USER $STEAM_RUNSCRIPT
-  chmod 600 $STEAM_RUNSCRIPT
+  cd "$DIR_STEAMCMD"
+  echo "login $STEAM_LOGIN $STEAM_PASSWORD" > "$STEAM_RUNSCRIPT"
+  echo "force_install_dir $DIR_ROOT" >> "$STEAM_RUNSCRIPT"
+  echo "app_update 740" >> "$STEAM_RUNSCRIPT"
+  echo "quit" >> "$STEAM_RUNSCRIPT"
+  chown ${USER} "$STEAM_RUNSCRIPT"
+  chmod 600 "$STEAM_RUNSCRIPT"
 
   # Generated misc args
   GENERATED_ARGS="";
-  if [ -z "${API_AUTHORIZATION_KEY}" -a -f $DIR_GAME/webapi_authkey.txt ]; then API_AUTHORIZATION_KEY="`cat $DIR_GAME/webapi_authkey.txt`"; fi
+  if [ -z "${API_AUTHORIZATION_KEY}" -a -f "$DIR_GAME/webapi_authkey.txt" ]; then API_AUTHORIZATION_KEY="`cat $DIR_GAME/webapi_authkey.txt`"; fi
   if [ ! -z "${API_AUTHORIZATION_KEY}" ]
   then
     GENERATED_ARGS="-authkey ${API_AUTHORIZATION_KEY}"
@@ -79,10 +79,10 @@ function start {
 
   if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_ROOT ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
+    su - ${USER} -c "cd $DIR_ROOT ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
   else
-    cd $DIR_ROOT
-    screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START
+    cd "$DIR_ROOT"
+    screen -AmdS ${SCREEN_NAME} ./${DAEMON_GAME} ${PARAM_START}
   fi
 }
 
@@ -91,8 +91,8 @@ function stop {
 
   if [ `whoami` = root ]
   then
-    tmp=$(su - $USER -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
-    su - $USER -c "screen -r $tmp -X quit"
+    tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
+    su - ${USER} -c "screen -r $tmp -X quit"
   else
     screen -r $(screen -ls | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}') -X quit
   fi
@@ -101,9 +101,9 @@ function stop {
 function status {
   if [ `whoami` = root ]
   then
-    su - $USER -c "screen -ls" | grep [.]$SCREEN_NAME[[:space:]] > /dev/null
+    su - ${USER} -c "screen -ls" | grep [.]${SCREEN_NAME}[[:space:]] > /dev/null
   else
-    screen -ls | grep [.]$SCREEN_NAME[[:space:]] > /dev/null
+    screen -ls | grep [.]${SCREEN_NAME}[[:space:]] > /dev/null
   fi
 }
 
@@ -112,8 +112,8 @@ function console {
 
   if [ `whoami` = root ]
   then
-    tmp=$(su - $USER -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
-    su - $USER -c "screen -r $tmp"
+    tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
+    su - ${USER} -c "screen -r $tmp"
   else
     screen -r $(screen -ls | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
   fi
@@ -121,40 +121,30 @@ function console {
 
 function update {
   # Create the log directory
-  if [ ! -d $DIR_LOGS ];
+  if [ ! -d "$DIR_LOGS" ];
   then
     echo "$DIR_LOGS does not exist, creating..."
     if [ `whoami` = root ]
     then
-      su - $USER -c "mkdir -p $DIR_LOGS";
+      su - ${USER} -c "mkdir -p $DIR_LOGS";
     else
       mkdir -p "$DIR_LOGS"
     fi
   fi
-
-  if [ ! -d $DIR_LOGS ]
-  then
-    echo "ERROR: Could not create $DIR_LOGS"
-    exit 1
-  fi
+  if [ ! -d "$DIR_LOGS" ]; then echo "ERROR: Could not create $DIR_LOGS"; exit 1; fi
 
   # Create the game root
-  if [ ! -d $DIR_ROOT ]
+  if [ ! -d "$DIR_ROOT" ]
   then
     echo "$DIR_ROOT does not exist, creating..."
     if [ `whoami` = root ]
     then
-      su - $USER -c "mkdir -p $DIR_ROOT";
+      su - ${USER} -c "mkdir -p $DIR_ROOT";
     else
       mkdir -p "$DIR_ROOT"
     fi
   fi
-
-  if [ ! -d $DIR_ROOT ]
-  then
-    echo "ERROR: Could not create $DIR_ROOT"
-    exit 1
-  fi
+  if [ ! -d "$DIR_ROOT" ]; then echo "ERROR: Could not create $DIR_ROOT"; exit 1; fi
 
   if [ -z "$1" ]; then retry=0; else retry=$1; fi
 
@@ -174,31 +164,31 @@ function update {
   fi
 
   # Save motd.txt before update
-  if [ -f "$DIR_GAME/motd.txt" ]; then cp $DIR_GAME/motd.txt $DIR_GAME/motd.txt.bck; fi
+  if [ -f "$DIR_GAME/motd.txt" ]; then cp "$DIR_GAME/motd.txt" "$DIR_GAME/motd.txt.bck"; fi
 
   echo "Starting the $SCREEN_NAME update..."
 
   if [ `whoami` = root ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
+    su - ${USER} -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
   else
-    cd $DIR_STEAMCMD
-    ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG
+    cd "$DIR_STEAMCMD"
+    ./steamcmd.sh ${PARAM_UPDATE} 2>&1 | tee "$UPDATE_LOG"
   fi
 
   # Restore motd.txt
-  if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv $DIR_GAME/motd.txt.bck $DIR_GAME/motd.txt; fi
+  if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv "$DIR_GAME/motd.txt.bck" "$DIR_GAME/motd.txt"; fi
 
   # Check for update
   if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
-    if [ $retry -lt $UPDATE_RETRY ]
+    if [ ${retry} -lt ${UPDATE_RETRY} ]
     then
-      retry=`expr $retry + 1`
+      retry=`expr ${retry} + 1`
       echo "$SCREEN_NAME update failed... retry $retry/3..."
-      update $retry $relaunch
+      update ${retry} ${relaunch}
     else
       echo "$SCREEN_NAME update failed... exit..."
       exit 1
@@ -206,9 +196,9 @@ function update {
   fi
 
   # Send e-mail
-  if [ ! -z "$UPDATE_EMAIL" ]; then cat $UPDATE_LOG | mail -s "$SCREEN_NAME update for $(hostname -f)" $UPDATE_EMAIL; fi
+  if [ ! -z "$UPDATE_EMAIL" ]; then cat "$UPDATE_LOG" | mail -s "$SCREEN_NAME update for $(hostname -f)" ${UPDATE_EMAIL}; fi
 
-  if [ $relaunch = 1 ]
+  if [ ${relaunch} = 1 ]
   then
     echo "Restart $SCREEN_NAME..."
     start
@@ -242,9 +232,9 @@ function create {
     echo "$DIR_STEAMCMD does not exist, creating..."
     if [ `whoami` = "root" ]
     then
-      su - $USER -c "mkdir -p $DIR_STEAMCMD"
+      su - ${USER} -c "mkdir -p $DIR_STEAMCMD"
     else
-      mkdir -p $DIR_STEAMCMD
+      mkdir -p "$DIR_STEAMCMD"
     fi
     if [ ! -d "$DIR_STEAMCMD" ]
     then
@@ -257,9 +247,9 @@ function create {
   echo "Downloading steamcmd from http://media.steampowered.com/client/steamcmd_linux.tar.gz"
   if [ `whoami` = "root" ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+    su - ${USER} -c "cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz"
   else
-    cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
+    cd "$DIR_STEAMCMD" ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
   fi
   if [ "$?" -ne "0" ]
   then
@@ -271,11 +261,11 @@ function create {
   echo "Extracting and removing the archive"
   if [ `whoami` = "root" ]
   then
-    su - $USER -c "cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz"
-    su - $USER -c "cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz"
+    su - ${USER} -c "cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz"
+    su - ${USER} -c "cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz"
   else
-    cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz
-    cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz
+    cd ${DIR_STEAMCMD} ; tar xzvf ./steamcmd_linux.tar.gz
+    cd ${DIR_STEAMCMD} ; rm ./steamcmd_linux.tar.gz
   fi
 
   # Did it install?
@@ -289,9 +279,9 @@ function create {
   echo "Updating steamcmd"
   if [ `whoami` = "root" ]
   then
-  su - $USER -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
+  su - ${USER} -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
   else
-    echo quit | $DIR_STEAMCMD/steamcmd.sh
+    echo quit | ${DIR_STEAMCMD}/steamcmd.sh
   fi
 
   # Done installing steamcmd, install the server
