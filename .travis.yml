@@ -1,0 +1,31 @@
+language: bash
+sudo: required
+dist: trusty
+
+before_install:
+  - sudo dpkg --add-architecture i386
+  - sudo apt-get update
+  - sudo apt-get install -y libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 awk curl screen tar wget
+
+install:
+  - sudo wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O /etc/init.d/csgo-server-launcher --no-check-certificate
+  - sudo chmod +x /etc/init.d/csgo-server-launcher
+  - sudo update-rc.d csgo-server-launcher defaults
+  - sudo mkdir /etc/csgo-server-launcher
+  - sudo wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.conf -O /etc/csgo-server-launcher/csgo-server-launcher.conf --no-check-certificate
+
+before_script:
+  - export IP_ADDRESS=`dig +short myip.opendns.com @resolver1.opendns.com`
+  - mkdir /var/steamcmd
+  - chown -R $USER. /var/steamcmd/
+  - sudo sed "s/#USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - sudo sed "s/#IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+
+script:
+  - service csgo-server-launcher create
+  - sleep 3
+  - service csgo-server-launcher start
+  - sleep 3
+  - service csgo-server-launcher status
+  - tail -f /var/steamcmd/games/csgo/screenlog.* & P=$! ; sleep 30; kill -9 $P
+  - service csgo-server-launcher stop
