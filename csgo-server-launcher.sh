@@ -73,13 +73,16 @@ function start {
   fi
   if [ ! -z "${GSLT}" ]; then GENERATED_ARGS="${GENERATED_ARGS} +sv_setsteamaccount ${GSLT}"; fi
 
+  # Remove old screenlogs
+  rm -f "$DIR_GAME/screenlog.*"
+
   # Start game
   PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
   echo "Start command : $PARAM_START"
 
   if [ `whoami` = root ]
   then
-    su - ${USER} -c "cd $DIR_ROOT ; screen -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
+    su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -AmdS $SCREEN_NAME -L ./$DAEMON_GAME $PARAM_START"
   else
     cd "$DIR_ROOT"
     screen -AmdS ${SCREEN_NAME} ./${DAEMON_GAME} ${PARAM_START}
@@ -92,9 +95,10 @@ function stop {
   if [ `whoami` = root ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
-    su - ${USER} -c "screen -r $tmp -X quit"
+    su - ${USER} -c "screen -r $tmp -X quit ; rm -f '$DIR_ROOT/screenlog.*'"
   else
     screen -r $(screen -ls | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}') -X quit
+    rm -f "$DIR_ROOT/screenlog.*"
   fi
 }
 
