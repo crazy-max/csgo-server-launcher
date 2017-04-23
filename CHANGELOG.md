@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.1 (2017/04/23)
+
+* Use type instead of which (Issue #33)
+* Can't access console (Issue #19)
+* Code style
+
 ## 1.12 (2017/04/22)
 
 * Bad line ending (Issue #32)
