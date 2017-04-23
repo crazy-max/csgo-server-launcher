@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.12                                                    #
+#  CSGO Server Launcher v1.12.1                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
@@ -113,7 +113,7 @@ function console {
   if [ `whoami` = root ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
-    su - ${USER} -c "screen -r $tmp"
+    su - ${USER} -c "script -q -c 'screen -r $tmp' /dev/null"
   else
     screen -r $(screen -ls | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
   fi
