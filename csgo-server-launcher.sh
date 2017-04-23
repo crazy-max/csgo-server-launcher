@@ -182,6 +182,28 @@ function update {
   # Restore motd.txt
   if [ -f "$DIR_GAME/motd.txt.bck" ]; then mv "$DIR_GAME/motd.txt.bck" "$DIR_GAME/motd.txt"; fi
 
+  # Create symlink for steamclient.so
+  if [ ! -d "$USER_HOME/.steam/sdk32" ]
+  then
+    echo "Creating folder '$USER_HOME/.steam/sdk32'"
+    if [ `whoami` = root ]
+    then
+      su - ${USER} -c "mkdir -p '$USER_HOME/.steam/sdk32'";
+    else
+      mkdir -p "$USER_HOME/.steam/sdk32"
+    fi
+  fi
+  if [ ! -f "$USER_HOME/.steam/sdk32/steamclient.so" ]
+  then
+    echo "Creating symlink for steamclient.so..."
+    if [ `whoami` = root ]
+    then
+      su - ${USER} -c "ln -s '$DIR_STEAMCMD/linux32/steamclient.so' '$USER_HOME/.steam/sdk32/'";
+    else
+      ln -sf "$DIR_STEAMCMD/linux32/steamclient.so" "$USER_HOME/.steam/sdk32/"
+    fi
+  fi
+
   # Check for update
   if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
   then
@@ -333,6 +355,7 @@ fi
 
 # Load config
 source "$CONFIG_FILE"
+USER_HOME=`eval echo ~${USER}`
 
 # Check required packages
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
