@@ -20,13 +20,12 @@ before_script:
   - sudo chown -R $USER. /var/steamcmd/
   - sudo sed "s/USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo sed "s/IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - sudo sed "s/PARAM_START=\"-game/PARAM_START=\"-debug -game/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo cat /etc/csgo-server-launcher/csgo-server-launcher.conf
 
 script:
   - service csgo-server-launcher create
-  - sleep 3
   - service csgo-server-launcher start
-  - sleep 3
-  - service csgo-server-launcher status
-  - tail -f /var/steamcmd/games/csgo/screenlog.* & P=$! ; sleep 30; kill -9 $P
+  - journalctl --unit=csgo-server-launcher | tail -100
+  - tail -f /var/steamcmd/games/csgo/screenlog.* & P=$! ; sleep 30 ; kill -9 $P
   - service csgo-server-launcher stop
