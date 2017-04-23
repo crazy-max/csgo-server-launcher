@@ -1,5 +1,5 @@
 # Eclipse
-/.settings/**
+/.settings
 /.buildpath
 /.project
 /.jsdtscope
@@ -7,3 +7,6 @@
 # Jetbrains
 /.idea
 /*.iml
+
+# Custom
+/.dev
