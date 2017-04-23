@@ -297,14 +297,41 @@ function usage {
 
 ### BEGIN ###
 
-# Read config file
+# Default config
+SCREEN_NAME="csgo"
+USER="steam"
+IP="198.51.100.0"
+PORT="27015"
+GSLT=""
+DIR_STEAMCMD="/var/steamcmd"
+STEAM_LOGIN="anonymous"
+STEAM_PASSWORD="anonymous"
+STEAM_RUNSCRIPT="$DIR_STEAMCMD/runscript_$SCREEN_NAME"
+DIR_ROOT="$DIR_STEAMCMD/games/csgo"
+DIR_GAME="$DIR_ROOT/csgo"
+DIR_LOGS="$DIR_GAME/logs"
+DAEMON_GAME="srcds_run"
+UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
+UPDATE_EMAIL=""
+UPDATE_RETRY=3
+API_AUTHORIZATION_KEY=""
+WORKSHOP_COLLECTION_ID="125499818"
+WORKSHOP_START_MAP="125488374"
+MAXPLAYERS="18"
+TICKRATE="64"
+EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"
+PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +ip ${IP} +net_public_adr ${IP} ${EXTRAPARAMS}"
+PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
+
+# Check config file
 if [ ! -f "$CONFIG_FILE" ]
 then
   echo "ERROR: Config file $CONFIG_FILE not found..."
   exit 1
-else
-  source "$CONFIG_FILE"
 fi
+
+# Load config
+source "$CONFIG_FILE"
 
 # Check required packages
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
