@@ -27,6 +27,6 @@ before_script:
 script:
   - service csgo-server-launcher create
   - service csgo-server-launcher start
-  - journalctl --unit=csgo-server-launcher | tail -100
+  - service csgo-server-launcher status
   - tail -f /var/steamcmd/games/csgo/screenlog.* & P=$! ; sleep 30 ; kill -9 $P
   - service csgo-server-launcher stop
