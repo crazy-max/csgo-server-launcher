@@ -5,7 +5,7 @@ dist: trusty
 before_install:
   - sudo dpkg --add-architecture i386
   - sudo apt-get update
-  - sudo apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl screen tar wget
+  - sudo apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
 
 install:
   - sudo wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O /etc/init.d/csgo-server-launcher --no-check-certificate
@@ -31,3 +31,4 @@ script:
   - timeout 180 grep -q 'Connection to Steam servers successful' <(tail -f /var/steamcmd/games/csgo/screenlog.*)
   - service csgo-server-launcher stop
   - cat /var/steamcmd/games/csgo/screenlog.*
+  - cat ~/Steam/logs/stderr.txt
