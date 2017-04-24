@@ -64,7 +64,7 @@ function start {
 
   # Generated misc args
   GENERATED_ARGS="";
-  if [ -z "${API_AUTHORIZATION_KEY}" -a -f "$DIR_GAME/webapi_authkey.txt" ]; then API_AUTHORIZATION_KEY="`cat $DIR_GAME/webapi_authkey.txt`"; fi
+  if [ -z "${API_AUTHORIZATION_KEY}" -a -f "$DIR_GAME/webapi_authkey.txt" ]; then API_AUTHORIZATION_KEY=$(cat "$DIR_GAME/webapi_authkey.txt"); fi
   if [ ! -z "${API_AUTHORIZATION_KEY}" ]
   then
     GENERATED_ARGS="-authkey ${API_AUTHORIZATION_KEY}"
@@ -77,7 +77,7 @@ function start {
   PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
   echo "Start command : $PARAM_START"
 
-  if [ `whoami` = root ]
+  if [ $(whoami) = root ]
   then
     su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -AmdS $SCREEN_NAME -L ./$DAEMON_GAME $PARAM_START"
   else
@@ -90,7 +90,7 @@ function start {
 function stop {
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
-  if [ `whoami` = root ]
+  if [ $(whoami) = root ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - ${USER} -c "screen -r $tmp -X quit ; rm -f '$DIR_ROOT/screenlog.*'"
@@ -101,7 +101,7 @@ function stop {
 }
 
 function status {
-  if [ `whoami` = root ]
+  if [ $(whoami) = root ]
   then
     su - ${USER} -c "screen -ls" | grep [.]${SCREEN_NAME}[[:space:]] > /dev/null
   else
@@ -112,7 +112,7 @@ function status {
 function console {
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
-  if [ `whoami` = root ]
+  if [ $(whoami) = root ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - ${USER} -c "script -q -c 'screen -r $tmp' /dev/null"
@@ -126,7 +126,7 @@ function update {
   if [ ! -d "$DIR_LOGS" ];
   then
     echo "$DIR_LOGS does not exist, creating..."
-    if [ `whoami` = root ]
+    if [ $(whoami) = root ]
     then
       su - ${USER} -c "mkdir -p $DIR_LOGS";
     else
@@ -139,7 +139,7 @@ function update {
   if [ ! -d "$DIR_ROOT" ]
   then
     echo "$DIR_ROOT does not exist, creating..."
-    if [ `whoami` = root ]
+    if [ $(whoami) = root ]
     then
       su - ${USER} -c "mkdir -p $DIR_ROOT";
     else
@@ -169,7 +169,7 @@ function update {
   if [ -f "$DIR_GAME/motd.txt" ]; then cp "$DIR_GAME/motd.txt" "$DIR_GAME/motd.txt.bck"; fi
 
   # Update
-  if [ `whoami` = root ]
+  if [ $(whoami) = root ]
   then
     su - ${USER} -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
   else
@@ -184,7 +184,7 @@ function update {
   if [ ! -d "$USER_HOME/.steam/sdk32" ]
   then
     echo "Creating folder '$USER_HOME/.steam/sdk32'"
-    if [ `whoami` = root ]
+    if [ $(whoami) = root ]
     then
       su - ${USER} -c "mkdir -p '$USER_HOME/.steam/sdk32'";
     else
@@ -194,7 +194,7 @@ function update {
   if [ ! -f "$USER_HOME/.steam/sdk32/steamclient.so" ]
   then
     echo "Creating symlink for steamclient.so..."
-    if [ `whoami` = root ]
+    if [ $(whoami) = root ]
     then
       su - ${USER} -c "ln -s '$DIR_STEAMCMD/linux32/steamclient.so' '$USER_HOME/.steam/sdk32/'";
     else
@@ -203,13 +203,13 @@ function update {
   fi
 
   # Check for update
-  if [ `egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG"` -gt 0 ] || [ `egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG"` -gt 0 ]
+  if [ $(egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG") -gt 0 ] || [ $(egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG") -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
     if [ ${retry} -lt ${UPDATE_RETRY} ]
     then
-      retry=`expr ${retry} + 1`
+      retry=$((${retry} + 1))
       echo "$SCREEN_NAME update failed... retry $retry/3..."
       update ${retry} ${relaunch}
     else
@@ -251,7 +251,7 @@ function create {
   if [ ! -d "$DIR_STEAMCMD" ]
   then
     echo "$DIR_STEAMCMD does not exist, creating..."
-    if [ `whoami` = "root" ]
+    if [ $(whoami) = "root" ]
     then
       su - ${USER} -c "mkdir -p $DIR_STEAMCMD"
     else
@@ -266,7 +266,7 @@ function create {
 
   # Download steamcmd
   echo "Downloading steamcmd from http://media.steampowered.com/client/steamcmd_linux.tar.gz"
-  if [ `whoami` = "root" ]
+  if [ $(whoami) = "root" ]
   then
     su - ${USER} -c "cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz"
   else
@@ -280,7 +280,7 @@ function create {
 
   # Extract it
   echo "Extracting and removing the archive"
-  if [ `whoami` = "root" ]
+  if [ $(whoami) = "root" ]
   then
     su - ${USER} -c "cd $DIR_STEAMCMD ; tar xzvf ./steamcmd_linux.tar.gz"
     su - ${USER} -c "cd $DIR_STEAMCMD ; rm ./steamcmd_linux.tar.gz"
@@ -298,7 +298,7 @@ function create {
 
   # Run steamcmd for the first time to update it, telling it to quit when it is done
   echo "Updating steamcmd"
-  if [ `whoami` = "root" ]
+  if [ $(whoami) = "root" ]
   then
   su - ${USER} -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
   else
@@ -332,7 +332,7 @@ DIR_ROOT="$DIR_STEAMCMD/games/csgo"
 DIR_GAME="$DIR_ROOT/csgo"
 DIR_LOGS="$DIR_GAME/logs"
 DAEMON_GAME="srcds_run"
-UPDATE_LOG="$DIR_LOGS/update_`date +%Y%m%d`.log"
+UPDATE_LOG="$DIR_LOGS/update_$(date +%Y%m%d).log"
 UPDATE_EMAIL=""
 UPDATE_RETRY=3
 API_AUTHORIZATION_KEY=""
@@ -353,7 +353,7 @@ fi
 
 # Load config
 source "$CONFIG_FILE"
-USER_HOME=`eval echo ~${USER}`
+USER_HOME=$(eval echo ~${USER})
 
 # Check required packages
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
