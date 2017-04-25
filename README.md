@@ -197,7 +197,13 @@ You've got the following message when you try to install or update steam :
 mkdir: cannot create directory "/var/steamcmd": Permission denied
 ```
 
-It's because you are using a specific user (instead of `root`). Type the following
+It's because you are using a specific user (instead of `root`) :
+
+```console
+chown -R steam. /var/steamcmd/
+```
+
+> Replace `steam` with your current `USER`
 
 ### steamcmd: No such file or directory
 
