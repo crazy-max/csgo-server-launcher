@@ -8,11 +8,11 @@ before_install:
   - sudo apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
 
 install:
-  - sudo wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O /etc/init.d/csgo-server-launcher --no-check-certificate
+  - sudo cp csgo-server-launcher.sh /etc/init.d/
   - sudo chmod +x /etc/init.d/csgo-server-launcher
   - sudo update-rc.d csgo-server-launcher defaults
   - sudo mkdir /etc/csgo-server-launcher
-  - sudo wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.conf -O /etc/csgo-server-launcher/csgo-server-launcher.conf --no-check-certificate
+  - sudo cp csgo-server-launcher.conf /etc/csgo-server-launcher/
 
 before_script:
   - export IP_ADDRESS=`dig +short myip.opendns.com @resolver1.opendns.com`
@@ -23,12 +23,14 @@ before_script:
   - sudo sed "s/PARAM_START=\"-game/PARAM_START=\"-debug -game/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo sed "s/+ip \${IP} +net_public_adr \${IP} //g" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo cat /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - chmod +x ./travis.sh
 
-script:
-  - service csgo-server-launcher create
-  - service csgo-server-launcher start
-  - service csgo-server-launcher status
-  - timeout 180 grep -q 'Connection to Steam servers successful' <(tail -f /var/steamcmd/games/csgo/screenlog.*)
-  - service csgo-server-launcher stop
+script: bash -e travis.sh
+
+after_script:
   - cat /var/steamcmd/games/csgo/screenlog.*
-  - cat ~/Steam/logs/stderr.txt
+  - cat $HOME/Steam/logs/stderr.txt
+
+notifications:
+  slack:
+    secure: Q5z9SE+a6BOfiJQpZbGrIloPayObtmEtKYDRwBYQwi5TJiCCt3G4RtvnBHy36DUL+CoNHxeHLCFU5cr2wW/Adu6TR9XoPgr08EIc9oqLiTrQONgDgwGqdk4NrqFLfg0UWVPgDLtfqE7nuAHGRdIeF9zHJX5Xe8xve3yhSsRY5FSoQv8ab0i1SKWSqFsV9JaQdSLyboeJRJv8p6RHt5ayxXY3gBh74qFbK7TGQcJhqhz0i+1CPIujFL6lp6sl8xI0cqx+mTf04mWjv+wovjjtl5c5aAKRhIC9ApT2AcvM8SZ0xxZ6TNsrwb9Wdc3QHH9fLUsDqKr5X+orHVJKQZ4e8i8SkloBDDLiiNRsArLpgzVRxrZ4NdFK+KRBFl26PkuN7k+2vdcpP0dtlKOdZy/ON0ENzt1vK2RGx4SUEGiD8y0VImElZ8doblTc41WKtPUmMn0zz20st/UUbH2vaoV4YpSWf6DbDBgNkCD2hoM8GiHAgnWHIkv1X+RQDXjep+OAfUPp7dEgNZ8e0J8muVbOAJuwevwHMj0Z+uqqnzvXKGgaFL4iq4K1hr9LHn3WM/wFQ9fNce4s3+Shbgi9mwk6sSsl2KDSLL2+0sUF7lkp8VZDQZ5+kLt/qOwRPS/eJvXOLtoyeJ9adZbSzl0weZ574G1mIBCImQCKJf15y+dih5o=
