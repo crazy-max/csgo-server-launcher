@@ -10,8 +10,8 @@
 
 ## About
 
-A simple script to create and launch your Counter-Strike : Global Offensive Dedicated Server.
-Tested on Debian and Ubuntu.
+A simple script to create and launch your Counter-Strike : Global Offensive Dedicated Server.<br />
+Tested on Debian based distros (Ubuntu, Mint, ...)
 
 ## Requirements
 
@@ -60,7 +60,7 @@ Example: `IP="198.51.100.0"`
 #### PORT
 
 The port that your server should listen on.<br />
-Example: `IP="198.51.100.0"`
+Example: `PORT="27015"`
 
 #### GSLT
 
