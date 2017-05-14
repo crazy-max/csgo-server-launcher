@@ -10,36 +10,43 @@
 
 ## About
 
-A simple script to create and launch your Counter-Strike : Global Offensive Dedicated Server.<br />
+A simple bash script to create and launch your Counter-Strike : Global Offensive Dedicated Server.<br />
 Tested on Debian based distros (Ubuntu, Mint, ...)
 
 ## Requirements
 
-Of course a Steam account is required to create a Counter-Strike : Global Offensive dedicated server.
-
-Required commands :
-
-* [awk](http://en.wikipedia.org/wiki/Awk) is required.
-* [screen](http://linux.die.net/man/1/screen) is required.
-* [wget](http://en.wikipedia.org/wiki/Wget) is required.
-* [tar](http://linuxcommand.org/man_pages/tar1.html) is required.
+* [Steam](http://steampowered.com) account
+* [awk](http://en.wikipedia.org/wiki/Awk) command.
+* [screen](http://linux.die.net/man/1/screen) command.
+* [wget](http://en.wikipedia.org/wiki/Wget) command.
+* [tar](http://linuxcommand.org/man_pages/tar1.html) command.
 
 ## Installation
 
-Execute the following commands to download the script :
+As root or sudoer :
 
 ```console
-$ cd /etc/init.d/
-$ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O csgo-server-launcher --no-check-certificate
+$ dpkg --add-architecture i386
+$ apt-get update
+$ apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
+$ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O /etc/init.d/csgo-server-launcher --no-check-certificate
 $ chmod +x csgo-server-launcher
 $ update-rc.d csgo-server-launcher defaults
-$ mkdir /etc/csgo-server-launcher/
+$ mkdir -p /etc/csgo-server-launcher/
 $ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.conf -O /etc/csgo-server-launcher/csgo-server-launcher.conf --no-check-certificate
 ```
 
 ## Configuration
 
-Before running the script, you must change some vars in the config file `/etc/csgo-server-launcher/csgo-server-launcher.conf`.<br />
+First you have to create the dedicated user `steam` and the steamcmd directory :
+
+```console
+useradd -m steam
+mkdir -p /var/steamcmd
+chown -R steam. /var/steamcmd/
+```
+
+And before running the script, you must change some vars in the config file `/etc/csgo-server-launcher/csgo-server-launcher.conf`.<br />
 If you change the location of the config file, do not forget to change the path in the csgo-server-launcher script file for the CONFIG_FILE var (default `/etc/csgo-server-launcher/csgo-server-launcher.conf`).
 
 #### SCREEN_NAME
@@ -174,7 +181,7 @@ For the console mod, press CTRL+A then D to stop the screen without stopping the
 * **update** - Update the server based on the `PARAM_UPDATE` then save the log file in LOG_DIR and send an e-mail to `LOG_EMAIL` if the var is filled.
 * **create** - Create a server (script must be configured first).
 
-Example : `service csgo-server-launcher start`
+Example : `/etc/init.d/csgo-server-launcher start`
 
 ## Automatic update with cron
 
