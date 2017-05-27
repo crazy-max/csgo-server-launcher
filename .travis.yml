@@ -20,8 +20,7 @@ before_script:
   - sudo chown -R $USER. /var/steamcmd/
   - sudo sed "s/USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo sed "s/IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo sed "s/PARAM_START=\"-game/PARAM_START=\"-debug -game/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo sed "s/+ip \${IP} +net_public_adr \${IP} //g" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
+  - sudo sed "s/PARAM_START=\"-nobreakpad/PARAM_START=\"-debug -nobreakpad/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
   - sudo cat /etc/csgo-server-launcher/csgo-server-launcher.conf
   - chmod +x ./travis.sh
 

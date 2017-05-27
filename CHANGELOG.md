@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.12.2 (2017/05/27)
+
+* Error while loading `server.so` (Issue #37)
+
 ## 1.12.1 (2017/04/23)
 
 * Create a symlink for steamclient.so (Issue #35)

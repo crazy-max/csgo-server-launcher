@@ -30,7 +30,7 @@ $ dpkg --add-architecture i386
 $ apt-get update
 $ apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
 $ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.sh -O /etc/init.d/csgo-server-launcher --no-check-certificate
-$ chmod +x csgo-server-launcher
+$ chmod +x /etc/init.d/csgo-server-launcher
 $ update-rc.d csgo-server-launcher defaults
 $ mkdir -p /etc/csgo-server-launcher/
 $ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.conf -O /etc/csgo-server-launcher/csgo-server-launcher.conf --no-check-certificate
