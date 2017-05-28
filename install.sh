@@ -25,6 +25,12 @@
 
 set -e
 
+# Check distrib
+if ! command -v apt-get &> /dev/null; then
+  echo "ERROR: OS distribution not supported..."
+  exit 1
+fi
+
 # Check root
 if [ "$EUID" -ne 0 ]; then
   echo "ERROR: Please run this script as root..."
@@ -69,8 +75,14 @@ echo "Downloading CSGO Server Launcher configuration..."
 mkdir -p /etc/csgo-server-launcher/
 wget ${baseUrl}/csgo-server-launcher.conf -O ${confPath} -q --no-check-certificate
 
-echo "Adding $user user..."
-useradd -m ${user}
+echo "Checking $user user exists..."
+getent passwd ${user} >/dev/null 2&>1
+if [ "$?" -ne "0" ]; then
+  echo "Adding $user user..."
+  useradd -m ${user}
+else
+  mkdir -p ~${user}
+fi
 
 echo "Creating $steamcmdPath folder..."
 mkdir -p "$steamcmdPath"
@@ -87,3 +99,8 @@ sed "s#DIR_STEAMCMD=\"/var/steamcmd\"#DIR_STEAMCMD=\"$steamcmdPath\"#" -i "$conf
 
 echo ""
 echo "Done!"
+echo ""
+
+echo "Type '$scriptPath create' to install steam and csgo"
+echo "Then type '$scriptPath start' to start the csgo server!"
+echo ""
