@@ -35,8 +35,7 @@ $ chmod +x install.sh
 $ ./install.sh
 ```
 
-Here is an example output :
-
+<details markdown="1"> <summary markdown="0">Example output</summary>
 ```text
 Starting CSGO Server Launcher install...
 
@@ -55,9 +54,12 @@ Updating DIR_STEAMCMD in config file...
 
 Done!
 
-Type '/etc/init.d/csgo-server-launcher create' to install steam and csgo
-Then type '/etc/init.d/csgo-server-launcher start' to start the csgo server!
+DO NOT FORGET to edit the configuration in '/etc/csgo-server-launcher/csgo-server-launcher.conf'
+Then type :
+  '/etc/init.d/csgo-server-launcher create' to install steam and csgo
+  '/etc/init.d/csgo-server-launcher start' to start the csgo server!
 ```
+</details>
 
 ### Manual
 
@@ -75,9 +77,9 @@ $ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/c
 And you have to create the dedicated user `steam` and the steamcmd directory :
 
 ```console
-useradd -m steam
-mkdir -p /var/steamcmd
-chown -R steam. /var/steamcmd/
+$ useradd -m steam
+$ mkdir -p /var/steamcmd
+$ chown -R steam. /var/steamcmd/
 ```
 
 ## Configuration
