@@ -25,6 +25,42 @@ Tested on Debian based distros (Ubuntu, Mint, ...)
 
 As root or sudoer :
 
+### Script
+
+An installation script called `install.sh` is available to perform the commands listed in the [Manual installation](#manual) section.
+
+```console
+$ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/install.sh --no-check-certificate
+$ chmod +x install.sh
+$ ./install.sh
+```
+
+Here is an example output :
+
+```text
+Starting CSGO Server Launcher install...
+
+Adding i386 architecture...
+Installing required packages...
+Downloading CSGO Server Launcher script...
+Chmod script...
+Install System-V style init script link...
+Downloading CSGO Server Launcher configuration...
+Checking steam user exists...
+Adding steam user...
+Creating /var/steamcmd folder...
+Updating USER in config file...
+Updating IP in config file...
+Updating DIR_STEAMCMD in config file...
+
+Done!
+
+Type '/etc/init.d/csgo-server-launcher create' to install steam and csgo
+Then type '/etc/init.d/csgo-server-launcher start' to start the csgo server!
+```
+
+### Manual
+
 ```console
 $ dpkg --add-architecture i386
 $ apt-get update
@@ -36,9 +72,7 @@ $ mkdir -p /etc/csgo-server-launcher/
 $ wget https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master/csgo-server-launcher.conf -O /etc/csgo-server-launcher/csgo-server-launcher.conf --no-check-certificate
 ```
 
-## Configuration
-
-First you have to create the dedicated user `steam` and the steamcmd directory :
+And you have to create the dedicated user `steam` and the steamcmd directory :
 
 ```console
 useradd -m steam
@@ -46,8 +80,10 @@ mkdir -p /var/steamcmd
 chown -R steam. /var/steamcmd/
 ```
 
-And before running the script, you must change some vars in the config file `/etc/csgo-server-launcher/csgo-server-launcher.conf`.<br />
-If you change the location of the config file, do not forget to change the path in the csgo-server-launcher script file for the CONFIG_FILE var (default `/etc/csgo-server-launcher/csgo-server-launcher.conf`).
+## Configuration
+
+Before running the script, you must change some vars in the config file `/etc/csgo-server-launcher/csgo-server-launcher.conf`.<br />
+If you change the location of the config file, do not forget to change the path in the csgo-server-launcher script file for the `CONFIG_FILE` var (default `/etc/csgo-server-launcher/csgo-server-launcher.conf`).
 
 #### SCREEN_NAME
 

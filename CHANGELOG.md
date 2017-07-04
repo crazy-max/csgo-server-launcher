@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.3 (2017/07/04)
+
+* Bug with screen >= 4.5.0 on Debian 9 (Issue #38)
+* Add install script
+
 ## 1.12.2 (2017/05/27)
 
 * Error while loading `server.so` (Issue #37)
