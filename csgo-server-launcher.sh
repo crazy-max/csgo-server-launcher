@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.12.2                                                  #
+#  CSGO Server Launcher v1.12.3                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
@@ -79,11 +79,11 @@ function start {
 
   if [ $(whoami) = root ]
   then
-    su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -AmdS $SCREEN_NAME -L ./$DAEMON_GAME $PARAM_START"
+    su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -L -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
   else
     cd "$DIR_ROOT"
     rm -f screenlog.*
-    screen -AmdS ${SCREEN_NAME} -L ./${DAEMON_GAME} ${PARAM_START}
+    screen -L -AmdS ${SCREEN_NAME} ./${DAEMON_GAME} ${PARAM_START}
   fi
 }
 
