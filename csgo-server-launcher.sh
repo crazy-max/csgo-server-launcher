@@ -41,6 +41,8 @@
 #    - update: update the server                                                 #
 #    - create: creates a new server                                              #
 #                                                                                #
+#  More info : https://github.com/crazy-max/csgo-server-launcher                 #
+#                                                                                #
 ##################################################################################
 
 CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
@@ -361,6 +363,12 @@ if ! type awk > /dev/null 2>&1; then echo "ERROR: You need awk for this script (
 if ! type screen > /dev/null 2>&1; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
 if ! type wget > /dev/null 2>&1; then echo "ERROR: You need wget for this script (try apt-get install wget)"; exit 1; fi
 if ! type tar > /dev/null 2>&1; then echo "ERROR: You need tar for this script (try apt-get install tar)"; exit 1; fi
+
+# Detects if unbuffer command is available for 32 bit distributions only.
+ARCH=$(uname -m)
+if [ $(command -v stdbuf) ] && [ "${arch}" != "x86_64" ]; then
+  UNBUFFER="stdbuf -i0 -o0 -e0"
+fi
 
 case "$1" in
 

@@ -1,9 +1,9 @@
 <p align="center"><a href="https://github.com/crazy-max/csgo-server-launcher" target="_blank"><img width="100" src="https://github.com/crazy-max/csgo-server-launcher/blob/master/res/logo.png"></a></p>
 
 <p align="center">
+  <a href="https://github.com/crazy-max/csgo-server-launcher/releases/latest"><img src="https://img.shields.io/github/release/crazy-max/csgo-server-launcher.svg?style=flat-square" alt="GitHub release"></a>
   <a href="https://travis-ci.org/crazy-max/csgo-server-launcher"><img src="https://img.shields.io/travis/crazy-max/csgo-server-launcher/master.svg?style=flat-square" alt="Build Status"></a>
   <a href="https://www.codacy.com/app/crazy-max/csgo-server-launcher"><img src="https://img.shields.io/codacy/grade/41e240a938654db0a667c6614e8ae9d5.svg?style=flat-square" alt="Code Quality"></a>
-  <a href="https://github.com/crazy-max/csgo-server-launcher/releases/latest"><img src="https://img.shields.io/github/release/crazy-max/csgo-server-launcher.svg?style=flat-square" alt="GitHub release"></a>
   <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3LJDWUWL73GB4"><img src="https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square" alt="Donate Paypal"></a>
   <a href="https://flattr.com/submit/auto?user_id=crazymax&url=https://github.com/crazy-max/csgo-server-launcher"><img src="https://img.shields.io/badge/flattr-this-green.svg?style=flat-square" alt="Flattr this!"></a>
 </p>
