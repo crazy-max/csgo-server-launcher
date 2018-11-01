@@ -168,7 +168,7 @@ Example: `TICKRATE="64"`
 #### EXTRAPARAMS
 
 Custom command line parameters.<br />
-Example: `EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_bomb +map de_dust2"`
+Example: `EXTRAPARAMS="-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2"`
 
 #### PARAM_START
 
