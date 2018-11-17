@@ -44,7 +44,7 @@ And also the following environment variables to edit the CSGO Server Launcher [c
 
 ### Docker Compose
 
-Docker compose is the recommended way to run this image. Copy the content of folder [examples/compose](examples/compose) in `/var/csgo-server-launcher/` on your host for example. Edit the compose file with your preferences and run the following command :
+Docker compose is the recommended way to run this image. Copy the content of folder [examples/compose](examples/compose) in `/var/csgo-server-launcher/` on your host for example. Edit the compose and env files with your preferences and run the following command :
 
 ```bash
 $ docker-compose up -d
@@ -56,7 +56,7 @@ $ docker-compose logs -f
 You can also use the following minimal command :
 
 ```bash
-$ docker run -dt --name csgo-server-launcher \
+$ docker run -dt --name csgo --restart always \
   --ulimit nproc=65535 \
   --ulimit nofile=32000:40000 \
   -p 27015:27015 \
@@ -67,6 +67,36 @@ $ docker run -dt --name csgo-server-launcher \
   crazymax/csgo-server-launcher:latest
 ```
 
+## Upgrade image
+
+You can upgrade this image whenever I push an update :
+
+```bash
+docker-compose pull
+docker-compose up -d
+```
+
 ## Notes
 
-### 
+### Update CSGO
+
+If you use compose, you can update CSGO by using the [updater service](examples/compose/updater.yml) :
+
+```bash
+$ docker-compose down       # stop csgo
+$ docker-compose -f updater.yml up # start updater
+$ docker-compose up -d      # start csgo
+```
+
+If you don't use compose :
+
+```bash
+$ docker stop csgo
+$ docker run -it --name csgo-updater --restart on-failure \
+  --env-file $(pwd)/csgo-server-launcher.env \
+  -v $(pwd)/csgo:/var/steamcmd/games/csgo \
+  -v $(pwd)/steam:/home/steam/Steam \
+  crazymax/csgo-server-launcher:latest \
+  csgo-server-launcher update
+$ docker start csgo
+```

@@ -1,9 +1,9 @@
 version: "3.2"
 
 services:
-  csgo-server-launcher:
+  csgo:
     image: crazymax/csgo-server-launcher:latest
-    container_name: csgo-server-launcher
+    container_name: csgo
     ports:
       - target: 27015
         published: 27015
