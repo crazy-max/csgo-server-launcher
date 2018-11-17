@@ -83,9 +83,9 @@ docker-compose up -d
 If you use compose, you can update CSGO by using the [updater service](examples/compose/updater.yml) :
 
 ```bash
-$ docker-compose down       # stop csgo
+$ docker-compose down              # stop csgo
 $ docker-compose -f updater.yml up # start updater
-$ docker-compose up -d      # start csgo
+$ docker-compose up -d             # start csgo
 ```
 
 If you don't use compose :
