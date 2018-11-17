@@ -54,9 +54,9 @@ RUN groupadd -f -g 1000 steam \
   && curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C ${DIR_STEAMCMD} -xvz \
   && chown -R steam. ${DIR_STEAMCMD}
 
-ADD csgo-server-launcher.sh /usr/bin/csgo-server-launcher
-ADD csgo-server-launcher.conf /etc/csgo-server-launcher/csgo-server-launcher.conf
-ADD entrypoint.sh /entrypoint.sh
+COPY csgo-server-launcher.sh /usr/bin/csgo-server-launcher
+COPY csgo-server-launcher.conf /etc/csgo-server-launcher/csgo-server-launcher.conf
+COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod a+x /entrypoint.sh /usr/bin/csgo-server-launcher \
   && chown -R steam. /etc/csgo-server-launcher

@@ -42,7 +42,7 @@ scriptPath="/etc/init.d/$scriptName"
 confPath="/etc/csgo-server-launcher/csgo-server-launcher.conf"
 steamcmdPath="/var/steamcmd"
 user="steam"
-ipAddress=`dig +short myip.opendns.com @resolver1.opendns.com`
+ipAddress=$(dig +short myip.opendns.com @resolver1.opendns.com)
 if [ -z "$ipAddress" ]; then
   echo "ERROR: Cannot retrieve your public IP address..."
   exit 1

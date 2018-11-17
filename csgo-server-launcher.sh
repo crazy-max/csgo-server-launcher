@@ -50,7 +50,7 @@ CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
 # No edits necessary beyond this line
 
 function start {
-  if [ ! -d "$DIR_ROOT" ]; then echo "ERROR: "${DIR_ROOT}" is not a directory"; exit 1; fi
+  if [ ! -d "$DIR_ROOT" ]; then echo "ERROR: \"${DIR_ROOT}\" is not a directory"; exit 1; fi
   if [ ! -x "$DIR_ROOT/$DAEMON_GAME" ]
   then
     echo "NOTICE: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable."
@@ -241,7 +241,7 @@ function update {
   else
     if [ ${retry} -lt ${UPDATE_RETRY} ]
     then
-      retry=$((${retry} + 1))
+      retry=$((retry + 1))
       echo "$SCREEN_NAME update failed... retry $retry/3..."
       update ${retry} ${relaunch}
     else
