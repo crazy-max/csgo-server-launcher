@@ -29,8 +29,8 @@ install:
 
 before_script:
   - |
-    docker run -d -it --name $DOCKER_REPONAME \
-    -v csgo:/var/steamcmd/games/csgo
+    docker run -dt --name $DOCKER_REPONAME \
+    -v csgo:/var/steamcmd/games/csgo \
     docker_build
   - sleep 10
   - docker logs $DOCKER_REPONAME
