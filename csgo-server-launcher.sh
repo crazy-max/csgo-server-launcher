@@ -250,6 +250,13 @@ function update {
     fi
   fi
 
+  # Clear download cache
+  if [ "$CLEAR_DOWNLOAD_CACHE" = "1" ]
+  then
+    echo "Clear download cache..."
+    rm -rf ${DIR_ROOT}/steamapps/downloading/*
+  fi
+
   # Send e-mail
   if [ ! -z "$UPDATE_EMAIL" ]; then cat "$UPDATE_LOG" | mail -s "$SCREEN_NAME update for $(hostname -f)" ${UPDATE_EMAIL}; fi
 
@@ -367,6 +374,7 @@ DAEMON_GAME="srcds_run"
 UPDATE_LOG="$DIR_LOGS/update_$(date +%Y%m%d).log"
 UPDATE_EMAIL=""
 UPDATE_RETRY=3
+CLEAR_DOWNLOAD_CACHE=0
 API_AUTHORIZATION_KEY=""
 WORKSHOP_COLLECTION_ID="125499818"
 WORKSHOP_START_MAP="125488374"

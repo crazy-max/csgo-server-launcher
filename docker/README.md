@@ -23,6 +23,7 @@ And also the following environment variables to edit the CSGO Server Launcher [c
 * `STEAM_PASSWORD` (default `anonymous`)
 * `UPDATE_EMAIL`
 * `UPDATE_RETRY` (default `3`)
+* `CLEAR_DOWNLOAD_CACHE` (default `0`)
 * `API_AUTHORIZATION_KEY`
 * `WORKSHOP_COLLECTION_ID` (default `125499818`)
 * `WORKSHOP_START_MAP` (default `125488374`)
@@ -65,3 +66,7 @@ $ docker run -dt --name csgo-server-launcher \
   -v $(pwd)/steam:/home/steam/Steam \
   crazymax/csgo-server-launcher:latest
 ```
+
+## Notes
+
+### 
