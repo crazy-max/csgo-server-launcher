@@ -1,0 +1,25 @@
+version: "3.2"
+
+services:
+  csgo-server-launcher:
+    image: crazymax/csgo-server-launcher:latest
+    container_name: csgo-server-launcher
+    ports:
+      - target: 27015
+        published: 27015
+        protocol: udp
+      - target: 27015
+        published: 27015
+        protocol: tcp
+    env_file:
+      - "./csgo-server-launcher.env"
+    volumes:
+      - "./csgo:/var/steamcmd/games/csgo"
+      - "./steam:/home/steam/Steam"
+    tty: true
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    restart: always

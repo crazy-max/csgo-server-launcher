@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.13.0 (2017/11/17)
+
+* Add official Docker image
+* Patch srcds_run
+* Check daemon exists
+* `mg_active` mapgroup instead of `mg_bomb`
+
 ## 1.12.3 (2017/07/04)
 
 * Bug with screen >= 4.5.0 on Debian 9 (Issue #38)

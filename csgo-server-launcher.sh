@@ -10,12 +10,12 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.12.3                                                  #
+#  CSGO Server Launcher v1.13.0                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2013-2017 Cr@zy                                                 #
+#  Copyright (C) 2013-2018 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
@@ -51,8 +51,12 @@ CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
 
 function start {
   if [ ! -d "$DIR_ROOT" ]; then echo "ERROR: "${DIR_ROOT}" is not a directory"; exit 1; fi
-  if [ ! -x "$DIR_ROOT/$DAEMON_GAME" ]; then echo "ERROR: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable"; exit 1; fi
-  if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
+  if [ ! -x "$DIR_ROOT/$DAEMON_GAME" ]
+  then
+    echo "NOTICE: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable."
+    create
+  fi
+  if [ "$CSGO_DOCKER" = "0" -a status ]; then echo "$SCREEN_NAME is already running"; exit 1; fi
 
   # Create runscript file for autoupdate
   echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
@@ -64,8 +68,11 @@ function start {
   chown ${USER} "$STEAM_RUNSCRIPT"
   chmod 600 "$STEAM_RUNSCRIPT"
 
+  # Patch srcds_run
+  sed -i -e 's#\./steam\.sh #\./steamcmd\.sh #g' ${DIR_ROOT}/${DAEMON_GAME}
+
   # Generated misc args
-  GENERATED_ARGS="";
+  GENERATED_ARGS=""
   if [ -z "${API_AUTHORIZATION_KEY}" -a -f "$DIR_GAME/webapi_authkey.txt" ]; then API_AUTHORIZATION_KEY=$(cat "$DIR_GAME/webapi_authkey.txt"); fi
   if [ ! -z "${API_AUTHORIZATION_KEY}" ]
   then
@@ -79,19 +86,30 @@ function start {
   PARAM_START="${PARAM_START} ${GENERATED_ARGS}"
   echo "Start command : $PARAM_START"
 
-  if [ $(whoami) = root ]
+  if [ "$CSGO_DOCKER" = "0" ]
   then
-    su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -L -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
+    if [ $(whoami) = root ]
+    then
+      su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -L -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
+    else
+      cd "$DIR_ROOT"
+      rm -f screenlog.*
+      screen -L -AmdS ${SCREEN_NAME} ./${DAEMON_GAME} ${PARAM_START}
+    fi
   else
-    cd "$DIR_ROOT"
-    rm -f screenlog.*
-    screen -L -AmdS ${SCREEN_NAME} ./${DAEMON_GAME} ${PARAM_START}
+    cd ${DIR_ROOT}
+    bash ${DAEMON_GAME} ${PARAM_START}
   fi
 }
 
 function stop {
-  if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
+  if [ "$CSGO_DOCKER" = "1" ]
+  then
+    "Command not available on Docker environment"
+    return
+  fi
 
+  if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
   if [ $(whoami) = root ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
@@ -103,6 +121,12 @@ function stop {
 }
 
 function status {
+  if [ "$CSGO_DOCKER" = "1" ]
+  then
+    "Command not available on Docker environment"
+    return
+  fi
+
   if [ $(whoami) = root ]
   then
     su - ${USER} -c "screen -ls" | grep [.]${SCREEN_NAME}[[:space:]] > /dev/null
@@ -112,6 +136,12 @@ function status {
 }
 
 function console {
+  if [ "$CSGO_DOCKER" = "1" ]
+  then
+    "Command not available on Docker environment"
+    return
+  fi
+
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
   if [ $(whoami) = root ]
@@ -125,7 +155,7 @@ function console {
 
 function update {
   # Create the log directory
-  if [ ! -d "$DIR_LOGS" ];
+  if [ ! -d "$DIR_LOGS" ]
   then
     echo "$DIR_LOGS does not exist, creating..."
     if [ $(whoami) = root ]
@@ -152,7 +182,7 @@ function update {
 
   if [ -z "$1" ]; then retry=0; else retry=$1; fi
 
-  if [ -z "$2" ]
+  if [ -z "$2" -a "$CSGO_DOCKER" = "0" ]
   then
     if status
     then
@@ -188,7 +218,7 @@ function update {
     echo "Creating folder '$USER_HOME/.steam/sdk32'"
     if [ $(whoami) = root ]
     then
-      su - ${USER} -c "mkdir -p '$USER_HOME/.steam/sdk32'";
+      su - ${USER} -c "mkdir -p '$USER_HOME/.steam/sdk32'"
     else
       mkdir -p "$USER_HOME/.steam/sdk32"
     fi
@@ -198,7 +228,7 @@ function update {
     echo "Creating symlink for steamclient.so..."
     if [ $(whoami) = root ]
     then
-      su - ${USER} -c "ln -s '$DIR_STEAMCMD/linux32/steamclient.so' '$USER_HOME/.steam/sdk32/'";
+      su - ${USER} -c "ln -s '$DIR_STEAMCMD/linux32/steamclient.so' '$USER_HOME/.steam/sdk32/'"
     else
       ln -sf "$DIR_STEAMCMD/linux32/steamclient.so" "$USER_HOME/.steam/sdk32/"
     fi
@@ -223,7 +253,7 @@ function update {
   # Send e-mail
   if [ ! -z "$UPDATE_EMAIL" ]; then cat "$UPDATE_LOG" | mail -s "$SCREEN_NAME update for $(hostname -f)" ${UPDATE_EMAIL}; fi
 
-  if [ ${relaunch} = 1 ]
+  if [ "${relaunch}" = "1" -a "$CSGO_DOCKER" = "0" ]
   then
     echo "Restart $SCREEN_NAME..."
     start
@@ -302,7 +332,7 @@ function create {
   echo "Updating steamcmd"
   if [ $(whoami) = "root" ]
   then
-  su - ${USER} -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
+    su - ${USER} -c "echo quit | $DIR_STEAMCMD/steamcmd.sh"
   else
     echo quit | ${DIR_STEAMCMD}/steamcmd.sh
   fi
@@ -355,18 +385,21 @@ fi
 
 # Load config
 source "$CONFIG_FILE"
+CSGO_DOCKER="${CSGO_DOCKER:-"0"}"
 USER_HOME=$(eval echo ~${USER})
 
 # Check required packages
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 if ! type awk > /dev/null 2>&1; then echo "ERROR: You need awk for this script (try apt-get install awk)"; exit 1; fi
-if ! type screen > /dev/null 2>&1; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
+if [ "$CSGO_DOCKER" = "0" ]; then
+  if ! type screen > /dev/null 2>&1; then echo "ERROR: You need screen for this script (try apt-get install screen)"; exit 1; fi
+fi
 if ! type wget > /dev/null 2>&1; then echo "ERROR: You need wget for this script (try apt-get install wget)"; exit 1; fi
 if ! type tar > /dev/null 2>&1; then echo "ERROR: You need tar for this script (try apt-get install tar)"; exit 1; fi
 
 # Detects if unbuffer command is available for 32 bit distributions only.
 ARCH=$(uname -m)
-if [ $(command -v stdbuf) ] && [ "${arch}" != "x86_64" ]; then
+if [ $(command -v stdbuf) ] && [ "${ARCH}" != "x86_64" ]; then
   UNBUFFER="stdbuf -i0 -o0 -e0"
 fi
 
@@ -425,4 +458,3 @@ case "$1" in
 esac
 
 exit 0
-

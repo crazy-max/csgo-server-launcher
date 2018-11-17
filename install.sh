@@ -4,7 +4,7 @@
 #                                                                                #
 #  Installs CSGO Server Launcher                                                 #
 #                                                                                #
-#  Copyright (C) 2013-2017 Cr@zy                                                 #
+#  Copyright (C) 2013-2018 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #

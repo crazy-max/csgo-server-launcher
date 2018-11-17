@@ -1,35 +1,60 @@
-language: bash
 sudo: required
-dist: trusty
+
+services:
+  - docker
+
+env:
+  global:
+    - VERSION=1.13.0
+    - DOCKER_USERNAME=crazymax
+    - DOCKER_REPONAME=csgo-server-launcher
+    - QUAY_USERNAME=crazymax
+    - QUAY_REPONAME=csgo-server-launcher
+    - secure: a5WY8nZ2hw/yi7GavfkDmO4VzXg0InNyHy1tVK4ZZj5ATnW6foHAHnZUXHjavqUTOTWZlayYLihZ8/9KZ/vz319SHihCLVF6L2lCpdM0+xVp9zqAfN+TcJuMoGiBZczcMzNPjG8c/XqcQMTN0EEg9PaxsbcA2gayvYBS2Hj+kA4= # DOCKER_PASSWORD
+    - secure: E+gDZoEf5Pn6MV4Oorxoaa4WXh0b+kPK35AqV3QMOxG2b4S7l/lW4HY59W8S7xv6CDdUC4LPjoQp1VEH6EWbJ3EJgSDFWgAZMeYD+gHSNvAu6OJAryDpZSpXxyED7BNNf8AqAr2PYhHM7VtBLErVwDQYbt7I8CVOmofsAFhSOYc= # QUAY_PASSWORD
 
 before_install:
-  - sudo dpkg --add-architecture i386
   - sudo apt-get update
-  - sudo apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
+  - docker --version
+  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
+  - export DOCKER_TAG=$(if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH; fi)
+  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH, DOCKER_TAG=$DOCKER_TAG"
 
 install:
-  - sudo cp csgo-server-launcher.sh /etc/init.d/csgo-server-launcher
-  - sudo chmod +x /etc/init.d/csgo-server-launcher
-  - sudo update-rc.d csgo-server-launcher defaults
-  - sudo mkdir /etc/csgo-server-launcher
-  - sudo cp csgo-server-launcher.conf /etc/csgo-server-launcher/
+  - |
+    docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+    --build-arg VCS_REF=${TRAVIS_COMMIT::8} \
+    --build-arg VERSION=${VERSION} \
+    -t docker_build .
 
 before_script:
-  - export IP_ADDRESS=`dig +short myip.opendns.com @resolver1.opendns.com`
-  - sudo mkdir /var/steamcmd
-  - sudo chown -R $USER. /var/steamcmd/
-  - sudo sed "s/USER=\"steam\"/USER=\"$USER\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo sed "s/IP=\"198.51.100.0\"/IP=\"$IP_ADDRESS\"/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo sed "s/PARAM_START=\"-nobreakpad/PARAM_START=\"-debug -nobreakpad/" -i /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - sudo cat /etc/csgo-server-launcher/csgo-server-launcher.conf
-  - chmod +x ./travis.sh
+  - |
+    docker run -d -it --name $DOCKER_REPONAME \
+    -v csgo:/var/steamcmd/games/csgo
+    docker_build
+  - sleep 10
+  - docker logs $DOCKER_REPONAME
 
-script: bash -e travis.sh
+script:
+  - docker ps | grep $DOCKER_REPONAME
+  - timeout 20m grep -q 'Connection to Steam servers successful' <(docker logs -f $DOCKER_REPONAME)
 
-after_script:
-  - cat /var/steamcmd/games/csgo/screenlog.*
-  - cat $HOME/Steam/logs/stderr.txt
+after_success:
+  - |
+    test $TRAVIS_PULL_REQUEST = false \
+    && echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin \
+    && docker tag docker_build $DOCKER_USERNAME/$DOCKER_REPONAME:$DOCKER_TAG \
+    && docker tag docker_build $DOCKER_USERNAME/$DOCKER_REPONAME:$VERSION \
+    && docker push $DOCKER_USERNAME/$DOCKER_REPONAME \
+    && echo "$QUAY_PASSWORD" | docker login quay.io --username "$QUAY_USERNAME" --password-stdin \
+    && docker tag docker_build quay.io/$DOCKER_USERNAME/$DOCKER_REPONAME:$DOCKER_TAG \
+    && docker tag docker_build quay.io/$DOCKER_USERNAME/$DOCKER_REPONAME:$VERSION \
+    && docker push quay.io/$QUAY_USERNAME/$QUAY_REPONAME
+
+branches:
+  except:
+    - /^[0-9]/
 
 notifications:
-  slack:
-    secure: Q5z9SE+a6BOfiJQpZbGrIloPayObtmEtKYDRwBYQwi5TJiCCt3G4RtvnBHy36DUL+CoNHxeHLCFU5cr2wW/Adu6TR9XoPgr08EIc9oqLiTrQONgDgwGqdk4NrqFLfg0UWVPgDLtfqE7nuAHGRdIeF9zHJX5Xe8xve3yhSsRY5FSoQv8ab0i1SKWSqFsV9JaQdSLyboeJRJv8p6RHt5ayxXY3gBh74qFbK7TGQcJhqhz0i+1CPIujFL6lp6sl8xI0cqx+mTf04mWjv+wovjjtl5c5aAKRhIC9ApT2AcvM8SZ0xxZ6TNsrwb9Wdc3QHH9fLUsDqKr5X+orHVJKQZ4e8i8SkloBDDLiiNRsArLpgzVRxrZ4NdFK+KRBFl26PkuN7k+2vdcpP0dtlKOdZy/ON0ENzt1vK2RGx4SUEGiD8y0VImElZ8doblTc41WKtPUmMn0zz20st/UUbH2vaoV4YpSWf6DbDBgNkCD2hoM8GiHAgnWHIkv1X+RQDXjep+OAfUPp7dEgNZ8e0J8muVbOAJuwevwHMj0Z+uqqnzvXKGgaFL4iq4K1hr9LHn3WM/wFQ9fNce4s3+Shbgi9mwk6sSsl2KDSLL2+0sUF7lkp8VZDQZ5+kLt/qOwRPS/eJvXOLtoyeJ9adZbSzl0weZ574G1mIBCImQCKJf15y+dih5o=
+  webhooks:
+    secure: l8rFdiNwzvIFqeoi47bNHnZLLVF/VlwCj0JvLzKuchziQayKzDj9Ed4PEvZGM685cRgsIKR1fMg19yXB2OV4pZyImp4emwq5zcC5W4g46jjqG/3H7CDly5Lu6evIYeV3j4g0PeyzXYlSwB5fgrIOhwIcMzwFWaeZEJXbz+bpl7Qiz+Xpg5+7+ojyakPS5qRNnKeGgJY4KFgFPTJ8PzQQUGXVdgyQPn6Q114+efqVzbB0fX2F99J7d4J3w6uD1iX3suUnkSM+uot53qduGtP/sTD7egf7KZZENj0pTqUhLA69ZIwlp5DlDFyeX580w0YLy0M5k4YiHRJ49XVq0/HIAnyKrdjb+5iAjdIouKA8AW+IIisjF9RH7kqwAtMuwGM71YuCvGYEcOrHSteZMissUxBh3wF/R8pO8Jri6Fljb3pguQ3/Rz+07YrxLHTEZkDe5TGUApoOoNoGR2bTb+Ie6hSdGkaAWlG0Gko2dP0S5z1gjCEcYW+SKqHRl9GVqkz46tdwLhJ59YqYOKf9CAJ5JZC0TRoFelPv0qionMtNtFpGdNKHRHLv2z3qg6QK3BMDPQx37SRe5Tk2uccRcZjuvX2WuMa73SvCiNRQtebGsP7+fBx0y06cGk3tramn46y1T/oAkEVNquB0kpmVYFNZ4hsFYFF/Qi3ln794IiB+vgM=
