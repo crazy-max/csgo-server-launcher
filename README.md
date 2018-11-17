@@ -13,6 +13,7 @@
 ## About
 
 A simple bash script to create and launch your Counter-Strike : Global Offensive Dedicated Server.<br />
+A Docker image 🐳 is also [available](docker).<br />
 Tested on Debian based distros (Ubuntu, Mint, ...)
 
 ## Documentation

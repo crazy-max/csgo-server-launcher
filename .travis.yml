@@ -37,7 +37,12 @@ before_script:
 
 script:
   - docker ps | grep $DOCKER_REPONAME
-  - timeout 20m grep -q 'Connection to Steam servers successful' <(docker logs -f $DOCKER_REPONAME)
+  - |
+    timeout 20m docker logs -f traefik | while read LOGLINE \
+    do \
+      echo ${LOGLINE} \
+      if test "${LOGLINE#*Connection to Steam servers successful}" != "$LOGLINE"; then break; fi \
+    done
 
 after_success:
   - |
