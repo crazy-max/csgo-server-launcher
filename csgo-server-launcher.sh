@@ -88,7 +88,7 @@ function start {
 
   if [ "$CSGO_DOCKER" = "0" ]
   then
-    if [ $(whoami) = root ]
+    if [ $(id -u) -eq 0 ]
     then
       su - ${USER} -c "cd $DIR_ROOT ; rm -f screenlog.* ; screen -L -AmdS $SCREEN_NAME ./$DAEMON_GAME $PARAM_START"
     else
@@ -110,7 +110,7 @@ function stop {
   fi
 
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
-  if [ $(whoami) = root ]
+  if [ $(id -u) -eq 0 ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - ${USER} -c "screen -r $tmp -X quit ; rm -f '$DIR_ROOT/screenlog.*'"
@@ -127,7 +127,7 @@ function status {
     return
   fi
 
-  if [ $(whoami) = root ]
+  if [ $(id -u) -eq 0 ]
   then
     su - ${USER} -c "screen -ls" | grep [.]${SCREEN_NAME}[[:space:]] > /dev/null
   else
@@ -144,7 +144,7 @@ function console {
 
   if ! status; then echo "$SCREEN_NAME could not be found. Probably not running."; exit 1; fi
 
-  if [ $(whoami) = root ]
+  if [ $(id -u) -eq 0 ]
   then
     tmp=$(su - ${USER} -c "screen -ls" | awk -F . "/\.$SCREEN_NAME\t/ {print $1}" | awk '{print $1}')
     su - ${USER} -c "script -q -c 'screen -r $tmp' /dev/null"
@@ -158,7 +158,7 @@ function update {
   if [ ! -d "$DIR_LOGS" ]
   then
     echo "$DIR_LOGS does not exist, creating..."
-    if [ $(whoami) = root ]
+    if [ $(id -u) -eq 0 ]
     then
       su - ${USER} -c "mkdir -p $DIR_LOGS";
     else
@@ -171,7 +171,7 @@ function update {
   if [ ! -d "$DIR_ROOT" ]
   then
     echo "$DIR_ROOT does not exist, creating..."
-    if [ $(whoami) = root ]
+    if [ $(id -u) -eq 0 ]
     then
       su - ${USER} -c "mkdir -p $DIR_ROOT";
     else
@@ -201,7 +201,7 @@ function update {
   if [ -f "$DIR_GAME/motd.txt" ]; then cp "$DIR_GAME/motd.txt" "$DIR_GAME/motd.txt.bck"; fi
 
   # Update
-  if [ $(whoami) = root ]
+  if [ $(id -u) -eq 0 ]
   then
     su - ${USER} -c "cd $DIR_STEAMCMD ; ./steamcmd.sh $PARAM_UPDATE 2>&1 | tee $UPDATE_LOG"
   else
@@ -216,7 +216,7 @@ function update {
   if [ ! -d "$USER_HOME/.steam/sdk32" ]
   then
     echo "Creating folder '$USER_HOME/.steam/sdk32'"
-    if [ $(whoami) = root ]
+    if [ $(id -u) -eq 0 ]
     then
       su - ${USER} -c "mkdir -p '$USER_HOME/.steam/sdk32'"
     else
@@ -226,7 +226,7 @@ function update {
   if [ ! -f "$USER_HOME/.steam/sdk32/steamclient.so" ]
   then
     echo "Creating symlink for steamclient.so..."
-    if [ $(whoami) = root ]
+    if [ $(id -u) -eq 0 ]
     then
       su - ${USER} -c "ln -s '$DIR_STEAMCMD/linux32/steamclient.so' '$USER_HOME/.steam/sdk32/'"
     else
