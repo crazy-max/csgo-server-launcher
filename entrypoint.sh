@@ -127,6 +127,6 @@ unset API_AUTHORIZATION_KEY
 
 # Perms
 echo "Fixing permissions..."
-chown -R steam. ${DIR_STEAMCMD} /etc/csgo-server-launcher
+chown -R steam. ${DIR_STEAMCMD} /home/steam /etc/csgo-server-launcher
 
 exec "$@"
