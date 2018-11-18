@@ -36,7 +36,8 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 ### Vars
-baseUrl="https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master"
+version=1.13.1
+downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
 scriptName="csgo-server-launcher"
 scriptPath="/etc/init.d/$scriptName"
 confPath="/etc/csgo-server-launcher/csgo-server-launcher.conf"
@@ -50,7 +51,7 @@ fi
 
 ### Start
 echo ""
-echo "Starting CSGO Server Launcher install..."
+echo "Starting CSGO Server Launcher install (v${version})..."
 echo ""
 
 echo "Adding i386 architecture..."
@@ -62,14 +63,14 @@ fi
 
 echo "Installing required packages..."
 apt-get update >/dev/null
-apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget >/dev/null
+apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar >/dev/null
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot install required packages..."
   exit 1
 fi
 
 echo "Downloading CSGO Server Launcher script..."
-wget ${baseUrl}/csgo-server-launcher.sh -O ${scriptPath} -q --no-check-certificate
+curl -sSLk ${downloadUrl}/csgo-server-launcher.sh -o ${scriptPath}
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot download CSGO Server Launcher script..."
   exit 1
@@ -91,7 +92,7 @@ fi
 
 echo "Downloading CSGO Server Launcher configuration..."
 mkdir -p /etc/csgo-server-launcher/
-wget ${baseUrl}/csgo-server-launcher.conf -O ${confPath} -q --no-check-certificate
+curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot download CSGO Server Launcher configuration..."
   exit 1
