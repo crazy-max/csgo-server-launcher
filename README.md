@@ -1,4 +1,4 @@
-<p align="center"><a href="https://github.com/crazy-max/csgo-server-launcher" target="_blank"><img width="100" src="https://github.com/crazy-max/csgo-server-launcher/blob/master/.res/logo.png"></a></p>
+<p align="center"><a href="https://github.com/crazy-max/csgo-server-launcher" target="_blank"><img width="128" src="https://github.com/crazy-max/csgo-server-launcher/blob/master/.res/logo.png"></a></p>
 
 <p align="center">
   <a href="https://github.com/crazy-max/csgo-server-launcher/releases/latest"><img src="https://img.shields.io/github/release/crazy-max/csgo-server-launcher.svg?style=flat-square" alt="GitHub release"></a>
