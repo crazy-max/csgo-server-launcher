@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.2 (2017/11/18)
+
+* Fix error while starting server
+
 ## 1.13.1 (2017/11/18)
 
 * :whale: Add update instructions in the wiki

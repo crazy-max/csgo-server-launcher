@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.13.1                                                  #
+#  CSGO Server Launcher v1.13.2                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
@@ -56,7 +56,10 @@ function start {
     echo "NOTICE: $DIR_ROOT/$DAEMON_GAME does not exist or is not executable."
     create
   fi
-  if [ "$CSGO_DOCKER" = "0" -a status ]; then echo "$SCREEN_NAME is already running"; exit 1; fi
+  if [ "$CSGO_DOCKER" = "0" ]
+  then
+    if status; then echo "$SCREEN_NAME is already running"; exit 1; fi
+  fi
 
   # Create runscript file for autoupdate
   echo "Create runscript file '$STEAM_RUNSCRIPT' for autoupdate..."
