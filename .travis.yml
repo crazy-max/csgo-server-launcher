@@ -38,8 +38,6 @@ before_script:
 script:
   - docker ps | grep $DOCKER_REPONAME
   - timeout 20m docker logs -f $DOCKER_REPONAME | while read LOGLINE; do echo ${LOGLINE} ; if test "${LOGLINE#*Connection to Steam servers successful}" != "$LOGLINE"; then exit 0; fi; done
-
-after_success:
   - |
     test $TRAVIS_PULL_REQUEST = false \
     && echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin \
