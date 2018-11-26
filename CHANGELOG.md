@@ -1,17 +1,17 @@
 # Changelog
 
-## 1.13.2 (2017/11/18)
+## 1.13.2 (2018/11/18)
 
 * Fix error while starting server
 
-## 1.13.1 (2017/11/18)
+## 1.13.1 (2018/11/18)
 
 * :whale: Add update instructions in the wiki
 * :whale: Fix permissions issue
 * Add an option to clean download cache after an update (Issue #31)
 * Use id -u instead of whoami (Issue #23)
 
-## 1.13.0 (2017/11/17)
+## 1.13.0 (2018/11/17)
 
 * Add official Docker image
 * Patch srcds_run
