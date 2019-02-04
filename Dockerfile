@@ -64,7 +64,7 @@ RUN chmod a+x /entrypoint.sh /usr/bin/csgo-server-launcher \
 USER steam
 
 EXPOSE 27015 27015/udp
-WORKDIR "${DIR_ROOT}"
+WORKDIR ${DIR_ROOT}
 VOLUME [ "${DIR_ROOT}", "/home/steam/Steam" ]
 
 ENTRYPOINT [ "/entrypoint.sh" ]

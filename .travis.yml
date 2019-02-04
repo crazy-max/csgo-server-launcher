@@ -6,8 +6,10 @@ services:
 env:
   global:
     - VERSION=1.13.2
+    - DOCKER_LOGIN=crazymax
     - DOCKER_USERNAME=crazymax
     - DOCKER_REPONAME=csgo-server-launcher
+    - QUAY_LOGIN=crazymax
     - QUAY_USERNAME=crazymax
     - QUAY_REPONAME=csgo-server-launcher
     - secure: a5WY8nZ2hw/yi7GavfkDmO4VzXg0InNyHy1tVK4ZZj5ATnW6foHAHnZUXHjavqUTOTWZlayYLihZ8/9KZ/vz319SHihCLVF6L2lCpdM0+xVp9zqAfN+TcJuMoGiBZczcMzNPjG8c/XqcQMTN0EEg9PaxsbcA2gayvYBS2Hj+kA4= # DOCKER_PASSWORD
@@ -16,42 +18,8 @@ env:
 before_install:
   - sudo apt-get update
   - docker --version
-  - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
-  - export DOCKER_TAG=$(if [ "$BRANCH" == "master" ]; then echo "latest"; else echo $BRANCH; fi)
-  - echo "TRAVIS_BRANCH=$TRAVIS_BRANCH, PR=$PR, BRANCH=$BRANCH, DOCKER_TAG=$DOCKER_TAG"
 
-install:
-  - |
-    docker build --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-    --build-arg VCS_REF=${TRAVIS_COMMIT::8} \
-    --build-arg VERSION=${VERSION} \
-    -t docker_build .
-
-before_script:
-  - |
-    docker run -dt --name $DOCKER_REPONAME \
-    -v csgo:/var/steamcmd/games/csgo \
-    docker_build
-  - sleep 10
-  - docker logs $DOCKER_REPONAME
-
-script:
-  - docker ps | grep $DOCKER_REPONAME
-  - timeout 20m docker logs -f $DOCKER_REPONAME | while read LOGLINE; do echo ${LOGLINE} ; if test "${LOGLINE#*Connection to Steam servers successful}" != "$LOGLINE"; then exit 0; fi; done
-  - |
-    test $TRAVIS_PULL_REQUEST = false \
-    && echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin \
-    && docker tag docker_build $DOCKER_USERNAME/$DOCKER_REPONAME:$DOCKER_TAG \
-    && docker tag docker_build $DOCKER_USERNAME/$DOCKER_REPONAME:$VERSION \
-    && docker push $DOCKER_USERNAME/$DOCKER_REPONAME \
-    && echo "$QUAY_PASSWORD" | docker login quay.io --username "$QUAY_USERNAME" --password-stdin \
-    && docker tag docker_build quay.io/$DOCKER_USERNAME/$DOCKER_REPONAME:$DOCKER_TAG \
-    && docker tag docker_build quay.io/$DOCKER_USERNAME/$DOCKER_REPONAME:$VERSION \
-    && docker push quay.io/$QUAY_USERNAME/$QUAY_REPONAME
-
-branches:
-  except:
-    - /^[0-9]/
+script: ./build.sh
 
 notifications:
   webhooks:

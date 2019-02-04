@@ -15,7 +15,7 @@
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2013-2018 CrazyMax                                              #
+#  Copyright (C) 2013-2019 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
@@ -396,7 +396,7 @@ fi
 
 # Load config
 source "$CONFIG_FILE"
-CSGO_DOCKER="${CSGO_DOCKER:-"0"}"
+CSGO_DOCKER=${CSGO_DOCKER:-0}
 USER_HOME=$(eval echo ~${USER})
 
 # Check required packages
