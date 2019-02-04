@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/crazy-max/csgo-server-launcher/releases/latest"><img src="https://img.shields.io/github/release/crazy-max/csgo-server-launcher.svg?style=flat-square" alt="GitHub release"></a>
-  <a href="https://travis-ci.org/crazy-max/csgo-server-launcher"><img src="https://img.shields.io/travis/crazy-max/csgo-server-launcher/master.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://travis-ci.com/crazy-max/csgo-server-launcher"><img src="https://img.shields.io/travis/com/crazy-max/csgo-server-launcher/master.svg?style=flat-square" alt="Build Status"></a>
   <a href="https://hub.docker.com/r/crazymax/csgo-server-launcher/"><img src="https://img.shields.io/docker/stars/crazymax/csgo-server-launcher.svg?style=flat-square" alt="Docker Stars"></a>
   <a href="https://hub.docker.com/r/crazymax/csgo-server-launcher/"><img src="https://img.shields.io/docker/pulls/crazymax/csgo-server-launcher.svg?style=flat-square" alt="Docker Pulls"></a>
   <a href="https://quay.io/repository/crazymax/csgo-server-launcher"><img src="https://quay.io/repository/crazymax/csgo-server-launcher/status?style=flat-square" alt="Docker Repository on Quay"></a>
