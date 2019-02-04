@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.3 (2019/02/04)
+
+* Update Docker build script
+* Switch to TravisCI com
+
 ## 1.13.2 (2018/11/18)
 
 * Fix error while starting server

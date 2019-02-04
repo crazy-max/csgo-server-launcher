@@ -12,28 +12,28 @@ DAEMON_GAME="srcds_run"
 
 #####
 
-TZ=${TZ:-"UTC"}
+TZ=${TZ:-UTC}
 PUID=${PUID:-1000}
 PGID=${PGID:-1000}
 
-SSMTP_PORT=${SSMTP_PORT:-"25"}
-SSMTP_HOSTNAME=${SSMTP_HOSTNAME:-"$(hostname -f)"}
-SSMTP_TLS=${SSMTP_TLS:-"NO"}
+SSMTP_PORT=${SSMTP_PORT:-25}
+SSMTP_HOSTNAME=${SSMTP_HOSTNAME:-$(hostname -f)}
+SSMTP_TLS=${SSMTP_TLS:-NO}
 
-IP=${IP:=$(sudo dig +short myip.opendns.com @resolver1.opendns.com)}
+IP=${IP:-$(sudo dig +short myip.opendns.com @resolver1.opendns.com)}
 GSLT=${GSLT}
-STEAM_LOGIN=${STEAM_LOGIN:-"anonymous"}
-STEAM_PASSWORD=${STEAM_PASSWORD:-"anonymous"}
+STEAM_LOGIN=${STEAM_LOGIN:-anonymous}
+STEAM_PASSWORD=${STEAM_PASSWORD:-anonymous}
 UPDATE_LOG=${DIR_LOGS}/update_$(date +%Y%m%d).log
 UPDATE_EMAIL=${UPDATE_EMAIL}
-UPDATE_RETRY=${UPDATE_RETRY:-"3"}
-CLEAR_DOWNLOAD_CACHE=${CLEAR_DOWNLOAD_CACHE:-"0"}
+UPDATE_RETRY=${UPDATE_RETRY:-3}
+CLEAR_DOWNLOAD_CACHE=${CLEAR_DOWNLOAD_CACHE:-0}
 API_AUTHORIZATION_KEY=${API_AUTHORIZATION_KEY}
-WORKSHOP_COLLECTION_ID=${WORKSHOP_COLLECTION_ID:-"125499818"}
-WORKSHOP_START_MAP=${WORKSHOP_COLLECTION_ID:-"125488374"}
-MAXPLAYERS=${MAXPLAYERS:-"18"}
-TICKRATE=${TICKRATE:-"64"}
-EXTRAPARAMS=${EXTRAPARAMS:-"-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2"}
+WORKSHOP_COLLECTION_ID=${WORKSHOP_COLLECTION_ID:-125499818}
+WORKSHOP_START_MAP=${WORKSHOP_COLLECTION_ID:-125488374}
+MAXPLAYERS=${MAXPLAYERS:-18}
+TICKRATE=${TICKRATE:-64}
+EXTRAPARAMS=${EXTRAPARAMS:--nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2}
 
 PARAM_START="-nobreakpad -game csgo -console -usercon -secure -autoupdate -steam_dir ${DIR_STEAMCMD} -steamcmd_script ${STEAM_RUNSCRIPT} -maxplayers_override ${MAXPLAYERS} -tickrate ${TICKRATE} +hostport ${PORT} +net_public_adr ${IP} ${EXTRAPARAMS}"
 PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"
