@@ -17,7 +17,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 And also the following environment variables to edit the CSGO Server Launcher [configuration](https://github.com/crazy-max/csgo-server-launcher/wiki/Configuration) :
 
-* `IP` (default `$(sudo dig +short myip.opendns.com @resolver1.opendns.com)`)
+* `IP` (default `$(sudo dig -4 +short myip.opendns.com @resolver1.opendns.com)`)
 * `GSLT`
 * `STEAM_LOGIN` (default `anonymous`)
 * `STEAM_PASSWORD` (default `anonymous`)
