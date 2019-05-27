@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.4 (2019/05/27)
+
+* Fix hosts with an IPv6 address failing on getting own ip address (PR #46)
+
 ## 1.13.3 (2019/02/04)
 
 * Update Docker build script
