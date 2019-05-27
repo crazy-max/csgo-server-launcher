@@ -20,7 +20,7 @@ SSMTP_PORT=${SSMTP_PORT:-25}
 SSMTP_HOSTNAME=${SSMTP_HOSTNAME:-$(hostname -f)}
 SSMTP_TLS=${SSMTP_TLS:-NO}
 
-IP=${IP:-$(sudo dig +short myip.opendns.com @resolver1.opendns.com)}
+IP=${IP:-$(sudo dig -4 +short myip.opendns.com @resolver1.opendns.com)}
 GSLT=${GSLT}
 STEAM_LOGIN=${STEAM_LOGIN:-anonymous}
 STEAM_PASSWORD=${STEAM_PASSWORD:-anonymous}
