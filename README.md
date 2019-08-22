@@ -19,11 +19,12 @@ Tested on Debian based distros (Ubuntu, Mint, ...)
 
 ## Documentation
 
-* [Installation](../../wiki/Installation)
-* [Configuration](../../wiki/Configuration)
-* [Usage](../../wiki/Usage)
-* [AutoUpdate](../../wiki/AutoUpdate)
-* [FAQ](../../wiki/FAQ)
+* [Requirements](doc/requirements.md)
+* [Installation](doc/installation.md)
+* [Configuration](doc/configuration.md)
+* [Usage](doc/usage.md)
+* [Auto Update](doc/auto-update.md)
+* [FAQ](doc/faq.md)
 
 ## How can I help ?
 
