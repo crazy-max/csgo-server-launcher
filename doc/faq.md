@@ -6,15 +6,15 @@ If you are not using the Docker image, you can create several CSGO Server Launch
 
 ### cannot create directory "/var/steamcmd"
 
-You've got the following message when you try to install or update steam :
+You've got the following message when you try to install or update steam:
 
-```text
+```
 mkdir: cannot create directory "/var/steamcmd": Permission denied
 ```
 
-It's because you are using a specific user (instead of `root`) :
+It's because you are using a specific user (instead of `root`):
 
-```console
+```
 chown -R steam. /var/steamcmd/
 ```
 
@@ -24,25 +24,25 @@ chown -R steam. /var/steamcmd/
 
 You've got the following message when you try to install or update steam :
 
-```text
+```
 ./steamcmd.sh: ligne 29: /var/steamcmd/linux32/steamcmd: No such file or directory
 ```
 
-It's because you are on a 64-bit architecture and you have to to install the 32-bit libraries :
+It's because you are on a 64-bit architecture and you have to to install the 32-bit libraries:
 
-```console
-$ apt-get install -y libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
+```
+apt-get install -y libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
 ```
 
 ### libcurl.so: cannot open shared object file
 
-```text
+```
 libcurl.so: cannot open shared object file: No such file or directory
 ```
 
-Install `curl` for i386 architecture :
+Install `curl` for i386 architecture:
 
-```console
-$ dpkg --add-architecture i386
-$ apt-get install -y curl:i386
+```
+dpkg --add-architecture i386
+apt-get install -y curl:i386
 ```

@@ -11,13 +11,13 @@ For usage and info, check the README in the [docker](https://github.com/crazy-ma
 
 ## Install script
 
-A script is available to perform an installation with a single command :
+A script is available to perform an installation with a single command:
 
 ```
 $ sudo curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.13.4/install.sh | sudo bash
 ```
 
-This should output something like this :
+This should output something like this:
 
 ```
 Starting CSGO Server Launcher install (v1.13.2)...
@@ -45,7 +45,7 @@ Then type:
 
 ## Manual
 
-Or you can install it manually as root or sudoer :
+Or you can install it manually as root or sudoer:
 
 ```
 $ dpkg --add-architecture i386
@@ -58,7 +58,7 @@ $ mkdir -p /etc/csgo-server-launcher/
 $ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.13.4/csgo-server-launcher.conf -o /etc/csgo-server-launcher/csgo-server-launcher.conf
 ```
 
-And you have to create the dedicated user `steam` and the steamcmd directory :
+And you have to create the dedicated user `steam` and the steamcmd directory:
 
 ```
 $ useradd -m steam
@@ -66,7 +66,7 @@ $ mkdir -p /var/steamcmd
 $ chown -R steam. /var/steamcmd/
 ```
 
-After that you can install and start csgo :
+After that you can install and start csgo:
 
 ```
 $ /etc/init.d/csgo-server-launcher create
