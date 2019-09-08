@@ -51,7 +51,7 @@ RUN groupadd -f -g 1000 steam \
   && useradd -o --shell /bin/bash -u 1000 -g 1000 -m steam \
   && echo "steam ALL=(ALL)NOPASSWD: ALL" >> etc/sudoers \
   && mkdir -p ${DIR_STEAMCMD} ${DIR_ROOT} \
-  && curl http://media.steampowered.com/client/steamcmd_linux.tar.gz | tar -C ${DIR_STEAMCMD} -xvz \
+  && curl -sSL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar -C ${DIR_STEAMCMD} -xvz \
   && chown -R steam. ${DIR_STEAMCMD}
 
 COPY csgo-server-launcher.sh /usr/bin/csgo-server-launcher

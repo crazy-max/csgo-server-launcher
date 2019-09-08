@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.13.4                                                  #
+#  CSGO Server Launcher v1.13.5                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
@@ -46,6 +46,7 @@
 ##################################################################################
 
 CONFIG_FILE="/etc/csgo-server-launcher/csgo-server-launcher.conf"
+STEAMCMD_URL="https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
 
 # No edits necessary beyond this line
 
@@ -307,12 +308,12 @@ function create {
   fi
 
   # Download steamcmd
-  echo "Downloading steamcmd from http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+  echo "Downloading steamcmd from $STEAMCMD_URL"
   if [ $(whoami) = "root" ]
   then
-    su - ${USER} -c "cd $DIR_STEAMCMD ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz"
+    su - ${USER} -c "cd $DIR_STEAMCMD ; wget $STEAMCMD_URL"
   else
-    cd "$DIR_STEAMCMD" ; wget http://media.steampowered.com/client/steamcmd_linux.tar.gz
+    cd "$DIR_STEAMCMD" ; wget ${STEAMCMD_URL}
   fi
   if [ "$?" -ne "0" ]
   then

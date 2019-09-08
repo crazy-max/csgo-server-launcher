@@ -5,7 +5,7 @@ services:
 
 env:
   global:
-    - VERSION=1.13.4
+    - VERSION=1.13.5
     - DOCKER_LOGIN=crazymax
     - DOCKER_USERNAME=crazymax
     - DOCKER_REPONAME=csgo-server-launcher
