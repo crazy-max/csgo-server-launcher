@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.13.6 (2019/10/10)
+
+* Switch to GitHub Actions
+* lib32ncurses6 on Debian buster (Issue #60)
+* Do not overwrite config for install script (Issue #58)
+* Only populate AuthUser/Pass in ssmtp.conf if defined in ENV (Docker image)
+
 ## 1.13.5 (2019/09/08)
 
 * Update steamcmd link
