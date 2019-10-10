@@ -1,8 +1,9 @@
 # Changelog
 
-## 1.13.6 (2019/10/10)
+## 1.14.0 (2019/10/11)
 
 * Switch to GitHub Actions
+* :warning: Stop publishing Docker image on Quay
 * lib32ncurses6 on Debian buster (Issue #60)
 * Do not overwrite config for install script (Issue #58)
 * Only populate AuthUser/Pass in ssmtp.conf if defined in ENV (Docker image)
