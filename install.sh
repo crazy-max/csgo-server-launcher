@@ -92,7 +92,9 @@ fi
 
 echo "Downloading CSGO Server Launcher configuration..."
 mkdir -p /etc/csgo-server-launcher/
-curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}
+if [ ! -f $confPath ]; then
+  curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}
+fi
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot download CSGO Server Launcher configuration..."
   exit 1
