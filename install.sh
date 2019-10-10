@@ -36,6 +36,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 ### Vars
+distribVersion=$(sed 's/\..*//' /etc/debian_version)
 version=1.13.5
 downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
 scriptName="csgo-server-launcher"
@@ -63,7 +64,12 @@ fi
 
 echo "Installing required packages..."
 apt-get update >/dev/null
-apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar >/dev/null
+
+lib32ncurses=lib32ncurses5
+if [[ $distribVersion == *"buster"* ]] || ([[ $distribVersion =~ ^[0-9]+$ ]] && [[ $distribVersion -ge 10 ]]); then
+  lib32ncurses=lib32ncurses6
+fi
+apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 $lib32ncurses lib32z1 curl gdb screen tar >/dev/null
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot install required packages..."
   exit 1
