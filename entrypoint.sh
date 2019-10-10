@@ -79,6 +79,7 @@ EOL
 AuthUser=${SSMTP_USER}
 AuthPass=${SSMTP_PASSWORD}
 EOL
+  fi
   sudo mv -f /tmp/ssmtp.conf /etc/ssmtp/ssmtp.conf
 fi
 unset SSMTP_HOST
