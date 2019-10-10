@@ -34,6 +34,8 @@ It's because you are on a 64-bit architecture and you have to to install the 32-
 apt-get install -y libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
 ```
 
+> :warning: Replace lib32ncurses5 with lib32ncurses6 on Debian buster based distros
+
 ### libcurl.so: cannot open shared object file
 
 ```

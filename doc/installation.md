@@ -58,6 +58,8 @@ $ mkdir -p /etc/csgo-server-launcher/
 $ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.13.5/csgo-server-launcher.conf -o /etc/csgo-server-launcher/csgo-server-launcher.conf
 ```
 
+> :warning: Replace lib32ncurses5 with lib32ncurses6 on Debian buster based distros
+
 And you have to create the dedicated user `steam` and the steamcmd directory:
 
 ```
