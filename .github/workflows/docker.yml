@@ -1,14 +1,14 @@
-name: build
+name: docker
 
 on:
   pull_request:
     branches: 'master'
   push:
     branches: 'master'
-    tags: '*'
+    tags: 'v*.*.*'
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       -
@@ -20,9 +20,7 @@ jobs:
         id: prepare
         run: |
           if [[ $GITHUB_REF == refs/tags/* ]]; then
-            TAG=${GITHUB_REF#refs/tags/}
-            echo ::set-output name=tag_name::${TAG}
-            echo ::set-output name=version::${TAG%-*}
+            echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
           else
             echo ::set-output name=version::snapshot
           fi
