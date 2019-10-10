@@ -5,11 +5,10 @@
 /.git
 /.github
 /.res
+/doc
 /docker
 /.editorconfig
 /.gitignore
-/.travis.yml
-/build.sh
 /CHANGELOG.md
 /LICENSE
 /README.md
