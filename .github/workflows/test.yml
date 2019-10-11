@@ -17,7 +17,7 @@ jobs:
           echo ::set-output name=build_tag::test
           echo ::set-output name=container_name::csgo-server-launcher
           echo ::set-output name=running_timeout::2400
-          echo ::set-output name=running_log_check::Connection to Steam servers successful
+          echo ::set-output name=running_log_check::Connections will be restricted to LAN only
       -
         # https://github.com/actions/checkout
         name: Checkout
