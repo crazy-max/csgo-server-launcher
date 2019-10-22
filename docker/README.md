@@ -20,6 +20,7 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 And also the following environment variables to edit the CSGO Server Launcher [configuration](https://github.com/crazy-max/csgo-server-launcher/wiki/Configuration) :
 
 * `IP` (default `$(sudo dig -4 +short myip.opendns.com @resolver1.opendns.com)`)
+* `PORT` (default `27015`)
 * `GSLT`
 * `STEAM_LOGIN` (default `anonymous`)
 * `STEAM_PASSWORD` (default `anonymous`)
@@ -37,10 +38,6 @@ And also the following environment variables to edit the CSGO Server Launcher [c
 
 * `/var/steamcmd/games/csgo` : CSGO root folder
 * `/home/steam/Steam` : Steam folder for logs, appcache, etc...
-
-## Ports
-
-* `27015 27015/udp` : CSGO server port
 
 ## Usage
 
@@ -61,13 +58,15 @@ You can also use the following minimal command :
 $ docker run -dt --name csgo --restart always \
   --ulimit nproc=65535 \
   --ulimit nofile=32000:40000 \
-  -p 27015:27015 \
-  -p 27015:27015/udp \
-  --env-file $(pwd)/csgo-server-launcher.env \
+  -p ${PORT}:${PORT} \
+  -p ${PORT}:${PORT}/udp \
+  --env-file $(pwd)/.env \
   -v $(pwd)/csgo:/var/steamcmd/games/csgo \
   -v $(pwd)/steam:/home/steam/Steam \
   crazymax/csgo-server-launcher:latest
 ```
+
+> :warning: `${PORT}` is the CSGO server port defined in your `.env` file
 
 ## Upgrade image
 
@@ -95,7 +94,7 @@ If you don't use compose :
 ```bash
 $ docker stop csgo
 $ docker run -it --name csgo-updater --restart on-failure \
-  --env-file $(pwd)/csgo-server-launcher.env \
+  --env-file $(pwd)/.env \
   -v $(pwd)/csgo:/var/steamcmd/games/csgo \
   -v $(pwd)/steam:/home/steam/Steam \
   crazymax/csgo-server-launcher:latest \
