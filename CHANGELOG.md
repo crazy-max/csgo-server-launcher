@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.1 (2019/10/22)
+
+* Allow to set a custom hostport for Docker (Issue #61)
+* Fix ssmtp.conf permission denied
+
 ## 1.14.0 (2019/10/11)
 
 * Switch to GitHub Actions
