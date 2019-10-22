@@ -10,7 +10,7 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.14.0                                                  #
+#  CSGO Server Launcher v1.14.1                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
