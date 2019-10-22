@@ -2,7 +2,6 @@
 
 SCREEN_NAME="csgo"
 USER="steam"
-PORT="27015"
 DIR_STEAMCMD="/var/steamcmd"
 DIR_ROOT="/var/steamcmd/games/csgo"
 DIR_GAME="$DIR_ROOT/csgo"
@@ -21,6 +20,7 @@ SSMTP_HOSTNAME=${SSMTP_HOSTNAME:-$(hostname -f)}
 SSMTP_TLS=${SSMTP_TLS:-NO}
 
 IP=${IP:-$(sudo dig -4 +short myip.opendns.com @resolver1.opendns.com)}
+PORT=${PORT:-27015}
 GSLT=${GSLT}
 STEAM_LOGIN=${STEAM_LOGIN:-anonymous}
 STEAM_PASSWORD=${STEAM_PASSWORD:-anonymous}

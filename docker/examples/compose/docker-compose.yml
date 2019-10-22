@@ -5,14 +5,14 @@ services:
     image: crazymax/csgo-server-launcher:latest
     container_name: csgo
     ports:
-      - target: 27015
-        published: 27015
+      - target: ${PORT}
+        published: ${PORT}
         protocol: udp
-      - target: 27015
-        published: 27015
+      - target: ${PORT}
+        published: ${PORT}
         protocol: tcp
     env_file:
-      - "./csgo-server-launcher.env"
+      - ".env"
     volumes:
       - "./csgo:/var/steamcmd/games/csgo"
       - "./steam:/home/steam/Steam"
