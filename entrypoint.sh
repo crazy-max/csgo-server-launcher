@@ -75,7 +75,7 @@ UseSTARTTLS=${SSMTP_TLS}
 EOL
   # Authentication to SMTP server is optional.
   if [ -n "$SSMTP_USER" ] ; then
-    cat >> /etc/ssmtp/ssmtp.conf <<EOL
+    cat >> /tmp/ssmtp.conf <<EOL
 AuthUser=${SSMTP_USER}
 AuthPass=${SSMTP_PASSWORD}
 EOL
