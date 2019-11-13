@@ -1,11 +1,15 @@
 name: build
 
 on:
-  pull_request:
-    branches: master
   push:
-    branches: master
-    tags: v*
+    branches: 'master'
+    paths:
+      - '.github/workflows/build.yml'
+      - 'csgo-server-launcher*'
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+      - 'install.sh'
+    tags: 'v*'
 
 jobs:
   release:

@@ -2,9 +2,21 @@ name: test
 
 on:
   pull_request:
-    branches: master
+    branches: 'master'
+    paths:
+      - '.github/workflows/test.yml'
+      - 'csgo-server-launcher*'
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+      - 'install.sh'
   push:
-    branches: master
+    branches: 'master'
+    paths:
+      - '.github/workflows/test.yml'
+      - 'csgo-server-launcher*'
+      - 'Dockerfile'
+      - 'entrypoint.sh'
+      - 'install.sh'
 
 jobs:
   test:
