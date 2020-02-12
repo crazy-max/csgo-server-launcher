@@ -8,8 +8,8 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 ## Environment variables
 
 * `TZ` : The timezone assigned to the container (default `UTC`)
-* `PUID` : The timezone assigned to the container (default `1000`)
-* `PGID` : The timezone assigned to the container (default `1000`)
+* `PUID` : csgo-server-launcher user id (default `1000`)
+* `PGID` : csgo-server-launcher group id (default `1000`)
 * `SSMTP_HOST` : SMTP server host
 * `SSMTP_PORT` : SMTP server port (default `25`)
 * `SSMTP_HOSTNAME` : Full hostname (default `$(hostname -f)`)
