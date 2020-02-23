@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.14.2 (2020/02/23)
+
+* Switch to Open Container Specification labels as label-schema.org ones are deprecated
+
 ## 1.14.1 (2019/10/22)
 
 * Allow to set a custom hostport for Docker (Issue #61)

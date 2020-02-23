@@ -4,7 +4,7 @@
 #                                                                                #
 #  Installs CSGO Server Launcher                                                 #
 #                                                                                #
-#  Copyright (C) 2013-2019 CrazyMax                                              #
+#  Copyright (C) 2013-2020 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
@@ -37,7 +37,7 @@ fi
 
 ### Vars
 distribVersion=$(sed 's/\..*//' /etc/debian_version)
-version=1.14.1
+version=1.14.2
 downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
 scriptName="csgo-server-launcher"
 scriptPath="/etc/init.d/$scriptName"
