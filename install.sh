@@ -36,7 +36,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 ### Vars
-distribVersion=$(sed 's/\..*//' /etc/debian_version)
 version=1.14.2
 downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
 scriptName="csgo-server-launcher"
