@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.14.3 (2020/04/16)
+
+* Fix `lib32ncurses` resolution (#68)
+
 ## 1.14.2 (2020/02/23)
 
 * Switch to Open Container Specification labels as label-schema.org ones are deprecated
