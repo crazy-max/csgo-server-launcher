@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.14.4 (2020/05/29)
+
+* Fix incorrect variable reference (#69)
+
 ## 1.14.3 (2020/04/16)
 
 * Fix `lib32ncurses` resolution (#68)
