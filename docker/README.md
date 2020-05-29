@@ -1,7 +1,7 @@
 ## About
 
 [Official docker image](https://hub.docker.com/r/crazymax/csgo-server-launcher/) 🐳 for CSGO Server Launcher.<br />
-If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 🐳 Docker images!
+If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other Docker images!
 
 💡 Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun) project!
 
@@ -68,7 +68,7 @@ $ docker run -dt --name csgo --restart always \
 
 > :warning: `${PORT}` is the CSGO server port defined in your `.env` file
 
-## Upgrade image
+## Upgrade
 
 You can upgrade this image whenever I push an update :
 
