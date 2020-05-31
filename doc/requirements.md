@@ -6,3 +6,11 @@ Obviously a [Steam](http://steampowered.com) account is required. If you are **n
 * [screen](http://linux.die.net/man/1/screen)
 * [wget](http://en.wikipedia.org/wiki/Wget)
 * [tar](http://linuxcommand.org/man_pages/tar1.html)
+
+### Disk Space
+
+Should have atleast 25 GB free space. If you see the error like below, disk space is not sufficient. You need to use a bigger disk.
+
+```
+Error! App '740' state is 0x202 after update job.
+```
