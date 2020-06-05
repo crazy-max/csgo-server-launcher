@@ -1,3 +1,4 @@
+## more info https://github.com/crazy-max/ghaction-github-labeler
 - # bot
   name: ":robot: bot"
   color: "69cde9"
@@ -58,16 +59,23 @@
   name: ":thinking: needs more info"
   color: "795548"
   description: ""
+- # pinned
+  name: ":pushpin: pinned"
+  color: "28008e"
+  description: ""
 - # question
   name: ":question: question"
   color: "3f51b5"
+  description: ""
+- # stale
+  name: ":skull: stale"
+  color: "237da0"
   description: ""
 - # upstream
   name: ":eyes: upstream"
   color: "fbca04"
   description: ""
-## ':coffin: wontfix' would be renamed if not excluded
-- # wontfix_it
-  name: wontfix_it
-  color: "000000"
-  from_name: ":coffin: wontfix"
+- # wontfix
+  name: ":coffin: wontfix"
+  color: "ffffff"
+  description: ""
