@@ -26,7 +26,7 @@ RUN dpkg --add-architecture i386 \
     libc6-i386 \
     lib32stdc++6 \
     lib32gcc1 \
-    lib32ncurses5 \
+    lib32ncurses? \
     lib32z1 \
     locales \
     net-tools \
