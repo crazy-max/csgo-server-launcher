@@ -1,0 +1,1051 @@
+csgo    | Setting timezone to Europe/Paris...
+csgo    | Checking if steam UID / GID has changed...
+csgo    | Setting msmtp configuration...
+csgo    | Fixing permissions...
+csgo    | Starting csgo...
+csgo    | NOTICE: /var/steamcmd/games/csgo/srcds_run does not exist or is not executable.
+csgo    | steamcmd already exists...
+csgo    | Updating csgo...
+csgo    | /var/steamcmd/games/csgo/csgo/logs does not exist, creating...
+csgo    | Redirecting stderr to '/home/steam/Steam/logs/stderr.txt'
+csgo    | ILocalize::AddFile() failed to load file "public/steambootstrapper_english.txt".
+csgo    | [  0%] Checking for available update...
+csgo    | [----] Downloading update (0 of 51,208 KB)...
+csgo    | [  0%] Downloading update (876 of 51,208 KB)...
+csgo    | [  1%] Downloading update (2,409 of 51,208 KB)...
+csgo    | [  4%] Downloading update (4,271 of 51,208 KB)...
+csgo    | [  8%] Downloading update (6,355 of 51,208 KB)...
+csgo    | [ 12%] Downloading update (8,642 of 51,208 KB)...
+csgo    | [ 16%] Downloading update (11,208 of 51,208 KB)...
+csgo    | [ 21%] Downloading update (13,540 of 51,208 KB)...
+csgo    | [ 26%] Downloading update (15,889 of 51,208 KB)...
+csgo    | [ 31%] Downloading update (18,249 of 51,208 KB)...
+csgo    | [ 35%] Downloading update (20,610 of 51,208 KB)...
+csgo    | [ 40%] Downloading update (22,971 of 51,208 KB)...
+csgo    | [ 44%] Downloading update (25,575 of 51,208 KB)...
+csgo    | [ 49%] Downloading update (27,964 of 51,208 KB)...
+csgo    | [ 54%] Downloading update (30,683 of 51,208 KB)...
+csgo    | [ 59%] Downloading update (31,877 of 51,208 KB)...
+csgo    | [ 62%] Downloading update (33,076 of 51,208 KB)...
+csgo    | [ 64%] Downloading update (34,406 of 51,208 KB)...
+csgo    | [ 67%] Downloading update (35,615 of 51,208 KB)...
+csgo    | [ 69%] Downloading update (36,824 of 51,208 KB)...
+csgo    | [ 71%] Downloading update (38,037 of 51,208 KB)...
+csgo    | [ 74%] Downloading update (39,260 of 51,208 KB)...
+csgo    | [ 76%] Downloading update (40,605 of 51,208 KB)...
+csgo    | [ 79%] Downloading update (41,829 of 51,208 KB)...
+csgo    | [ 81%] Downloading update (43,053 of 51,208 KB)...
+csgo    | [ 84%] Downloading update (44,290 of 51,208 KB)...
+csgo    | [ 86%] Downloading update (45,528 of 51,208 KB)...
+csgo    | [ 88%] Downloading update (46,889 of 51,208 KB)...
+csgo    | [ 91%] Downloading update (48,126 of 51,208 KB)...
+csgo    | [ 93%] Downloading update (49,376 of 51,208 KB)...
+csgo    | [ 96%] Downloading update (50,628 of 51,208 KB)...
+csgo    | [ 98%] Downloading update (51,208 of 51,208 KB)...
+csgo    | [100%] Download Complete.
+csgo    | [----] Applying update...
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Cleaning up...
+csgo    | [----] Update complete, launching...
+csgo    | Redirecting stderr to '/home/steam/Steam/logs/stderr.txt'
+csgo    | [  0%] Checking for available updates...
+csgo    | [----] Verifying installation...
+csgo    | [  0%] Downloading update...
+csgo    | [  0%] Checking for available updates...
+csgo    | [----] Download complete.
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Extracting package...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Installing update...
+csgo    | [----] Cleaning up...
+csgo    | [----] Update complete, launching Steamcmd...
+csgo    | Redirecting stderr to '/home/steam/Steam/logs/stderr.txt'
+csgo    | [  0%] Checking for available updates...
+csgo    | [----] Verifying installation...
+csgo    | Steam Console Client (c) Valve Corporation
+csgo    | -- type 'quit' to exit --
+csgo    | Loading Steam API...OK.
+csgo    |
+csgo    | Connecting anonymously to Steam Public...Logged in OK
+csgo    | Waiting for user info...OK
+csgo    |  Update state (0x3) reconfiguring, progress: 0.00 (0 / 0)
+csgo    |  Update state (0x3) reconfiguring, progress: 0.00 (0 / 0)
+csgo    |  Update state (0x61) downloading, progress: 0.00 (203163 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 0.04 (10168188 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 0.23 (55943069 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 0.48 (116463019 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 0.81 (197382463 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 1.07 (260569847 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 1.50 (366435415 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 1.90 (465674214 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 2.22 (542979417 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 2.50 (612185433 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 2.76 (673980323 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 2.99 (731205190 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 3.24 (792782935 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 3.50 (855696075 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 3.75 (916293425 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 4.00 (979060751 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 4.23 (1032900880 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 4.40 (1076633827 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 4.63 (1131864641 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 4.83 (1180968223 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 5.01 (1224235678 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 5.17 (1264459638 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 5.38 (1314091492 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 5.59 (1365632888 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 5.87 (1434047326 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 6.11 (1494199356 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 6.40 (1565535365 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 6.68 (1632612036 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 6.96 (1701224224 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 7.25 (1772767103 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 7.48 (1829580234 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 7.74 (1891178093 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 7.98 (1951408457 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 8.24 (2015312391 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 8.50 (2077571510 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 8.81 (2154034422 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 9.09 (2223092197 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 9.42 (2302412187 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 9.73 (2378472122 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 10.00 (2443584064 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 10.28 (2514236764 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 10.56 (2581678986 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 10.80 (2640270389 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 11.07 (2706448872 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 11.40 (2787792327 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 11.74 (2869554569 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 12.07 (2951375162 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 12.37 (3024904205 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 12.68 (3099354907 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 12.98 (3172200037 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 13.30 (3251648690 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 13.61 (3327161014 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 13.89 (3394722291 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 14.18 (3466178371 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 14.44 (3529432899 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 14.70 (3594703169 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 14.95 (3655692165 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 15.19 (3713666138 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 15.43 (3771263994 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 15.65 (3825452093 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 15.90 (3885798225 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 16.11 (3938340578 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 16.33 (3991410809 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 16.59 (4055130244 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 16.82 (4112824107 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 17.09 (4177778404 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 17.31 (4232625960 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 17.53 (4284962538 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 17.84 (4361007746 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 18.10 (4425845674 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 18.29 (4472392735 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 18.54 (4532536235 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 18.78 (4590828928 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 19.05 (4658008330 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 19.39 (4740497058 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 19.70 (4815463562 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 20.00 (4888858762 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 20.31 (4965210664 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 20.57 (5029100684 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 20.84 (5094399646 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 21.10 (5158690533 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 21.34 (5217512996 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 21.58 (5274487996 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 21.83 (5337766108 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 22.05 (5389843844 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 22.30 (5451733785 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 22.52 (5505400289 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 22.80 (5573870589 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 23.05 (5635275953 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 23.28 (5692272441 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 23.47 (5738404130 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 23.70 (5794200548 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 23.98 (5862074312 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 24.29 (5937877504 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 24.56 (6004408959 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 24.82 (6066453804 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 25.08 (6131909920 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 25.34 (6194475472 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 25.63 (6266585187 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 25.86 (6321128410 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 26.05 (6368729126 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 26.26 (6420262525 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 26.59 (6500874198 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 26.85 (6563668694 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 27.08 (6619787431 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 27.38 (6694359545 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 27.63 (6754039704 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 27.85 (6807057528 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 28.12 (6875153280 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 28.44 (6952525377 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 28.79 (7037174438 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 29.03 (7096675765 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 29.26 (7154101445 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 29.46 (7201355675 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 29.71 (7262370671 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 29.96 (7324538950 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 30.24 (7391685961 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 30.47 (7447755497 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 30.76 (7520390467 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 31.04 (7588683804 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 31.30 (7651161026 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 31.57 (7718513351 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 31.85 (7786425132 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 32.17 (7864937648 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 32.44 (7931293742 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 32.67 (7985746038 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 32.94 (8052156110 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 33.27 (8132897470 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 33.55 (8201942338 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 33.83 (8270853793 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 34.09 (8332732445 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 34.31 (8388308757 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 34.55 (8447293457 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 34.78 (8503353883 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 35.00 (8555111479 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 35.26 (8620123191 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 35.51 (8679892023 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 35.77 (8744945242 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 36.11 (8826740992 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 36.39 (8896401170 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 36.73 (8977935006 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 37.00 (9045056077 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 37.30 (9118894863 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 37.54 (9177966183 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 37.75 (9229502423 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 37.97 (9282533531 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 38.24 (9347464204 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 38.55 (9423670978 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 38.83 (9492516922 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 39.12 (9564396940 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 39.37 (9623816996 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 39.59 (9678311720 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 39.86 (9745211616 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 40.12 (9808298275 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 40.41 (9878451767 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 40.74 (9959003607 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 40.98 (10017677930 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 41.24 (10081485186 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 41.51 (10148437805 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 41.73 (10201917469 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 42.01 (10269026837 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 42.28 (10335155995 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 42.58 (10409249333 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 42.83 (10470553799 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 43.10 (10536309015 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 43.34 (10594234223 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 43.58 (10653654561 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 43.90 (10732000013 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 44.13 (10787632835 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 44.32 (10834318204 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 44.49 (10876261244 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 44.73 (10934634276 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 44.92 (10980307591 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 45.14 (11035919357 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 45.34 (11084153853 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 45.56 (11136868698 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 45.73 (11180399767 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 45.95 (11233918780 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 46.19 (11291590460 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 46.43 (11350581766 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 46.66 (11406688084 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 46.91 (11466986242 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 47.12 (11519066174 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 47.36 (11578300488 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 47.54 (11622686217 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 47.71 (11664432467 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 47.95 (11722257598 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.17 (11775224128 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.30 (11807006556 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.42 (11837595774 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.59 (11878490238 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.74 (11914387493 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 48.86 (11943939264 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 49.02 (11984222782 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 49.27 (12045144424 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 49.47 (12093661829 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 49.68 (12145889586 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 49.89 (12195065809 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 50.16 (12263235315 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 50.42 (12326678442 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 50.72 (12400221583 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 50.92 (12447672672 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.13 (12498438714 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.31 (12543586125 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.45 (12577640653 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.61 (12617225247 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.78 (12657276203 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 51.95 (12699389668 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.10 (12736384817 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.22 (12766710557 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.41 (12812994448 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.61 (12861707128 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.76 (12898869180 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 52.97 (12949252650 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 53.18 (13001315263 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 53.36 (13045609891 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 53.51 (13082172035 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 53.69 (13125643639 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 53.85 (13165118154 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.07 (13218808628 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.26 (13265179396 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.39 (13295354760 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.51 (13326376427 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.63 (13355806160 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.77 (13389392529 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 54.92 (13426768529 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.05 (13457900752 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.18 (13488513294 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.31 (13521276033 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.45 (13555310487 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.64 (13600850909 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.82 (13646430034 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 55.97 (13683304963 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.16 (13728852317 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.30 (13763003718 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.50 (13812785218 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.62 (13841096770 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.73 (13869368318 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 56.90 (13909214206 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.03 (13942540238 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.17 (13976099048 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.30 (14006507752 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.50 (14057623392 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.69 (14103665082 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 57.89 (14151510954 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.07 (14195373088 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.25 (14239706117 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.43 (14283132170 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.61 (14328447278 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.77 (14367269768 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 58.94 (14408959905 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 59.08 (14442514337 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 59.27 (14488102945 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 59.52 (14550501658 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 59.69 (14591221764 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 59.87 (14634981535 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 60.06 (14682891970 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 60.23 (14723470040 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 60.38 (14759669520 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 60.64 (14823754857 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 60.78 (14858456705 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 61.01 (14913769979 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 61.29 (14983977603 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 61.53 (15042033694 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 61.70 (15083557977 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 61.86 (15123417614 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.09 (15177410015 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.21 (15206828961 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.31 (15231994785 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.43 (15261041367 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.58 (15297669536 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.78 (15346359463 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 62.97 (15393327505 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.09 (15423214620 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.25 (15461385837 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.38 (15492981442 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.51 (15524900367 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.70 (15571097827 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 63.92 (15624913149 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 64.13 (15678040274 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 64.40 (15742893150 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 64.62 (15796305092 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 64.82 (15845780019 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 65.05 (15902124098 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 65.23 (15945014264 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 65.41 (15991151608 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 65.60 (16035896916 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 65.80 (16085162375 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.02 (16140454611 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.18 (16179313611 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.33 (16215578795 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.51 (16258009430 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.66 (16296062471 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.81 (16332456101 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 66.92 (16360228087 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 67.04 (16388439103 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 67.20 (16427929391 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 67.43 (16483231945 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 67.62 (16530340227 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 67.84 (16584334063 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 68.06 (16637298304 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 68.29 (16693775430 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 68.51 (16749121602 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 68.72 (16799241755 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 68.98 (16864073779 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 69.21 (16919901594 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 69.42 (16969689890 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 69.62 (17020423232 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 69.78 (17057644876 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 69.95 (17099071320 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.09 (17134943632 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.25 (17174111342 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.38 (17205568622 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.54 (17244937063 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.74 (17293452443 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.86 (17321638644 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 70.97 (17348440065 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.11 (17383213203 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.25 (17418873288 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.38 (17448751971 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.57 (17496670405 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.72 (17531617892 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.85 (17564253177 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 71.97 (17594719437 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.08 (17619914547 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.21 (17653625910 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.37 (17691806643 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.53 (17729990117 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.71 (17774262615 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.82 (17802037222 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 72.93 (17829280461 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.08 (17866112509 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.26 (17909271039 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.45 (17956239698 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.59 (17990507310 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.72 (18021093430 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 73.85 (18053033301 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.00 (18089625453 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.19 (18135534195 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.30 (18163977523 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.42 (18193257545 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.57 (18229999181 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.70 (18261456461 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.83 (18292226601 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 74.98 (18330669414 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.11 (18361203126 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.22 (18389187668 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.34 (18416676042 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.57 (18472789383 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.83 (18536469293 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 75.97 (18571017096 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.10 (18604504403 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.22 (18632701983 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.38 (18670744895 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.50 (18700879640 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.62 (18729706868 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.74 (18759387633 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 76.90 (18799974784 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 77.07 (18841032025 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 77.31 (18899981395 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 77.52 (18950044543 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 77.69 (18992823601 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 77.84 (19029512750 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.07 (19086294005 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.23 (19123772944 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.35 (19154183566 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.46 (19180408618 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.61 (19217812568 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.79 (19261727898 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 78.97 (19305119772 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.10 (19337891564 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.25 (19374675820 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.45 (19422413609 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.60 (19458343887 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.78 (19502017411 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 79.94 (19541333687 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.09 (19579136983 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.33 (19637451266 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.51 (19680837368 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.61 (19706138655 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.75 (19740600966 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 80.93 (19784133230 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.10 (19826178187 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.24 (19861118482 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.40 (19899047042 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.56 (19939413931 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.70 (19973128823 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.82 (20002171635 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 81.94 (20031462228 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.08 (20066070434 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.21 (20097311024 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.40 (20143108328 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.56 (20181640248 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.70 (20216630299 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 82.86 (20256153299 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.01 (20293661749 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.18 (20335178062 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.33 (20371875786 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.47 (20406326481 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.65 (20448137108 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 83.89 (20508951225 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.02 (20540175697 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.19 (20580500373 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.32 (20611984545 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.43 (20640296097 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.59 (20680078302 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.74 (20716160661 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 84.88 (20748778749 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.00 (20778153079 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.14 (20813209097 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.34 (20862409903 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.46 (20892818607 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.65 (20938153279 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 85.83 (20981272654 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.02 (21029444299 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.15 (21059984009 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.30 (21097793042 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.55 (21156998044 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.71 (21196621732 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 86.88 (21238474353 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.04 (21277729076 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.18 (21312830565 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.38 (21359968963 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.62 (21420518296 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.79 (21461322153 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 87.90 (21488695756 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.11 (21539415061 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.26 (21576125819 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.39 (21607947373 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.51 (21638357217 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.69 (21680472952 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.82 (21713765552 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 88.95 (21745258045 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.09 (21778911608 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.30 (21830882234 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.44 (21865504543 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.62 (21907451240 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.80 (21953406165 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 89.97 (21993332130 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 90.15 (22038422020 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 90.37 (22092045392 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 90.50 (22124817619 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 90.68 (22166845217 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 90.82 (22202542836 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.04 (22255975424 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.20 (22295009014 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.33 (22326052606 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.52 (22372202020 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.69 (22414879543 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.83 (22448209908 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 91.99 (22487953000 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 92.15 (22526276810 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 92.34 (22574234124 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 92.49 (22610247240 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 92.66 (22650596466 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 92.86 (22701141411 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 93.14 (22769907868 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 93.45 (22844648270 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 93.72 (22910093145 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 94.01 (22982600225 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 94.26 (23042808073 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 94.48 (23096539662 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 94.70 (23150133910 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 94.89 (23197168844 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.02 (23228968320 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.19 (23270652191 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.32 (23302109471 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.43 (23329372447 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.56 (23359815083 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.66 (23385241685 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.76 (23409358933 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.84 (23429299765 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 95.95 (23456128537 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.06 (23482777693 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.16 (23507958629 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.27 (23535363837 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.39 (23563874031 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.51 (23592404917 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.63 (23621765045 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.75 (23652736119 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 96.88 (23684258281 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.01 (23716147249 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.15 (23749669521 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.30 (23785202753 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.44 (23819295195 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.59 (23857916257 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.77 (23900188511 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 97.93 (23939793659 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.08 (23976839559 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.26 (24019948735 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.41 (24057727373 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.55 (24090839340 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.72 (24134266608 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 98.93 (24183703776 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 99.17 (24243104808 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 99.34 (24284885880 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 99.53 (24331699964 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 99.70 (24371549037 / 24446106117)
+csgo    |  Update state (0x61) downloading, progress: 99.91 (24425129948 / 24446106117)
+csgo    | Success! App '740' fully installed.
+csgo    | CWorkThreadPool::~CWorkThreadPool: work processing queue not empty: 1 items discarded.
+csgo    | Creating folder '/home/steam/.steam/sdk32'
+csgo    | Creating symlink for steamclient.so...
+csgo    | csgo updated successfully
+csgo    | Clear download cache...
+csgo    | Create runscript file '/var/steamcmd/runscript_csgo' for autoupdate...
+csgo    | Start command : -nobreakpad -game csgo -console -usercon -secure -autoupdate -steam_dir /var/steamcmd -steamcmd_script /var/steamcmd/runscript_csgo -maxplayers_override 18 -tickrate 64 +hostport 27016 +net_public_adr 10.0.0.1 -nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2
+csgo    | Server will auto-restart if there is a crash.
+csgo    | Updating server using Steam.
+csgo    | ----------------------------
+csgo    | Redirecting stderr to '/home/steam/Steam/logs/stderr.txt'
+csgo    | [  0%] Checking for available updates...
+csgo    | [----] Verifying installation...
+csgo    | Steam Console Client (c) Valve Corporation
+csgo    | -- type 'quit' to exit --
+csgo    | Loading Steam API...OK.
+csgo    |
+csgo    | Connecting anonymously to Steam Public...Logged in OK
+csgo    | Waiting for user info...OK
+csgo    | force_install_dir /var/steamcmd/games/csgo
+csgo    | app_update 740
+csgo    | Success! App '740' already up to date.
+csgo    | quit
+csgo    | ----------------------------
+csgo    | LD_LIBRARY_PATH=/var/steamcmd/games/csgo/bin:/var/steamcmd/games/csgo:/var/steamcmd/games/csgo/bin:
+csgo    | #
+csgo    | #Console initialized.
+csgo    | #Filesystem successfully switched to safe whitelist mode
+csgo    | #Game.dll loaded for "Counter-Strike: Global Offensive"
+csgo    | #CGameEventManager::AddListener: event 'server_pre_shutdown' unknown.
+csgo    | #CGameEventManager::AddListener: event 'game_newmap' unknown.
+csgo    | #CGameEventManager::AddListener: event 'finale_start' unknown.
+csgo    | #CGameEventManager::AddListener: event 'round_start' unknown.
+csgo    | #CGameEventManager::AddListener: event 'round_end' unknown.
+csgo    | #CGameEventManager::AddListener: event 'difficulty_changed' unknown.
+csgo    | #CGameEventManager::AddListener: event 'player_death' unknown.
+csgo    | #CGameEventManager::AddListener: event 'hltv_replay' unknown.
+csgo    | #CGameEventManager::AddListener: event 'player_connect' unknown.
+csgo    | #CGameEventManager::AddListener: event 'player_disconnect' unknown.
+csgo    | #GameTypes: missing mapgroupsSP entry for game type/mode (custom/custom).
+csgo    | #GameTypes: missing mapgroupsSP entry for game type/mode (cooperative/cooperative).
+csgo    | #GameTypes: missing mapgroupsSP entry for game type/mode (cooperative/coopmission).
+csgo    | Failed to load gamerulescvars.txt, game rules cvars might not be reported to management tools.
+csgo    | Server is hibernating
+csgo    | [S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running instance of Steam.
+csgo    | [S_API] SteamAPI_Init(): Loaded '/home/steam/.steam/sdk32/steamclient.so' OK.
+csgo    | [S_API FAIL] SteamAPI_Init() failed; create pipe failed.No web api auth key specified - workshop downloads will be disabled.
+csgo    | maxplayers set to 64
+csgo    | ConVarRef cl_embedded_stream_video_playing doesn't point to an existing ConVar
+csgo    | Unknown command "cl_bobamt_vert"
+csgo    | Unknown command "cl_bobamt_lat"
+csgo    | Unknown command "cl_bob_lower_amt"
+csgo    | Unknown command "cl_viewmodel_shift_left_amt"
+csgo    | Unknown command "cl_viewmodel_shift_right_amt"
+csgo    | Unknown command "cl_teamid_min"
+csgo    | Unknown command "cl_teamid_max"
+csgo    | Unknown command "cl_teamid_overhead"
+csgo    | Unknown command "cl_teamid_overhead_maxdist"
+csgo    | --------------------------------------------------------
+csgo    | sv_pure set to 0.
+csgo    | --------------------------------------------------------
+csgo    | Setting mapgroup to 'mg_active'
+csgo    | NET_CloseAllSockets
+csgo    | ---- Host_NewGame ----
+csgo    | Switching filesystem to allow files loaded from disk (sv_pure_allow_loose_file_loads = 1)
+csgo    | Host_NewGame on map de_dust2
+csgo    | GameTypes: missing mapgroupsSP entry for game type/mode (custom/custom).
+csgo    | GameTypes: missing mapgroupsSP entry for game type/mode (cooperative/cooperative).
+csgo    | GameTypes: missing mapgroupsSP entry for game type/mode (cooperative/coopmission).
+csgo    | ConVarRef room_type doesn't point to an existing ConVar
+csgo    | ammo_grenade_limit_default - 1
+csgo    | ammo_grenade_limit_flashbang - 1
+csgo    | ammo_grenade_limit_total - 3
+csgo    | ammo_item_limit_healthshot - 4
+csgo    | bot_allow_grenades - 1
+csgo    | bot_allow_machine_guns - 1
+csgo    | bot_allow_pistols - 1
+csgo    | bot_allow_rifles - 1
+csgo    | bot_allow_rogues - 1
+csgo    | bot_allow_shotguns - 1
+csgo    | bot_allow_snipers - 1
+csgo    | bot_allow_sub_machine_guns - 1
+csgo    | bot_autodifficulty_threshold_high - 5.0
+csgo    | bot_autodifficulty_threshold_low - -2.0
+csgo    | bot_chatter - normal
+csgo    | bot_coop_idle_max_vision_distance - 1400
+csgo    | bot_defer_to_human_goals - 0
+csgo    | bot_defer_to_human_items - 1
+csgo    | bot_difficulty - 1
+csgo    | bot_max_hearing_distance_override - -1
+csgo    | bot_max_visible_smoke_length - 200
+csgo    | bot_max_vision_distance_override - -1
+csgo    | bot_quota - 10
+csgo    | bot_quota_mode - normal
+csgo    | bot_coop_idle_max_vision_distance - 1400
+csgo    | bot_max_vision_distance_override - -1
+csgo    | bot_max_hearing_distance_override - -1
+csgo    | bot_coopmission_dz_engagement_limit - missing cvar specified in bspconvar_whitelist.txt
+csgo    | cash_player_bomb_defused - 300
+csgo    | cash_player_bomb_planted - 300
+csgo    | cash_player_damage_hostage - -30
+csgo    | cash_player_get_killed - 0
+csgo    | cash_player_interact_with_hostage - 150
+csgo    | cash_player_killed_enemy_default - 300
+csgo    | cash_player_killed_enemy_factor - 1
+csgo    | cash_player_killed_hostage - -1000
+csgo    | cash_player_killed_teammate - -300
+csgo    | cash_player_rescued_hostage - 1000
+csgo    | cash_player_respawn_amount - 0
+csgo    | cash_team_elimination_bomb_map - 3250
+csgo    | cash_team_elimination_hostage_map_ct - 2000
+csgo    | cash_team_elimination_hostage_map_t - 1000
+csgo    | cash_team_hostage_alive - 0
+csgo    | cash_team_hostage_interaction - 500
+csgo    | cash_team_loser_bonus - 1400
+csgo    | cash_team_loser_bonus_consecutive_rounds - 500
+csgo    | cash_team_planted_bomb_but_defused - 800
+csgo    | cash_team_rescued_hostage - 0
+csgo    | cash_team_survive_guardian_wave - 1000
+csgo    | cash_team_terrorist_win_bomb - 3500
+csgo    | cash_team_win_by_defusing_bomb - 3250
+csgo    | cash_team_win_by_hostage_rescue - 3500
+csgo    | cash_team_win_by_time_running_out_bomb - 3250
+csgo    | cash_team_win_by_time_running_out_hostage - 3250
+csgo    | contributionscore_assist - 1
+csgo    | contributionscore_bomb_defuse_major - 3
+csgo    | contributionscore_bomb_defuse_minor - 1
+csgo    | contributionscore_bomb_exploded - 1
+csgo    | contributionscore_bomb_planted - 2
+csgo    | contributionscore_cash_bundle - 0
+csgo    | contributionscore_crate_break - 0
+csgo    | contributionscore_hostage_kill - -2
+csgo    | contributionscore_hostage_rescue_major - 3
+csgo    | contributionscore_hostage_rescue_minor - 1
+csgo    | contributionscore_kill - 2
+csgo    | contributionscore_kill_factor - 0
+csgo    | contributionscore_objective_kill - 3
+csgo    | contributionscore_suicide - -2
+csgo    | contributionscore_team_kill - -2
+csgo    | ff_damage_reduction_bullets - 0.1
+csgo    | ff_damage_reduction_grenade - 0.25
+csgo    | ff_damage_reduction_grenade_self - 1
+csgo    | ff_damage_reduction_other - 0.25
+csgo    | global_chatter_info -
+csgo    | healthshot_healthboost_damage_multiplier - 1
+csgo    | healthshot_healthboost_speed_multiplier - 1
+csgo    | healthshot_healthboost_time - 0
+csgo    | inferno_child_spawn_max_depth - 4
+csgo    | inferno_max_flames - 16
+csgo    | inferno_max_range - 150
+csgo    | molotov_throw_detonate_time - 2.0
+csgo    | mp_afterroundmoney - 0
+csgo    | mp_anyone_can_pickup_c4 - 0
+csgo    | mp_autokick - 1
+csgo    | mp_autoteambalance - 1
+csgo    | mp_bot_ai_bt -
+csgo    | mp_buy_allow_grenades - 1
+csgo    | mp_buy_allow_guns - 255
+csgo    | mp_buy_anywhere - 0
+csgo    | mp_buy_during_immunity - 0
+csgo    | mp_buytime - 90
+csgo    | mp_c4_cannot_be_defused - 0
+csgo    | mp_c4timer - 40
+csgo    | mp_consecutive_loss_max - 4
+csgo    | mp_coop_force_join_ct - 0
+csgo    | mp_coopmission_bot_difficulty_offset - 0
+csgo    | mp_coopmission_dz - 0
+csgo    | mp_coopmission_mission_number - 0
+csgo    | mp_coopmission_dz - 0
+csgo    | mp_ct_default_grenades -
+csgo    | mp_ct_default_melee - weapon_knife
+csgo    | mp_ct_default_primary -
+csgo    | mp_ct_default_secondary - weapon_hkp2000
+csgo    | mp_damage_headshot_only - 0
+csgo    | mp_damage_scale_ct_body - 1.0
+csgo    | mp_damage_scale_ct_head - 1.0
+csgo    | mp_damage_scale_t_body - 1.0
+csgo    | mp_damage_scale_t_head - 1.0
+csgo    | mp_damage_vampiric_amount - 0
+csgo    | mp_death_drop_c4 - 1
+csgo    | mp_death_drop_defuser - 1
+csgo    | mp_death_drop_grenade - 2
+csgo    | mp_death_drop_gun - 1
+csgo    | mp_deathcam_skippable - 1
+csgo    | mp_default_team_winner_no_objective - -1
+csgo    | mp_defuser_allocation - 0
+csgo    | mp_display_kill_assists - 1
+csgo    | mp_dm_bonus_percent - 50
+csgo    | mp_dm_bonus_respawn - 0
+csgo    | mp_dm_bonusweapon_dogtags - 0
+csgo    | mp_dm_dogtag_score - 0
+csgo    | mp_dm_kill_base_score - 10
+csgo    | mp_dm_teammode - 0
+csgo    | mp_dm_teammode_bonus_score - 1
+csgo    | mp_dm_teammode_dogtag_score - 0
+csgo    | mp_dm_teammode_kill_score - 1
+csgo    | mp_dogtag_despawn_on_killer_death - 1
+csgo    | mp_dogtag_despawn_time - 120
+csgo    | mp_dogtag_pickup_rule - 0
+csgo    | mp_drop_grenade_enable - 0
+csgo    | mp_drop_knife_enable - 0
+csgo    | mp_economy_reset_rounds - 0
+csgo    | mp_equipment_reset_rounds - 0
+csgo    | mp_force_assign_teams - 0
+csgo    | mp_force_pick_time - 15
+csgo    | mp_forcecamera - 1
+csgo    | mp_free_armor - 0
+csgo    | mp_freezetime - 6
+csgo    | mp_friendlyfire - 0
+csgo    | mp_ggprogressive_round_restart_delay - 15.0
+csgo    | mp_ggtr_always_upgrade - 0
+csgo    | mp_ggtr_bomb_defuse_bonus - 1
+csgo    | mp_ggtr_bomb_detonation_bonus - 1
+csgo    | mp_ggtr_bomb_pts_for_flash - 4
+csgo    | mp_ggtr_bomb_pts_for_he - 3
+csgo    | mp_ggtr_bomb_pts_for_molotov - 5
+csgo    | mp_ggtr_bomb_pts_for_upgrade - 2.0
+csgo    | mp_ggtr_bomb_respawn_delay - 0.0
+csgo    | mp_ggtr_end_round_kill_bonus - 1
+csgo    | mp_ggtr_halftime_delay - 0.0
+csgo    | mp_ggtr_last_weapon_kill_ends_half - 0
+csgo    | mp_give_player_c4 - 1
+csgo    | mp_global_damage_per_second - 0.0
+csgo    | mp_guardian_bot_money_per_wave - 800
+csgo    | mp_guardian_force_collect_hostages_timeout - 50
+csgo    | mp_guardian_loc_icon - missing cvar specified in bspconvar_whitelist.txt
+csgo    | mp_guardian_loc_string_desc -
+csgo    | mp_guardian_loc_string_hud - #guardian_mission_type_kills
+csgo    | mp_guardian_loc_weapon -
+csgo    | mp_guardian_player_dist_max - 2000
+csgo    | mp_guardian_player_dist_min - 1300
+csgo    | mp_guardian_special_kills_needed - 10
+csgo    | mp_guardian_special_weapon_needed - awp
+csgo    | mp_guardian_target_site - -1
+csgo    | mp_guardian_force_collect_hostages_timeout - 50
+csgo    | mp_guardian_give_random_grenades_to_bots - 1
+csgo    | mp_halftime - 0
+csgo    | mp_halftime_pausetimer - 0
+csgo    | mp_heavyassaultsuit_aimpunch - 1.0
+csgo    | mp_heavyassaultsuit_cooldown - 5
+csgo    | mp_heavyassaultsuit_deploy_timescale - 0.8
+csgo    | mp_heavyassaultsuit_speed - 130
+csgo    | mp_heavybot_damage_reduction_scale - 1.0
+csgo    | mp_hostagepenalty - 10
+csgo    | mp_hostages_max - 2
+csgo    | mp_hostages_spawn_force_positions -
+csgo    | mp_hostages_spawn_same_every_round - 1
+csgo    | mp_items_prohibited -
+csgo    | mp_limitteams - 2
+csgo    | mp_match_can_clinch - 1
+csgo    | mp_match_end_changelevel - 0
+csgo    | mp_max_armor - 2
+csgo    | mp_maxmoney - 16000
+csgo    | mp_maxrounds - 0
+csgo    | mp_molotovusedelay - 15.0
+csgo    | mp_only_cts_rescue_hostages - 1
+csgo    | mp_plant_c4_anywhere - 0
+csgo    | mp_playercashawards - 1
+csgo    | mp_radar_showall - 0
+csgo    | mp_randomspawn - 0
+csgo    | mp_randomspawn_dist - 0
+csgo    | mp_randomspawn_los - 1
+csgo    | mp_respawn_immunitytime - 4.0
+csgo    | mp_respawn_on_death_ct - 0
+csgo    | mp_respawn_on_death_t - 0
+csgo    | mp_respawnwavetime_ct - 10.0
+csgo    | mp_respawnwavetime_t - 10.0
+csgo    | mp_round_restart_delay - 7.0
+csgo    | mp_roundtime - 5
+csgo    | mp_roundtime_defuse - 0
+csgo    | mp_roundtime_hostage - 0
+csgo    | mp_solid_teammates - 1
+csgo    | mp_starting_losses - 0
+csgo    | mp_startmoney - 800
+csgo    | mp_suicide_penalty - 1
+csgo    | mp_t_default_grenades -
+csgo    | mp_t_default_melee - weapon_knife
+csgo    | mp_t_default_primary -
+csgo    | mp_t_default_secondary - weapon_glock
+csgo    | mp_tagging_scale - 1.0
+csgo    | mp_taser_recharge_time - -1
+csgo    | mp_teamcashawards - 1
+csgo    | mp_teammates_are_enemies - 0
+csgo    | mp_timelimit - 5
+csgo    | mp_use_respawn_waves - 0
+csgo    | mp_warmup_pausetimer - 0
+csgo    | mp_warmuptime - 30
+csgo    | mp_warmuptime_all_players_connected - 0
+csgo    | mp_weapon_self_inflict_amount - 0
+csgo    | mp_weapons_allow_heavy - -1
+csgo    | mp_weapons_allow_heavyassaultsuit - 0
+csgo    | mp_weapons_allow_map_placed - 0
+csgo    | mp_weapons_allow_pistols - -1
+csgo    | mp_weapons_allow_rifles - -1
+csgo    | mp_weapons_allow_smgs - -1
+csgo    | mp_weapons_allow_typecount - 5
+csgo    | mp_weapons_allow_zeus - 1
+csgo    | mp_weapons_glow_on_ground - 0
+csgo    | mp_weapons_max_gun_purchases_per_weapon_per_match - -1
+csgo    | mp_win_panel_display_time - 3
+csgo    | occlusion_test_async - 0
+csgo    | spec_freeze_panel_extended_time - 0.0
+csgo    | spec_freeze_time - 3.0
+csgo    | spec_replay_bot - 0
+csgo    | spec_replay_enable - 0
+csgo    | spec_replay_leadup_time - 5.3438
+csgo    | sv_accelerate - 5.5
+csgo    | sv_air_pushaway_dist - 0
+csgo    | sv_airaccelerate - 12
+csgo    | sv_allow_votes - 1
+csgo    | sv_alltalk - 0
+csgo    | sv_arms_race_vote_to_restart_disallowed_after - 0
+csgo    | sv_auto_adjust_bot_difficulty - 1
+csgo    | sv_auto_full_alltalk_during_warmup_half_end - 1
+csgo    | sv_autobunnyhopping - 0
+csgo    | sv_autobuyammo - 0
+csgo    | sv_bot_buy_decoy_weight - 1
+csgo    | sv_bot_buy_flash_weight - 1
+csgo    | sv_bot_buy_grenade_chance - 33
+csgo    | sv_bot_buy_hegrenade_weight - 6
+csgo    | sv_bot_buy_molotov_weight - 1
+csgo    | sv_bot_buy_smoke_weight - 1
+csgo    | sv_bots_force_rebuy_every_round - 0
+csgo    | sv_bots_get_easier_each_win - 0
+csgo    | sv_bots_get_harder_after_each_wave - 0
+csgo    | sv_bounce - 0
+csgo    | sv_buy_status_override - -1
+csgo    | sv_deadtalk - 0
+csgo    | sv_disable_immunity_alpha - 0
+csgo    | sv_disable_radar - 0
+csgo    | sv_disable_show_team_select_menu - missing cvar specified in bspconvar_whitelist.txt
+csgo    | sv_duplicate_playernames_ok - 0
+csgo    | sv_enablebunnyhopping - 0
+csgo    | sv_env_entity_makers_enabled - 1
+csgo    | sv_extract_ammo_from_dropped_weapons - 0
+csgo    | sv_falldamage_scale - 1
+csgo    | sv_falldamage_to_below_player_multiplier - 1
+csgo    | sv_falldamage_to_below_player_ratio - 0
+csgo    | sv_force_reflections - 0
+csgo    | sv_friction - 5.2
+csgo    | sv_grassburn - 0
+csgo    | sv_gravity - 800
+csgo    | sv_guardian_extra_equipment_ct -
+csgo    | sv_guardian_extra_equipment_t -
+csgo    | sv_guardian_health_refresh_per_wave - 50
+csgo    | sv_guardian_heavy_all - 0
+csgo    | sv_guardian_heavy_count - 0
+csgo    | sv_guardian_max_wave_for_heavy - 0
+csgo    | sv_guardian_min_wave_for_heavy - 0
+csgo    | sv_guardian_refresh_ammo_for_items_on_waves -
+csgo    | sv_guardian_reset_c4_every_wave - 0
+csgo    | sv_guardian_respawn_health - 50
+csgo    | sv_guardian_spawn_health_ct - 100
+csgo    | sv_guardian_spawn_health_t - 100
+csgo    | sv_health_approach_enabled - 0
+csgo    | sv_health_approach_speed - 10
+csgo    | sv_hegrenade_damage_multiplier - 1
+csgo    | sv_hegrenade_radius_multiplier - 1
+csgo    | sv_hide_roundtime_until_seconds - missing cvar specified in bspconvar_whitelist.txt
+csgo    | sv_highlight_distance - 500
+csgo    | sv_highlight_duration - 3.5
+csgo    | sv_ignoregrenaderadio - 0
+csgo    | sv_infinite_ammo - 0
+csgo    | sv_knife_attack_extend_from_player_aabb - 0
+csgo    | sv_maxspeed - 320
+csgo    | sv_maxvelocity - 3500
+csgo    | sv_occlude_players - 1
+csgo    | sv_outofammo_indicator - 0
+csgo    | sv_show_ragdoll_playernames - missing cvar specified in bspconvar_whitelist.txt
+csgo    | sv_show_team_equipment_force_on - 0
+csgo    | sv_staminajumpcost - .080
+csgo    | sv_staminalandcost - .050
+csgo    | sv_stopspeed - 80
+csgo    | sv_talk_enemy_dead - 0
+csgo    | sv_talk_enemy_living - 0
+csgo    | sv_teamid_overhead_maxdist - 0
+csgo    | sv_teamid_overhead_maxdist_spec - 0
+csgo    | sv_versus_screen_scene_id - 0
+csgo    | sv_vote_to_changelevel_before_match_point - 0
+csgo    | sv_warmup_to_freezetime_delay - 4
+csgo    | sv_water_movespeed_multiplier - 0.8
+csgo    | sv_water_swim_mode - 0
+csgo    | sv_wateraccelerate - 10
+csgo    | sv_waterfriction - 1
+csgo    | sv_weapon_encumbrance_per_item - 0.85
+csgo    | sv_weapon_encumbrance_scale - 0
+csgo    | tv_delay - 10
+csgo    | weapon_accuracy_nospread - 0
+csgo    | weapon_air_spread_scale - 1.0
+csgo    | weapon_max_before_cleanup - 0
+csgo    | weapon_recoil_scale - 2.0
+csgo    | weapon_reticle_knife_show - 1
+csgo    | weapon_sound_falloff_multiplier - 1.0
+csgo    | sv_camera_fly_enabled - missing cvar specified in bspconvar_whitelist.txt
+csgo    | Executing dedicated server config file
+csgo    | exec: couldn't exec server.cfg
+csgo    | Stopping 0 worker threads
+csgo    | Starting 1 worker threads
+csgo    | 1 threads. 994,567 ticks
+csgo    | exec: couldn't exec gamemode_casual_server.cfg
+csgo    | PrecacheScriptSound 'Survival.VO.Taunt4a' failed, no such sound script entry
+csgo    | PrecacheScriptSound 'Snowball.Bounce' failed, no such sound script entry
+csgo    | CHostage::Precache: missing hostage models for map de_dust2. Adding the default models.
+csgo    | PrecacheScriptSound 'balkan_epic_blank' failed, no such sound script entry
+csgo    | Commentary: Could not find commentary data file 'maps/de_dust2_commentary.txt'.
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Error parsing BotProfile.db - unknown attribute 'Rank'
+csgo    | Initializing Steam libraries for secure Internet server
+csgo    | [S_API] SteamAPI_Init(): Loaded local 'steamclient.so' OK.
+csgo    | CAppInfoCacheReadFromDiskThread took 2 milliseconds to initialize
+csgo    | CApplicationManagerPopulateThread took 0 milliseconds to initialize (will have waited on CAppInfoCacheReadFromDiskThread)
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServer013 /
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamUtils009 /
+csgo    | Setting breakpad minidump AppID = 730
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServer013 / GameServer
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamUtils009 / Utils
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamNetworking005 / Networking
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServerStats001 / GameServerStats
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMHTTP_INTERFACE_VERSION003 / HTTP
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMINVENTORY_INTERFACE_V001 / Inventory
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMUGC_INTERFACE_VERSION014 / UGC
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMAPPS_INTERFACE_VERSION008 / Apps
+csgo    | ****************************************************
+csgo    | *                                                  *
+csgo    | *  No Steam account token was specified.           *
+csgo    | *  Logging into anonymous game server account.     *
+csgo    | *  Connections will be restricted to LAN only.     *
+csgo    | *                                                  *
+csgo    | *  To create a game server account go to           *
+csgo    | *  http://steamcommunity.com/dev/managegameservers *
+csgo    | *                                                  *
+csgo    | ****************************************************
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamUtils009 / Utils
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamNetworkingSocketsSerialized003 /
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServer012 / GameServer
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMHTTP_INTERFACE_VERSION003 / HTTP
+csgo    | SteamDatagramServer_Init succeeded
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServer013 / GameServer
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamUtils009 / Utils
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamNetworking005 / Networking
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServerStats001 / GameServerStats
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMHTTP_INTERFACE_VERSION003 / HTTP
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMINVENTORY_INTERFACE_V001 / Inventory
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMUGC_INTERFACE_VERSION014 / UGC
+csgo    | RecordSteamInterfaceCreation (PID 162): STEAMAPPS_INTERFACE_VERSION008 / Apps
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameCoordinator001 /
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamGameServer013 / GameServer
+csgo    | RecordSteamInterfaceCreation (PID 162): SteamUtils009 / Utils
+csgo    | Connection to Steam servers successful.
+csgo    |    Public IP is 10.0.0.1.
+csgo    | Assigned anonymous gameserver Steam ID [A:1:1867692034:14884].
+csgo    | Gameserver logged on to Steam, assigned identity steamid:90135920708335618
+csgo    | VAC secure mode is activated.
+csgo    | GC Connection established for server version 1125, instance idx 1
