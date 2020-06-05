@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.15.0 (2020/06/05)
+
+* (docker) Docker image based on Debian buster
+* (docker) Replace `ssmtp` with `msmtp`
+* Add missing `libsdl2-2.0-0:i386`
+* (docker) `GSLT_FILE`, `STEAM_LOGIN_FILE`, `STEAM_PASSWORD_FILE` and `API_AUTHORIZATION_KEY_FILE` can be used to fill in the value from a file, especially for Docker's secrets feature.
+* (docker) `SSMTP_*` env vars for Docker removed. See [Environment variables](https://github.com/crazy-max/csgo-server-launcher/tree/master/docker#environment-variables) section.
+
 ## 1.14.4 (2020/05/29)
 
 * Fix incorrect variable reference (#69)
@@ -10,7 +18,7 @@
 
 ## 1.14.2 (2020/02/23)
 
-* Switch to Open Container Specification labels as label-schema.org ones are deprecated
+* (docker) Switch to Open Container Specification labels as label-schema.org ones are deprecated
 
 ## 1.14.1 (2019/10/22)
 
@@ -20,10 +28,10 @@
 ## 1.14.0 (2019/10/11)
 
 * Switch to GitHub Actions
-* :warning: Stop publishing Docker image on Quay
+* (docker) Stop publishing Docker image on Quay
 * lib32ncurses6 on Debian buster (Issue #60)
 * Do not overwrite config for install script (Issue #58)
-* Only populate AuthUser/Pass in ssmtp.conf if defined in ENV (Docker image)
+* (docker) Only populate AuthUser/Pass in ssmtp.conf if defined in ENV
 
 ## 1.13.5 (2019/09/08)
 
@@ -44,8 +52,8 @@
 
 ## 1.13.1 (2018/11/18)
 
-* :whale: Add update instructions in the wiki
-* :whale: Fix permissions issue
+* (docker) Add update instructions in the wiki
+* (docker) Fix permissions issue
 * Add an option to clean download cache after an update (Issue #31)
 * Use id -u instead of whoami (Issue #23)
 
