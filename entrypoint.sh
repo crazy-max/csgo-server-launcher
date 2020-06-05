@@ -1,5 +1,28 @@
 #!/bin/bash
 
+# From https://github.com/docker-library/mariadb/blob/master/docker-entrypoint.sh#L21-L41
+# usage: file_env VAR [DEFAULT]
+#    ie: file_env 'XYZ_DB_PASSWORD' 'example'
+# (will allow for "$XYZ_DB_PASSWORD_FILE" to fill in the value of
+#  "$XYZ_DB_PASSWORD" from a file, especially for Docker's secrets feature)
+file_env() {
+  local var="$1"
+  local fileVar="${var}_FILE"
+  local def="${2:-}"
+  if [ "${!var:-}" ] && [ "${!fileVar:-}" ]; then
+    echo >&2 "error: both $var and $fileVar are set (but are exclusive)"
+    exit 1
+  fi
+  local val="$def"
+  if [ "${!var:-}" ]; then
+    val="${!var}"
+  elif [ "${!fileVar:-}" ]; then
+    val="$(< "${!fileVar}")"
+  fi
+  export "$var"="$val"
+  unset "$fileVar"
+}
+
 SCREEN_NAME="csgo"
 USER="steam"
 DIR_STEAMCMD="/var/steamcmd"
@@ -15,9 +38,16 @@ TZ=${TZ:-UTC}
 PUID=${PUID:-1000}
 PGID=${PGID:-1000}
 
-SSMTP_PORT=${SSMTP_PORT:-25}
-SSMTP_HOSTNAME=${SSMTP_HOSTNAME:-$(hostname -f)}
-SSMTP_TLS=${SSMTP_TLS:-NO}
+#SMTP_HOST=${SMTP_HOST:-smtp.example.com}
+#SMTP_PORT=${SMTP_PORT:-25}
+#SMTP_TLS=${SMTP_TLS:-off}
+#SMTP_STARTTLS=${SMTP_STARTTLS:-off}
+#SMTP_TLS_CHECKCERT=${SMTP_TLS_CHECKCERT:-on}
+#SMTP_AUTH=${SMTP_AUTH:-off}
+#SMTP_USER=${SMTP_USER:-foo}
+#SMTP_PASSWORD=${SMTP_PASSWORD:-bar}
+#SMTP_FROM=${SMTP_FROM:-foo@example.com}
+#SMTP_DOMAIN=${SMTP_DOMAIN:-example.com}
 
 IP=${IP:-$(sudo dig -4 +short myip.opendns.com @resolver1.opendns.com)}
 PORT=${PORT:-27015}
@@ -53,38 +83,39 @@ if [ $(id -g steam) != ${PGID} ]; then
 fi
 
 # Check vars
-if [ ! -z "$UPDATE_EMAIL" ]; then
-  if [ -z "$SSMTP_HOST" ] ; then
-    echo "WARNING: SSMTP_HOST must be defined if you want to send emails"
-    sudo cp -f /etc/ssmtp/ssmtp.conf.or /etc/ssmtp/ssmtp.conf
+if [ -n "$UPDATE_EMAIL" ]; then
+  if [ -z "$SMTP_HOST" ] ; then
+    echo "WARNING: SMTP_HOST must be defined if you want to send emails"
     UPDATE_EMAIL=""
   fi
 else
   echo "NOTICE: UPDATE_EMAIL is not set"
 fi
 
-# SSMTP
-if [ ! -z "$SSMTP_HOST" ] ; then
-  echo "Setting SSMTP configuration..."
-  cat > /tmp/ssmtp.conf <<EOL
-mailhub=${SSMTP_HOST}:${SSMTP_PORT}
-hostname=${SSMTP_HOSTNAME}
-FromLineOverride=YES
-UseTLS=${SSMTP_TLS}
-UseSTARTTLS=${SSMTP_TLS}
-EOL
-  # Authentication to SMTP server is optional.
-  if [ -n "$SSMTP_USER" ] ; then
-    cat >> /tmp/ssmtp.conf <<EOL
-AuthUser=${SSMTP_USER}
-AuthPass=${SSMTP_PASSWORD}
-EOL
-  fi
-  sudo mv -f /tmp/ssmtp.conf /etc/ssmtp/ssmtp.conf
+# msmtp
+if [ -n "$SMTP_HOST" ] ; then
+  echo "Setting msmtp configuration..."
+  cat << EOF | sudo tee /etc/msmtprc > /dev/null
+account default
+logfile -
+syslog off
+host ${SMTP_HOST}
+EOF
+  file_env 'SMTP_USER'
+  file_env 'SMTP_PASSWORD'
+  if [ -n "$SMTP_PORT" ];           then echo "port $SMTP_PORT"                    | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_TLS" ];            then echo "tls $SMTP_TLS"                      | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_STARTTLS" ];       then echo "tls_starttls $SMTP_STARTTLS"        | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_TLS_CHECKCERT" ];  then echo "tls_certcheck $SMTP_TLS_CHECKCERT"  | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_AUTH" ];           then echo "auth $SMTP_AUTH"                    | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_USER" ];           then echo "user $SMTP_USER"                    | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_PASSWORD" ];       then echo "password $SMTP_PASSWORD"            | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_FROM" ];           then echo "from $SMTP_FROM"                    | sudo tee -a /etc/msmtprc > /dev/null; fi
+  if [ -n "$SMTP_DOMAIN" ];         then echo "domain $SMTP_DOMAIN"                | sudo tee -a /etc/msmtprc > /dev/null; fi
 fi
-unset SSMTP_HOST
-unset SSMTP_USER
-unset SSMTP_PASSWORD
+unset SMTP_HOST
+unset SMTP_USER
+unset SMTP_PASSWORD
 
 # Config
 cat > "/etc/csgo-server-launcher/csgo-server-launcher.conf" <<EOL

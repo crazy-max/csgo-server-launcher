@@ -7,15 +7,19 @@ If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other 
 
 ## Environment variables
 
-* `TZ` : The timezone assigned to the container (default `UTC`)
-* `PUID` : csgo-server-launcher user id (default `1000`)
-* `PGID` : csgo-server-launcher group id (default `1000`)
-* `SSMTP_HOST` : SMTP server host
-* `SSMTP_PORT` : SMTP server port (default `25`)
-* `SSMTP_HOSTNAME` : Full hostname (default `$(hostname -f)`)
-* `SSMTP_USER` : SMTP username
-* `SSMTP_PASSWORD` : SMTP password
-* `SSMTP_TLS` : SSL/TLS (default `NO`)
+* `TZ`: The timezone assigned to the container (default `UTC`)
+* `PUID`: csgo-server-launcher user id (default `1000`)
+* `PGID`: csgo-server-launcher group id (default `1000`)
+* `SMTP_HOST`: SMTP server host.
+* `SMTP_PORT`: SMTP server port. Default `25` or `465` if TLS.
+* `SMTP_TLS`: Enable or disable TLS (also known as SSL) for secured connections (`on` or `off`).
+* `SMTP_STARTTLS`: Start TLS from within the session (`on`, default), or tunnel the session through TLS (`off`).
+* `SMTP_TLS_CHECKCERT`: Enable or disable checks of the server certificate (`on` or `off`). They are enabled by default.
+* `SMTP_AUTH`: Enable or disable authentication and optionally [choose a method](https://marlam.de/msmtp/msmtp.html#Authentication-commands) to use. The argument `on` chooses a method automatically.
+* `SMTP_USER`: Set the user name for authentication. Authentication must be activated with the `SMTP_AUTH` env var.
+* `SMTP_PASSWORD`: Set the password for authentication. Authentication must be activated with the `SMTP_AUTH` env var.
+* `SMTP_DOMAIN`: Argument of the `SMTP EHLO` command. Default is `localhost`.
+* `SMTP_FROM`: Set the envelope-from address. Supported substitution patterns can be found [here](https://marlam.de/msmtp/msmtp.html#Commands-specific-to-sendmail-mode).
 
 And also the following environment variables to edit the CSGO Server Launcher [configuration](https://github.com/crazy-max/csgo-server-launcher/wiki/Configuration) :
 
@@ -36,8 +40,8 @@ And also the following environment variables to edit the CSGO Server Launcher [c
 
 ## Volumes
 
-* `/var/steamcmd/games/csgo` : CSGO root folder
-* `/home/steam/Steam` : Steam folder for logs, appcache, etc...
+* `/var/steamcmd/games/csgo`: CSGO root folder
+* `/home/steam/Steam`: Steam folder for logs, appcache, etc...
 
 ## Usage
 
