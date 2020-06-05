@@ -64,7 +64,7 @@ fi
 echo "Installing required packages..."
 apt-get update >/dev/null
 
-apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses? lib32z1 curl gdb screen tar >/dev/null
+apt-get install -y -q curl gdb libc?-i386 lib32stdc++? lib32gcc1 lib32ncurses? lib32z1 libsdl2-2.0-0:i386 screen tar >/dev/null
 if [ "$?" -ne "0" ]; then
   echo "ERROR: Cannot install required packages..."
   exit 1

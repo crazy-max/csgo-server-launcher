@@ -20,7 +20,7 @@ $ sudo curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/dow
 This should output something like this:
 
 ```
-Starting CSGO Server Launcher install (v1.13.2)...
+Starting CSGO Server Launcher install (v1.14.4)...
 
 Adding i386 architecture...
 Installing required packages...
@@ -50,7 +50,7 @@ Or you can install it manually as root or sudoer:
 ```
 $ dpkg --add-architecture i386
 $ apt-get update
-$ apt-get install -y -q libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 curl gdb screen tar wget
+$ apt-get install -y -q curl gdb libc?-i386 lib32stdc++? lib32gcc1 lib32ncurses? lib32z1 libsdl2-2.0-0:i386 screen tar
 $ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.14.4/csgo-server-launcher.sh -o /etc/init.d/csgo-server-launcher
 $ chmod +x /etc/init.d/csgo-server-launcher
 $ update-rc.d csgo-server-launcher defaults

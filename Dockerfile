@@ -28,6 +28,7 @@ RUN dpkg --add-architecture i386 \
     lib32gcc1 \
     lib32ncurses? \
     lib32z1 \
+    libsdl2-2.0-0:i386 \
     locales \
     mailutils \
     msmtp \
