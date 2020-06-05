@@ -1,6 +1,6 @@
 ## About
 
-[Official docker image](https://hub.docker.com/r/crazymax/csgo-server-launcher/) 🐳 for CSGO Server Launcher.<br />
+[Official docker image](https://hub.docker.com/r/crazymax/csgo-server-launcher/) for CSGO Server Launcher.<br />
 If you are interested, [check out](https://hub.docker.com/r/crazymax/) my other Docker images!
 
 💡 Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun) project!
@@ -60,7 +60,7 @@ $ docker-compose logs -f
 
 ### Command line
 
-You can also use the following minimal command :
+You can also use the following minimal command:
 
 ```bash
 $ docker run -dt --name csgo --restart always \
@@ -78,7 +78,7 @@ $ docker run -dt --name csgo --restart always \
 
 ## Upgrade
 
-You can upgrade this image whenever I push an update :
+You can upgrade this image whenever I push an update:
 
 ```bash
 docker-compose pull
@@ -89,7 +89,7 @@ docker-compose up -d
 
 ### Update CSGO
 
-If you use compose, you can update CSGO by using the [updater service](examples/compose/updater.yml) :
+If you use compose, you can update CSGO by using the [updater service](examples/compose/updater.yml):
 
 ```bash
 $ docker-compose down              # stop csgo
@@ -97,7 +97,7 @@ $ docker-compose -f updater.yml up # start updater
 $ docker-compose up -d             # start csgo
 ```
 
-If you don't use compose :
+If you don't use compose:
 
 ```bash
 $ docker stop csgo
