@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -23,21 +23,21 @@ RUN dpkg --add-architecture i386 \
     curl \
     dnsutils \
     gdb \
-    libc6-i386 \
-    lib32stdc++6 \
+    libc?-i386 \
+    lib32stdc++? \
     lib32gcc1 \
     lib32ncurses? \
     lib32z1 \
     locales \
+    mailutils \
+    msmtp \
     net-tools \
-    ssmtp \
     sudo \
     tar \
     wget \
   && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
   && dpkg-reconfigure --frontend=noninteractive locales \
   && update-locale LANG=en_US.UTF-8 \
-  && cp -f /etc/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf.or \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && find /var/log -type f | while read f; do echo -ne '' > $f; done;
