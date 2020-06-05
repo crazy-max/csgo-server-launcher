@@ -118,6 +118,10 @@ unset SMTP_USER
 unset SMTP_PASSWORD
 
 # Config
+file_env 'GSLT'
+file_env 'STEAM_LOGIN'
+file_env 'STEAM_PASSWORD'
+file_env 'API_AUTHORIZATION_KEY'
 cat > "/etc/csgo-server-launcher/csgo-server-launcher.conf" <<EOL
 # This file is an integral part of csgo-server-launcher.
 # More info : https://github.com/crazy-max/csgo-server-launcher#installation
@@ -159,6 +163,8 @@ PARAM_START="${PARAM_START}"
 PARAM_UPDATE="${PARAM_UPDATE}"
 EOL
 unset GSLT
+unset STEAM_LOGIN
+unset STEAM_PASSWORD
 unset API_AUTHORIZATION_KEY
 
 # Perms
