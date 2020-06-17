@@ -15,7 +15,7 @@
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2013-2020 CrazyMax                                              #
+#  Copyright (C) 2012-2020 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #
