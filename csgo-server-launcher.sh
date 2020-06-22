@@ -246,7 +246,7 @@ function update {
     if [ ${retry} -lt ${UPDATE_RETRY} ]
     then
       retry=$((retry + 1))
-      echo "$SCREEN_NAME update failed... retry $retry/3..."
+      echo "$SCREEN_NAME update failed... retry $retry/$UPDATE_RETRY..."
       update ${retry} ${relaunch}
     else
       echo "$SCREEN_NAME update failed... exit..."
