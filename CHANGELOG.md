@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.1 (2020/06/22)
+
+* Minor text improvement (#75)
+
 ## 1.15.0 (2020/06/05)
 
 * (docker) Docker image based on Debian buster

@@ -36,7 +36,7 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 ### Vars
-version=1.15.0
+version=1.15.1
 downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
 scriptName="csgo-server-launcher"
 scriptPath="/etc/init.d/$scriptName"
