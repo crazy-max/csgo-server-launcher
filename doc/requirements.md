@@ -14,3 +14,8 @@ Should have atleast 25 GB free space. If you see the error like below, disk spac
 ```
 Error! App '740' state is 0x202 after update job.
 ```
+
+### Email
+
+To be able to make use of the UPDATE_EMAIL function in the csgo-server-launcher.conf, you need to have an email server. e.g. 
+* [postfix](https://en.wikipedia.org/wiki/Postfix_(software))
