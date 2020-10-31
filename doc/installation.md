@@ -6,8 +6,8 @@
 
 ## Docker
 
-An [official docker image](https://hub.docker.com/r/crazymax/csgo-server-launcher/) 🐳 is available for CSGO Server Launcher.<br />
-For usage and info, check the README in the [docker](https://github.com/crazy-max/csgo-server-launcher/tree/master/docker) folder.
+Docker image 🐳 is available for CSGO Server Launcher. For usage and info, see the README in the
+[docker](https://github.com/crazy-max/csgo-server-launcher/tree/master/docker) folder.
 
 ## Install script
 
