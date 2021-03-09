@@ -10,12 +10,12 @@
 
 ##################################################################################
 #                                                                                #
-#  CSGO Server Launcher v1.15.1                                                  #
+#  CSGO Server Launcher v1.15.2                                                  #
 #                                                                                #
 #  A simple script to launch your Counter-Strike : Global Offensive              #
 #  Dedicated Server.                                                             #
 #                                                                                #
-#  Copyright (C) 2012-2020 CrazyMax                                              #
+#  Copyright (C) 2012-2021 CrazyMax                                              #
 #                                                                                #
 #  Counter-Strike : Global Offensive Server Launcher is free software; you can   #
 #  redistribute it and/or modify it under the terms of the GNU Lesser General    #

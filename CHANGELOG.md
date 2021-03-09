@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.15.2 (2021/03/09)
+
+* Upstream Debian update
+* Switch to buildx bake
+* Publish to GHCR
+
 ## 1.15.1 (2020/06/22)
 
 * Minor text improvement (#75)

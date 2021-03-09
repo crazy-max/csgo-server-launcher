@@ -1,5 +1,4 @@
 FROM debian:buster-slim
-
 LABEL maintainer="CrazyMax"
 
 RUN dpkg --add-architecture i386 \
@@ -35,19 +34,16 @@ ENV LANG="en_US.UTF-8" \
   DIR_STEAMCMD="/var/steamcmd" \
   DIR_ROOT="/var/steamcmd/games/csgo"
 
+COPY csgo-server-launcher.sh /usr/bin/csgo-server-launcher
+COPY csgo-server-launcher.conf /etc/csgo-server-launcher/csgo-server-launcher.conf
+COPY entrypoint.sh /entrypoint.sh
+
 RUN groupadd -f -g 1000 steam \
   && useradd -o --shell /bin/bash -u 1000 -g 1000 -m steam \
   && echo "steam ALL=(ALL)NOPASSWD: ALL" >> etc/sudoers \
   && mkdir -p ${DIR_STEAMCMD} ${DIR_ROOT} \
   && curl -sSL https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz | tar -C ${DIR_STEAMCMD} -xvz \
-  && chown -R steam. ${DIR_STEAMCMD}
-
-COPY csgo-server-launcher.sh /usr/bin/csgo-server-launcher
-COPY csgo-server-launcher.conf /etc/csgo-server-launcher/csgo-server-launcher.conf
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod a+x /entrypoint.sh /usr/bin/csgo-server-launcher \
-  && chown -R steam. /etc/csgo-server-launcher
+  && chown -R steam. ${DIR_STEAMCMD} /etc/csgo-server-launcher
 
 USER steam
 
