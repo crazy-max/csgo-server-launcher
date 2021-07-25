@@ -1,5 +1,4 @@
 FROM debian:buster-slim
-LABEL maintainer="CrazyMax"
 
 RUN dpkg --add-architecture i386 \
   && apt-get update \
