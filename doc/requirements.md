@@ -12,5 +12,5 @@ Obviously a [Steam](http://steampowered.com) account is required. If you are **n
 Should have atleast 25 GB free space. If you see the error like below, disk space is not sufficient. You need to use a bigger disk.
 
 ```
-Error! App '740' state is 0x202 after update job.
+Error! App '730' state is 0x202 after update job.
 ```

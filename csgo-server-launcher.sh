@@ -67,7 +67,7 @@ function start {
   cd "$DIR_STEAMCMD"
   echo "login $STEAM_LOGIN $STEAM_PASSWORD" > "$STEAM_RUNSCRIPT"
   echo "force_install_dir $DIR_ROOT" >> "$STEAM_RUNSCRIPT"
-  echo "app_update 740" >> "$STEAM_RUNSCRIPT"
+  echo "app_update 730" >> "$STEAM_RUNSCRIPT"
   echo "quit" >> "$STEAM_RUNSCRIPT"
   chown ${USER} "$STEAM_RUNSCRIPT"
   chmod 600 "$STEAM_RUNSCRIPT"
@@ -239,7 +239,7 @@ function update {
   fi
 
   # Check for update
-  if [ $(egrep -ic "Success! App '740' fully installed." "$UPDATE_LOG") -gt 0 ] || [ $(egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG") -gt 0 ]
+  if [ $(egrep -ic "Success! App '730' fully installed." "$UPDATE_LOG") -gt 0 ] || [ $(egrep -ic "Success! App '740' already up to date" "$UPDATE_LOG") -gt 0 ]
   then
     echo "$SCREEN_NAME updated successfully"
   else
