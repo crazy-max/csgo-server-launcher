@@ -24,7 +24,7 @@
 ##################################################################################
 
 # Check distrib
-if ! command -v apt-get &> /dev/null; then
+if ! command -v apt-get >/dev/null 2>/dev/null; then
   echo "ERROR: OS distribution not supported..."
   exit 1
 fi
@@ -32,6 +32,25 @@ fi
 # Check root
 if [ "$EUID" -ne 0 ]; then
   echo "ERROR: Please run this script as root..."
+  exit 1
+fi
+
+# Install dependencies
+echo "Installing dependencies..."
+if ! dpkg --add-architecture i386 >/dev/null; then
+  echo "ERROR: Cannot add i386 architecture..."
+  exit 1
+fi
+apt-get update >/dev/null
+allpkgs=("curl" "dnsutils" "gdb" "screen" "tar" "lib32gcc1" "lib32gcc-s1" "lib32stdc++6" "lib32z1" "libsdl2-2.0-0:i386")
+instpkgs=""
+for p in "${allpkgs[@]}"; do
+  if [ -n "$(apt-cache madison $p 2>/dev/null)" ]; then
+    instpkgs="$instpkgs $p"
+  fi
+done
+if ! apt-get install -q -y $instpkgs; then
+  echo "ERROR: Cannot install packages..."
   exit 1
 fi
 
@@ -54,39 +73,18 @@ echo ""
 echo "Starting CSGO Server Launcher install (v${version})..."
 echo ""
 
-echo "Adding i386 architecture..."
-dpkg --add-architecture i386 >/dev/null
-if [ "$?" -ne "0" ]; then
-  echo "ERROR: Cannot add i386 architecture..."
-  exit 1
-fi
-
-echo "Installing required packages..."
-apt-get update >/dev/null
-
-apt-get install -y -q curl gdb libc?-i386 lib32stdc++? lib32gcc1 lib32ncurses? lib32z1 libsdl2-2.0-0:i386 screen tar >/dev/null
-if [ "$?" -ne "0" ]; then
-  echo "ERROR: Cannot install required packages..."
-  exit 1
-fi
-
 echo "Downloading CSGO Server Launcher script..."
-curl -sSLk ${downloadUrl}/csgo-server-launcher.sh -o ${scriptPath}
-if [ "$?" -ne "0" ]; then
+if ! curl -sSLk ${downloadUrl}/csgo-server-launcher.sh -o ${scriptPath}; then
   echo "ERROR: Cannot download CSGO Server Launcher script..."
   exit 1
 fi
-
-echo "Chmod script..."
-chmod +x ${scriptPath}
-if [ "$?" -ne "0" ]; then
+if ! chmod +x ${scriptPath}; then
   echo "ERROR: Cannot chmod CSGO Server Launcher script..."
   exit 1
 fi
 
 echo "Install System-V style init script link..."
-update-rc.d csgo-server-launcher defaults >/dev/null
-if [ "$?" -ne "0" ]; then
+if ! update-rc.d csgo-server-launcher defaults >/dev/null; then
   echo "ERROR: Cannot install System-V style init script link..."
   exit 1
 fi
@@ -94,19 +92,16 @@ fi
 echo "Downloading CSGO Server Launcher configuration..."
 mkdir -p /etc/csgo-server-launcher/
 if [ ! -f $confPath ]; then
-  curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}
-fi
-if [ "$?" -ne "0" ]; then
-  echo "ERROR: Cannot download CSGO Server Launcher configuration..."
-  exit 1
+  if ! curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}; then
+    echo "ERROR: Cannot download CSGO Server Launcher configuration..."
+    exit 1
+  fi
 fi
 
 echo "Checking $user user exists..."
-getent passwd ${user} >/dev/null 2&>1
-if [ "$?" -ne "0" ]; then
+if ! getent passwd ${user} >/dev/null 2>/dev/null; then
   echo "Adding $user user..."
-  useradd -m ${user}
-  if [ "$?" -ne "0" ]; then
+  if ! useradd -m ${user}; then
     echo "ERROR: Cannot add user $user..."
     exit 1
   fi

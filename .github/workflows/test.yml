@@ -1,29 +1,51 @@
 name: test
 
 on:
+  pull_request:
+    branches:
+      - 'master'
+    paths-ignore:
+      - '**.md'
   push:
-    branches-ignore:
-      - '**'
-#on:
-#  pull_request:
-#    branches: 'master'
-#    paths:
-#      - '.github/workflows/test.yml'
-#      - 'csgo-server-launcher*'
-#      - 'Dockerfile'
-#      - 'entrypoint.sh'
-#      - 'install.sh'
-#  push:
-#    branches: 'master'
-#    paths:
-#      - '.github/workflows/test.yml'
-#      - 'csgo-server-launcher*'
-#      - 'Dockerfile'
-#      - 'entrypoint.sh'
-#      - 'install.sh'
+    branches:
+      - 'master'
+    paths-ignore:
+      - '**.md'
 
 jobs:
-  test:
+  install:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - 'debian:buster'
+          - 'debian:bullseye'
+          - 'ubuntu:20.04'
+          - 'ubuntu:21.10'
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Create Dockerfile
+        run: |
+          mkdir -p test-install
+          cp install.sh ./test-install/
+          cat > ./test-install/Dockerfile <<EOL
+          FROM ${{ matrix.variant }}
+          COPY install.sh /install.sh
+          RUN /install.sh
+          EOL
+      -
+        name: Test
+        uses: docker/build-push-action@v2
+        with:
+          context: ./test-install
+          outputs: type=cacheonly
+
+  docker:
+    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
     steps:
       -
