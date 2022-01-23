@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 RUN dpkg --add-architecture i386 \
   && apt-get update \
@@ -8,10 +8,8 @@ RUN dpkg --add-architecture i386 \
     curl \
     dnsutils \
     gdb \
-    libc?-i386 \
-    lib32stdc++? \
-    lib32gcc1 \
-    lib32ncurses? \
+    lib32gcc-s1 \
+    lib32stdc++6 \
     lib32z1 \
     libsdl2-2.0-0:i386 \
     locales \
