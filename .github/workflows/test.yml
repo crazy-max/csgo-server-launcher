@@ -35,6 +35,8 @@ jobs:
           cat > ./test-install/Dockerfile <<EOL
           FROM ${{ matrix.variant }}
           COPY install.sh /install.sh
+          ENV CSGOSL_VERSION=dev
+          ENV CSGOSL_DOWNLOAD_URL=https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master
           RUN /install.sh
           EOL
       -

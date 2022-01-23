@@ -54,9 +54,12 @@ if ! apt-get install -q -y $instpkgs; then
   exit 1
 fi
 
+: "${CSGOSL_VERSION=v1.15.2}"
+: "${CSGOSL_DOWNLOAD_URL=https://github.com/crazy-max/csgo-server-launcher/releases/download/$CSGOSL_VERSION}"
+
 ### Vars
-version=1.15.2
-downloadUrl="https://github.com/crazy-max/csgo-server-launcher/releases/download/v$version"
+version=$CSGOSL_VERSION
+downloadUrl=$CSGOSL_DOWNLOAD_URL
 scriptName="csgo-server-launcher"
 scriptPath="/etc/init.d/$scriptName"
 confPath="/etc/csgo-server-launcher/csgo-server-launcher.conf"
@@ -70,7 +73,7 @@ fi
 
 ### Start
 echo ""
-echo "Starting CSGO Server Launcher install (v${version})..."
+echo "Starting CSGO Server Launcher install (${version})..."
 echo ""
 
 echo "Downloading CSGO Server Launcher script..."
