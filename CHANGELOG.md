@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.16.0 (2021/01/23)
+
+* Debian Bullseye
+* Fix install script
+
 ## 1.15.2 (2021/03/09)
 
 * Upstream Debian update
