@@ -41,7 +41,7 @@ jobs:
           EOL
       -
         name: Test
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ./test-install
           outputs: type=cacheonly
