@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://github.com/crazy-max/csgo-server-launcher/releases/latest"><img src="https://img.shields.io/github/release/crazy-max/csgo-server-launcher.svg?style=flat-square" alt="GitHub release"></a>
-  <a href="https://github.com/crazy-max/csgo-server-launcher/actions?workflow=build"><img src="https://img.shields.io/github/workflow/status/crazy-max/csgo-server-launcher/build?label=build&logo=github&style=flat-square" alt="Build Status"></a>
+  <a href="https://github.com/crazy-max/csgo-server-launcher/actions?workflow=build"><img src="https://img.shields.io/github/actions/workflow/status/crazy-max/csgo-server-launcher/build.yml?branch=master&label=build&logo=github&style=flat-square" alt="Build Status"></a>
   <a href="https://hub.docker.com/r/crazymax/csgo-server-launcher/"><img src="https://img.shields.io/docker/stars/crazymax/csgo-server-launcher.svg?style=flat-square&logo=docker" alt="Docker Stars"></a>
   <a href="https://hub.docker.com/r/crazymax/csgo-server-launcher/"><img src="https://img.shields.io/docker/pulls/crazymax/csgo-server-launcher.svg?style=flat-square&logo=docker" alt="Docker Pulls"></a>
   <br /><a href="https://github.com/sponsors/crazy-max"><img src="https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square" alt="Become a sponsor"></a>
