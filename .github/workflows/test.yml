@@ -62,13 +62,15 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Docker Build
-        run: |
-          docker build --tag ${{ env.BUILD_TAG }} --file Dockerfile .
+        name: Build
+        uses: docker/bake-action@v3
+        with:
+          targets: image-local
+        env:
+          DEFAULT_TAG: ${{ env.BUILD_TAG }}
       -
         name: Start container
         run: |
-          docker rm -f ${{ env.CONTAINER_NAME }} > /dev/null 2>&1 || true
           docker run -d --name ${{ env.CONTAINER_NAME }} \
             --ulimit nproc=65535 \
             --ulimit nofile=32000:40000 \
