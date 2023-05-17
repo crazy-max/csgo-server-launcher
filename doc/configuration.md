@@ -128,4 +128,4 @@ Example: `PARAM_START="-game csgo -console -usercon -secure -autoupdate -steam_d
 #### PARAM_UPDATE
 
 Update settings server.<br />
-Example: `PARAM_UPDATE="+login ${STEAM_LOGIN} ${STEAM_PASSWORD} +force_install_dir ${DIR_ROOT} +app_update 740 validate +quit"`
+Example: `PARAM_UPDATE="+force_install_dir ${DIR_ROOT} +login ${STEAM_LOGIN} ${STEAM_PASSWORD} +app_update 740 validate +quit"`
