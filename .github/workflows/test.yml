@@ -12,6 +12,10 @@ on:
     paths-ignore:
       - '**.md'
 
+env:
+  BUILD_TAG: csgo-server-launcher:test
+  CONTAINER_NAME: csgo-server-launcher
+
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -48,58 +52,35 @@ jobs:
           outputs: type=cacheonly
 
   docker:
-    if: ${{ false }}  # disable for now
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Prepare
-        id: prep
-        run: |
-          echo ::set-output name=build_tag::test
-          echo ::set-output name=container_name::csgo-server-launcher
-          echo ::set-output name=running_timeout::2400
-          echo ::set-output name=running_log_check::Connection to Steam servers successful
       -
         name: Checkout
         uses: actions/checkout@v3
       -
         name: Docker Build
         run: |
-          docker build --tag ${{ steps.prep.outputs.build_tag }} --file Dockerfile .
+          docker build --tag ${{ env.BUILD_TAG }} --file Dockerfile .
       -
         name: Start container
         run: |
-          docker rm -f ${{ steps.prep.outputs.container_name }} > /dev/null 2>&1 || true
-          docker run -d --name ${{ steps.prep.outputs.container_name }} \
+          docker rm -f ${{ env.CONTAINER_NAME }} > /dev/null 2>&1 || true
+          docker run -d --name ${{ env.CONTAINER_NAME }} \
             --ulimit nproc=65535 \
             --ulimit nofile=32000:40000 \
             -p 27015:27015 \
             -p 27015:27015/udp \
-            ${{ steps.prep.outputs.build_tag }}
+            ${{ env.BUILD_TAG }}
       -
-        name: Test run
-        run: |
-          TIMEOUT=$((SECONDS + ${{ steps.prep.outputs.running_timeout }}))
-          while read LOGLINE; do
-            echo ${LOGLINE}
-            if [[ ${LOGLINE} == *"${{ steps.prep.outputs.running_log_check }}"* ]]; then
-              echo "🎉 Container up!"
-              break
-            fi
-            if [[ $SECONDS -gt ${TIMEOUT} ]]; then
-              >&2 echo "❌ Failed to run ${{ steps.prep.outputs.container_name }} container"
-              exit 1
-            fi
-          done < <(docker logs -f ${{ steps.prep.outputs.container_name }} 2>&1)
-
-          CONTAINER_STATUS=$(docker container inspect --format "{{.State.Status}}" ${{ steps.prep.outputs.container_name }})
-          if [[ ${CONTAINER_STATUS} != "running" ]]; then
-            >&2 echo "❌ Container ${{ steps.prep.outputs.container_name }} returned status '$CONTAINER_STATUS'"
-            exit 1
-          fi
+        name: Check container logs
+        uses: crazy-max/.github/.github/actions/container-logs-check@main
+        with:
+          container_name: ${{ env.CONTAINER_NAME }}
+          log_check: "Connection to Steam servers successful"
+          timeout: 2400
       -
         name: Container logs
         if: always()
         run: |
-          docker logs ${{ steps.prep.outputs.container_name }}
-          docker rm -f ${{ steps.prep.outputs.container_name }} > /dev/null 2>&1 || true
+          docker logs ${{ env.CONTAINER_NAME }}
+          docker rm -f ${{ env.CONTAINER_NAME }} > /dev/null 2>&1 || true
