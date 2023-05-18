@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.17.0 (2023/05/18)
+
+* Move `force_install_dir` before logon (#116)
+* Enable and fix e2e test (#115)
+
 ## 1.16.0 (2021/01/23)
 
 * Debian Bullseye
