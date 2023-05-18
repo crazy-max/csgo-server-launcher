@@ -1,6 +1,10 @@
+variable "DEFAULT_TAG" {
+  default = "csgo-server-launcher:local"
+}
+
 // Special target: https://github.com/docker/metadata-action#bake-definition
 target "docker-metadata-action" {
-  tags = ["crazymax/diun:local"]
+  tags = [DEFAULT_TAG]
 }
 
 group "default" {

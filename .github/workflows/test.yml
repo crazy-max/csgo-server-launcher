@@ -1,5 +1,9 @@
 name: test
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
   pull_request:
     branches:
@@ -11,6 +15,10 @@ on:
       - 'master'
     paths-ignore:
       - '**.md'
+
+env:
+  BUILD_TAG: csgo-server-launcher:test
+  CONTAINER_NAME: csgo-server-launcher
 
 jobs:
   install:
@@ -48,58 +56,42 @@ jobs:
           outputs: type=cacheonly
 
   docker:
-    if: ${{ false }}  # disable for now
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       -
-        name: Prepare
-        id: prep
+        name: Free up disk space
         run: |
-          echo ::set-output name=build_tag::test
-          echo ::set-output name=container_name::csgo-server-launcher
-          echo ::set-output name=running_timeout::2400
-          echo ::set-output name=running_log_check::Connection to Steam servers successful
+          #sudo du -h -S / | sort -rh
+          sudo rm -rf /opt/google/chrome /opt/microsoft/msedge /usr/local/julia* /usr/share/dotnet /opt/hostedtoolcache /usr/local/lib/android/sdk
       -
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Docker Build
-        run: |
-          docker build --tag ${{ steps.prep.outputs.build_tag }} --file Dockerfile .
+        name: Build
+        uses: docker/bake-action@v3
+        with:
+          targets: image-local
+        env:
+          DEFAULT_TAG: ${{ env.BUILD_TAG }}
       -
         name: Start container
         run: |
-          docker rm -f ${{ steps.prep.outputs.container_name }} > /dev/null 2>&1 || true
-          docker run -d --name ${{ steps.prep.outputs.container_name }} \
+          docker run -d --name ${{ env.CONTAINER_NAME }} \
             --ulimit nproc=65535 \
             --ulimit nofile=32000:40000 \
             -p 27015:27015 \
             -p 27015:27015/udp \
-            ${{ steps.prep.outputs.build_tag }}
+            ${{ env.BUILD_TAG }}
       -
-        name: Test run
-        run: |
-          TIMEOUT=$((SECONDS + ${{ steps.prep.outputs.running_timeout }}))
-          while read LOGLINE; do
-            echo ${LOGLINE}
-            if [[ ${LOGLINE} == *"${{ steps.prep.outputs.running_log_check }}"* ]]; then
-              echo "🎉 Container up!"
-              break
-            fi
-            if [[ $SECONDS -gt ${TIMEOUT} ]]; then
-              >&2 echo "❌ Failed to run ${{ steps.prep.outputs.container_name }} container"
-              exit 1
-            fi
-          done < <(docker logs -f ${{ steps.prep.outputs.container_name }} 2>&1)
-
-          CONTAINER_STATUS=$(docker container inspect --format "{{.State.Status}}" ${{ steps.prep.outputs.container_name }})
-          if [[ ${CONTAINER_STATUS} != "running" ]]; then
-            >&2 echo "❌ Container ${{ steps.prep.outputs.container_name }} returned status '$CONTAINER_STATUS'"
-            exit 1
-          fi
+        name: Check container logs
+        uses: crazy-max/.github/.github/actions/container-logs-check@main
+        with:
+          container_name: ${{ env.CONTAINER_NAME }}
+          log_check: "Host_NewGame on map "
+          timeout: 2400
       -
         name: Container logs
         if: always()
         run: |
-          docker logs ${{ steps.prep.outputs.container_name }}
-          docker rm -f ${{ steps.prep.outputs.container_name }} > /dev/null 2>&1 || true
+          docker logs ${{ env.CONTAINER_NAME }}
+          docker rm -f ${{ env.CONTAINER_NAME }} > /dev/null 2>&1 || true
