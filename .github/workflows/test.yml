@@ -56,8 +56,13 @@ jobs:
           outputs: type=cacheonly
 
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
+      -
+        name: Free up disk space
+        run: |
+          #sudo du -h -S / | sort -rh
+          sudo rm -rf /opt/google/chrome /opt/microsoft/msedge /usr/local/julia* /usr/share/dotnet /opt/hostedtoolcache /usr/local/lib/android/sdk
       -
         name: Checkout
         uses: actions/checkout@v3
@@ -82,7 +87,7 @@ jobs:
         uses: crazy-max/.github/.github/actions/container-logs-check@main
         with:
           container_name: ${{ env.CONTAINER_NAME }}
-          log_check: "Connection to Steam servers successful"
+          log_check: "Host_NewGame on map "
           timeout: 2400
       -
         name: Container logs
