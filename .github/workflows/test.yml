@@ -35,7 +35,7 @@ jobs:
     steps:
       -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Create Dockerfile
         run: |
@@ -65,7 +65,7 @@ jobs:
           sudo rm -rf /opt/google/chrome /opt/microsoft/msedge /usr/local/julia* /usr/share/dotnet /opt/hostedtoolcache /usr/local/lib/android/sdk
       -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Build
         uses: docker/bake-action@v3
