@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM debian:bullseye-slim
 
 RUN dpkg --add-architecture i386 \

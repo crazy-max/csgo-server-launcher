@@ -19,3 +19,16 @@ target "image-local" {
   inherits = ["image"]
   output = ["type=docker"]
 }
+
+variable "TEST_BASE_IMAGE" {
+  default = null
+}
+
+target "test-install" {
+  dockerfile = "test.Dockerfile"
+  target = "install"
+  args = {
+    BASE_IMAGE = TEST_BASE_IMAGE
+  }
+  output = ["type=cacheonly"]
+}
