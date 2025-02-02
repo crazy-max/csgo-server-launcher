@@ -2,8 +2,7 @@
 
 Docker image for CSGO Server Launcher.
 
-> **Note**
-> 
+> [!TIP]
 > Want to be notified of new releases? Check out 🔔 [Diun (Docker Image Update Notifier)](https://github.com/crazy-max/diun)
 > project!
 
@@ -30,7 +29,9 @@ Docker image for CSGO Server Launcher.
 * `SMTP_DOMAIN`: Argument of the `SMTP EHLO` command. Default is `localhost`.
 * `SMTP_FROM`: Set the envelope-from address. Supported substitution patterns can be found [here](https://marlam.de/msmtp/msmtp.html#Commands-specific-to-sendmail-mode).
 
-> 💡 `SMTP_USER_FILE` and `SMTP_PASSWORD_FILE` can be used to fill in the value from a file, especially for Docker's secrets feature.
+> [!NOTE]
+> `SMTP_USER_FILE` and `SMTP_PASSWORD_FILE` can be used to fill in the value
+> from a file, especially for Docker's secrets feature.
 
 And also the following environment variables to edit the CSGO Server Launcher [configuration](https://github.com/crazy-max/csgo-server-launcher/wiki/Configuration):
 
@@ -49,7 +50,10 @@ And also the following environment variables to edit the CSGO Server Launcher [c
 * `TICKRATE` (default `64`)
 * `EXTRAPARAMS` (default `-nohltv +sv_pure 0 +game_type 0 +game_mode 0 +mapgroup mg_active +map de_dust2`)
 
-> 💡 `GSLT_FILE`, `STEAM_LOGIN_FILE`, `STEAM_PASSWORD_FILE` and `API_AUTHORIZATION_KEY_FILE` can be used to fill in the value from a file, especially for Docker's secrets feature.
+> [!NOTE]
+> `GSLT_FILE`, `STEAM_LOGIN_FILE`, `STEAM_PASSWORD_FILE` and
+> `API_AUTHORIZATION_KEY_FILE` can be used to fill in the value from a file,
+> especially for Docker's secrets feature.
 
 ## Volumes
 
