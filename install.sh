@@ -56,6 +56,7 @@ fi
 
 : "${CSGOSL_VERSION=v1.17.0}"
 : "${CSGOSL_DOWNLOAD_URL=https://github.com/crazy-max/csgo-server-launcher/releases/download/$CSGOSL_VERSION}"
+: "${CSGOSL_BASE_DIR=}"
 
 ### Vars
 version=$CSGOSL_VERSION
@@ -76,11 +77,20 @@ echo ""
 echo "Starting CSGO Server Launcher install (${version})..."
 echo ""
 
-echo "Downloading CSGO Server Launcher script..."
-if ! curl -sSLk ${downloadUrl}/csgo-server-launcher.sh -o ${scriptPath}; then
-  echo "ERROR: Cannot download CSGO Server Launcher script..."
-  exit 1
+if [ -n "$CSGOSL_BASE_DIR" ]; then
+  echo "Copying CSGO Server Launcher script..."
+  if ! cp -f "$CSGOSL_BASE_DIR/csgo-server-launcher.sh" "$scriptPath"; then
+    echo "ERROR: Cannot copy CSGO Server Launcher script..."
+    exit 1
+  fi
+else
+  echo "Downloading CSGO Server Launcher script..."
+  if ! curl -sSLk "${downloadUrl}/csgo-server-launcher.sh" -o ${scriptPath}; then
+    echo "ERROR: Cannot download CSGO Server Launcher script..."
+    exit 1
+  fi
 fi
+
 if ! chmod +x ${scriptPath}; then
   echo "ERROR: Cannot chmod CSGO Server Launcher script..."
   exit 1
@@ -92,12 +102,20 @@ if ! update-rc.d csgo-server-launcher defaults >/dev/null; then
   exit 1
 fi
 
-echo "Downloading CSGO Server Launcher configuration..."
 mkdir -p /etc/csgo-server-launcher/
-if [ ! -f $confPath ]; then
-  if ! curl -sSLk ${downloadUrl}/csgo-server-launcher.conf -o ${confPath}; then
-    echo "ERROR: Cannot download CSGO Server Launcher configuration..."
+if [ -n "$CSGOSL_BASE_DIR" ]; then
+  echo "Copying CSGO Server Launcher configuration..."
+  if ! cp -f "$CSGOSL_BASE_DIR/csgo-server-launcher.conf" "$confPath"; then
+    echo "ERROR: Cannot copy CSGO Server Launcher configuration..."
     exit 1
+  fi
+else
+  echo "Downloading CSGO Server Launcher configuration..."
+  if [ ! -f $confPath ]; then
+    if ! curl -sSLk "${downloadUrl}/csgo-server-launcher.conf" -o ${confPath}; then
+      echo "ERROR: Cannot download CSGO Server Launcher configuration..."
+      exit 1
+    fi
   fi
 fi
 

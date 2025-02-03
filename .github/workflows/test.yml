@@ -27,42 +27,32 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - 'debian:buster'
-          - 'debian:bullseye'
-          - 'ubuntu:20.04'
-          - 'ubuntu:22.04'
-          - 'ubuntu:23.04'
+          - debian:bullseye
+          - debian:bookworm
+          - ubuntu:20.04
+          - ubuntu:22.04
+          - ubuntu:24.04
     steps:
       -
-        name: Checkout
-        uses: actions/checkout@v4
-      -
-        name: Create Dockerfile
-        run: |
-          mkdir -p test-install
-          cp install.sh ./test-install/
-          cat > ./test-install/Dockerfile <<EOL
-          FROM ${{ matrix.variant }}
-          COPY install.sh /install.sh
-          ENV CSGOSL_VERSION=dev
-          ENV CSGOSL_DOWNLOAD_URL=https://raw.githubusercontent.com/crazy-max/csgo-server-launcher/master
-          RUN /install.sh
-          EOL
-      -
         name: Test
-        uses: docker/build-push-action@v4
+        uses: docker/bake-action@v6
         with:
-          context: ./test-install
-          outputs: type=cacheonly
+          targets: test-install
+        env:
+          TEST_BASE_IMAGE: ${{ matrix.variant }}
 
   docker:
     runs-on: ubuntu-22.04
     steps:
       -
-        name: Free up disk space
-        run: |
-          #sudo du -h -S / | sort -rh
-          sudo rm -rf /opt/google/chrome /opt/microsoft/msedge /usr/local/julia* /usr/share/dotnet /opt/hostedtoolcache /usr/local/lib/android/sdk
+        name: Free disk space
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v1.3.1
+        with:
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          swap-storage: true
       -
         name: Build
         uses: docker/bake-action@v6
