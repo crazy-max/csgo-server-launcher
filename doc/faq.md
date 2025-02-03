@@ -15,7 +15,7 @@ mkdir: cannot create directory "/var/steamcmd": Permission denied
 It's because you are using a specific user (instead of `root`):
 
 ```
-chown -R steam. /var/steamcmd/
+chown -R steam: /var/steamcmd/
 ```
 
 > Replace `steam` with your current `USER`

@@ -132,7 +132,7 @@ fi
 
 echo "Creating $steamcmdPath folder..."
 mkdir -p "$steamcmdPath"
-chown -R ${user}. "$steamcmdPath"
+chown -R ${user}: "$steamcmdPath"
 
 echo "Updating USER in config file..."
 sed "s#USER=\"steam\"#USER=\"$user\"#" -i "$confPath" 1>nul
