@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.18.0 (2025/02/03)
+
+* Fix chown command (#133)
+
 ## 1.17.0 (2023/05/18)
 
 * Move `force_install_dir` before logon (#116)

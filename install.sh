@@ -54,7 +54,7 @@ if ! apt-get install -q -y $instpkgs; then
   exit 1
 fi
 
-: "${CSGOSL_VERSION=v1.17.0}"
+: "${CSGOSL_VERSION=v1.18.0}"
 : "${CSGOSL_DOWNLOAD_URL=https://github.com/crazy-max/csgo-server-launcher/releases/download/$CSGOSL_VERSION}"
 : "${CSGOSL_BASE_DIR=}"
 

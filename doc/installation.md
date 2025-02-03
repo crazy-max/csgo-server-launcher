@@ -14,7 +14,7 @@ Docker image 🐳 is available for CSGO Server Launcher. For usage and info, see
 A script is available to perform an installation with a single command:
 
 ```
-$ sudo curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.17.0/install.sh | sudo bash
+$ sudo curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.18.0/install.sh | sudo bash
 ```
 
 This should output something like this:
@@ -51,11 +51,11 @@ Or you can install it manually as root or sudoer:
 $ dpkg --add-architecture i386
 $ apt-get update
 $ apt-get install -y -q curl dnsutils gdb lib32gcc-s1 lib32stdc++6 lib32z1 libsdl2-2.0-0:i386 screen tar
-$ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.17.0/csgo-server-launcher.sh -o /etc/init.d/csgo-server-launcher
+$ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.18.0/csgo-server-launcher.sh -o /etc/init.d/csgo-server-launcher
 $ chmod +x /etc/init.d/csgo-server-launcher
 $ update-rc.d csgo-server-launcher defaults
 $ mkdir -p /etc/csgo-server-launcher/
-$ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.17.0/csgo-server-launcher.conf -o /etc/csgo-server-launcher/csgo-server-launcher.conf
+$ curl -sSLk https://github.com/crazy-max/csgo-server-launcher/releases/download/v1.18.0/csgo-server-launcher.conf -o /etc/csgo-server-launcher/csgo-server-launcher.conf
 ```
 
 > :warning: Replace lib32ncurses5 with lib32ncurses6 on Debian buster based distros
