@@ -65,7 +65,7 @@ And you have to create the dedicated user `steam` and the steamcmd directory:
 ```
 $ useradd -m steam
 $ mkdir -p /var/steamcmd
-$ chown -R steam. /var/steamcmd/
+$ chown -R steam: /var/steamcmd/
 ```
 
 After that you can install and start csgo:
