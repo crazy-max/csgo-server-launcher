@@ -4,6 +4,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
+permissions:
+  contents: read
+
 on:
   push:
     branches:
@@ -22,6 +26,9 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      # required to create GitHub release
+      contents: write
     steps:
       -
         name: Checkout
@@ -36,11 +43,14 @@ jobs:
             csgo-server-launcher.conf
             csgo-server-launcher.sh
             install.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      # same as global permissions
+      contents: read
+      # required to push to GHCR
+      packages: write
     needs: release
     env:
       DOCKERHUB_SLUG: crazymax/csgo-server-launcher
