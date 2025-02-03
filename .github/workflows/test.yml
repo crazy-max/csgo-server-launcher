@@ -64,11 +64,8 @@ jobs:
           #sudo du -h -S / | sort -rh
           sudo rm -rf /opt/google/chrome /opt/microsoft/msedge /usr/local/julia* /usr/share/dotnet /opt/hostedtoolcache /usr/local/lib/android/sdk
       -
-        name: Checkout
-        uses: actions/checkout@v4
-      -
         name: Build
-        uses: docker/bake-action@v3
+        uses: docker/bake-action@v6
         with:
           targets: image-local
         env:
